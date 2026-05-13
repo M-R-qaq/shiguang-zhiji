@@ -1,0 +1,43 @@
+# OS 文件
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+yarn.lock
+package-lock.json
+
+# Expo
+.expo/
+.expo-shared/
+web-build/
+dist/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.env
+venv/
+env/
+.venv/
+.idea/
+.vscode/
+*.db
+*.sqlite
+*.sqlite3
+shiguang.db
+
+# Android/IOS
+*.apk
+*.ipa
+*.xcarchive
+Pods/
+
+# Logs
+logs/
+*.log
