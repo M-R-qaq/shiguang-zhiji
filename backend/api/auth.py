@@ -1,9 +1,9 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, Header
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from pydantic import BaseModel, EmailStr
 from core.database import get_db
-from core.security import get_password_hash, verify_password, create_access_token, get_current_user
+from core.security import get_password_hash, verify_password, create_access_token, get_current_user, add_token_to_blacklist
 from models.user import User
 
 router = APIRouter(prefix="/auth", tags=["认证"])
@@ -24,6 +24,7 @@ class UserLogin(BaseModel):
 
 class UserUpdate(BaseModel):
     nickname: str | None = None
+    email: EmailStr | None = None
 
 
 class Token(BaseModel):
@@ -39,6 +40,11 @@ class UserResponse(BaseModel):
 
     class Config:
         from_attributes = True
+
+
+class LogoutResponse(BaseModel):
+    message: str
+    success: bool = True
 
 
 @router.post("/register", response_model=UserResponse, status_code=status.HTTP_201_CREATED)
@@ -103,6 +109,28 @@ async def login(user_data: UserLogin, db: AsyncSession = Depends(get_db)):
     return {"access_token": access_token, "token_type": "bearer"}
 
 
+@router.post("/logout", response_model=LogoutResponse)
+async def logout(
+    authorization: str = Header(...),
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db)
+):
+    """用户登出 - 将Token加入黑名单"""
+    try:
+        # 提取Token
+        token = authorization.replace("Bearer ", "")
+        
+        # 将Token加入黑名单
+        await add_token_to_blacklist(token, current_user.id, db)
+        
+        return {"message": "登出成功", "success": True}
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"登出失败: {str(e)}"
+        )
+
+
 @router.get("/me", response_model=UserResponse)
 async def get_current_user_info(current_user: User = Depends(get_current_user)):
     """获取当前用户信息"""
@@ -116,6 +144,17 @@ async def update_current_user(
     db: AsyncSession = Depends(get_db)
 ):
     """更新当前用户信息"""
+    # 检查邮箱是否被其他用户使用
+    if user_data.email and user_data.email != current_user.email:
+        result = await db.execute(select(User).where(User.email == user_data.email))
+        existing_user = result.scalar_one_or_none()
+        if existing_user and existing_user.id != current_user.id:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="邮箱已被其他用户使用"
+            )
+        current_user.email = user_data.email
+    
     if user_data.nickname is not None:
         current_user.nickname = user_data.nickname
     
@@ -123,3 +162,15 @@ async def update_current_user(
     await db.refresh(current_user)
     
     return current_user
+
+
+@router.delete("/me")
+async def delete_account(
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db)
+):
+    """注销账户 - 软删除"""
+    current_user.is_active = False
+    await db.commit()
+    
+    return {"message": "账户已注销", "success": True}

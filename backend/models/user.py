@@ -13,7 +13,8 @@ class User(Base):
     username = Column(String(50), unique=True, index=True, nullable=False)
     email = Column(String(100), unique=True, index=True, nullable=True)
     hashed_password = Column(String(255), nullable=False)
-    nickname = Column(String(50), nullable=True)  # 唤醒词中的昵称
+    nickname = Column(String(50), nullable=True)
+    wake_word_name = Column(String(10), nullable=True, default="知己")
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
     is_active = Column(Boolean, default=True)
@@ -43,3 +44,14 @@ class Memory(Base):
     cared_at = Column(DateTime(timezone=True), nullable=True)  # 上次关怀时间
     is_cared = Column(Boolean, default=False)  # 是否已关怀
     extra_data = Column(Text, nullable=True)  # 额外数据 JSON
+
+
+class TokenBlacklist(Base):
+    """Token黑名单 - 用于登出功能"""
+    __tablename__ = "token_blacklist"
+
+    id = Column(Integer, primary_key=True, index=True)
+    token = Column(String(500), unique=True, nullable=False, index=True)
+    user_id = Column(Integer, index=True, nullable=False)
+    expires_at = Column(DateTime(timezone=True), nullable=False)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())

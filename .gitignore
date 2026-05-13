@@ -32,6 +32,12 @@ env/
 *.sqlite3
 shiguang.db
 
+# ChromaDB 向量数据库（运行时生成）
+chroma_db/
+
+# AI 对话记录（非项目代码）
+chat_memory/
+
 # Android/IOS
 *.apk
 *.ipa

@@ -8,7 +8,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from core.config import settings
 from core.database import get_db
-from models.user import User
+from models.user import User, TokenBlacklist
 
 # 密码加密上下文
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
@@ -48,6 +48,26 @@ def decode_token(token: str) -> Optional[dict]:
         return None
 
 
+async def is_token_blacklisted(token: str, db: AsyncSession) -> bool:
+    """检查Token是否在黑名单中"""
+    result = await db.execute(select(TokenBlacklist).where(TokenBlacklist.token == token))
+    return result.scalar_one_or_none() is not None
+
+
+async def add_token_to_blacklist(token: str, user_id: int, db: AsyncSession):
+    """将Token添加到黑名单"""
+    payload = decode_token(token)
+    expires_at = datetime.fromtimestamp(payload.get("exp", 0)) if payload else datetime.utcnow()
+    
+    blacklisted_token = TokenBlacklist(
+        token=token,
+        user_id=user_id,
+        expires_at=expires_at
+    )
+    db.add(blacklisted_token)
+    await db.commit()
+
+
 async def get_current_user(
     credentials: HTTPAuthorizationCredentials = Depends(security),
     db: AsyncSession = Depends(get_db)
@@ -60,6 +80,15 @@ async def get_current_user(
     )
     
     token = credentials.credentials
+    
+    # 检查Token是否已被列入黑名单
+    if await is_token_blacklisted(token, db):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Token已失效，请重新登录",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    
     payload = decode_token(token)
     
     if payload is None:

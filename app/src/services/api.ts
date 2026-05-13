@@ -57,23 +57,33 @@ class ApiService {
     return response.data;
   }
 
+  async logout() {
+    try {
+      if (this.token) {
+        await this.client.post('/auth/logout');
+      }
+    } finally {
+      this.setToken(null);
+    }
+    return { success: true, message: '登出成功' };
+  }
+
   async getCurrentUser() {
     const response = await this.client.get('/auth/me');
     return response.data;
   }
 
-  async chat(message: string, history: Array<{role: string; content: string}> = []) {
-    const response = await this.client.post('/llm/chat', {
-      message,
-      history,
-    });
+  async updateUserInfo(nickname?: string, email?: string) {
+    const data: any = {};
+    if (nickname !== undefined) data.nickname = nickname;
+    if (email !== undefined) data.email = email;
+    const response = await this.client.put('/auth/me', data);
     return response.data;
   }
 
-  async updateNickname(nickname: string) {
-    const response = await this.client.put('/auth/me', {
-      nickname,
-    });
+  async deleteAccount() {
+    const response = await this.client.delete('/auth/me');
+    this.setToken(null);
     return response.data;
   }
 
@@ -92,6 +102,84 @@ class ApiService {
     const response = await this.client.post('/tts/synthesize', {
       text,
     });
+    return response.data;
+  }
+
+  async chat(message: string, history: Array<{role: string; content: string}> = []) {
+    const response = await this.client.post('/llm/chat', {
+      message,
+      history,
+    });
+    return response.data;
+  }
+
+  async chatStream(message: string, history: Array<{role: string; content: string}> = [], onChunk: (chunk: string) => void) {
+    const response = await this.client.post('/llm/chat/stream', {
+      message,
+      history,
+    }, {
+      responseType: 'stream',
+    });
+    return response.data;
+  }
+
+  async addMemory(content: string, category: string = 'general', importance: number = 3) {
+    const response = await this.client.post('/memory', {
+      content,
+      category,
+      importance,
+    });
+    return response.data;
+  }
+
+  async getMemories(category?: string, limit: number = 100) {
+    const params: any = { limit };
+    if (category) params.category = category;
+    const response = await this.client.get('/memory', { params });
+    return response.data;
+  }
+
+  async searchMemories(query: string, nResults: number = 5, category?: string) {
+    const response = await this.client.post('/memory/search', {
+      query,
+      n_results: nResults,
+      category,
+    });
+    return response.data;
+  }
+
+  async deleteMemory(memoryId: number) {
+    const response = await this.client.delete(`/memory/${memoryId}`);
+    return response.data;
+  }
+
+  async checkCareNeeded() {
+    const response = await this.client.post('/memory/care/check');
+    return response.data;
+  }
+
+  async extractMemories(userMessage: string, assistantMessage: string) {
+    const response = await this.client.post('/memory/extract', {
+      user_message: userMessage,
+      assistant_message: assistantMessage,
+    });
+    return response.data;
+  }
+
+  async getWakeWordConfig() {
+    const response = await this.client.get('/wakeword/config');
+    return response.data;
+  }
+
+  async updateWakeWordName(wakeWordName: string) {
+    const response = await this.client.put('/wakeword/name', {
+      wake_word_name: wakeWordName,
+    });
+    return response.data;
+  }
+
+  async resetWakeWordName() {
+    const response = await this.client.post('/wakeword/reset');
     return response.data;
   }
 }
