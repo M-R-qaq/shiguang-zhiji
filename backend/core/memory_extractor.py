@@ -34,63 +34,69 @@ class MemoryExtractor:
             except Exception as e:
                 print(f"[MemoryExtractor] OpenAI 客户端初始化失败: {e}")
 
-    def _simple_keyword_extraction(self, text: str) -> List[Dict]:
+    def _simple_keyword_extraction(self, text: str) -> Dict:
         """
         基于关键词的简单记忆提取（无API时的回退方案）
         """
-        memories = []
+        add_memories = []
+        delete_keywords = []
         text_lower = text.lower()
 
-        # 健康相关关键词
+        recovery_keywords = ["好了", "康复了", "痊愈了", "没事了", "恢复了", "不疼了", "不痛了", "出院了"]
         health_keywords = ["不舒服", "生病", "感冒", "发烧", "头疼", "胃痛", "过敏", "吃药", "医院", "体检"]
+        for keyword in recovery_keywords:
+            if keyword in text_lower:
+                delete_keywords.append({"query": keyword, "category": "health"})
+                break
+
         for keyword in health_keywords:
             if keyword in text_lower:
-                memories.append({
+                add_memories.append({
                     "content": f"用户提到{keyword}",
                     "category": "health",
                     "importance": 3
                 })
                 break
 
-        # 情绪相关关键词
         emotion_keywords = ["开心", "难过", "压力", "焦虑", "抑郁", "烦躁", "生气", "郁闷", "无聊", "累"]
         for keyword in emotion_keywords:
             if keyword in text_lower:
-                memories.append({
+                add_memories.append({
                     "content": f"用户提到心情或状态：{keyword}",
                     "category": "emotion",
                     "importance": 3
                 })
                 break
 
-        # 偏好相关关键词
         preference_keywords = ["喜欢", "爱吃", "爱好", "讨厌", "不喜欢", "偏爱"]
         for keyword in preference_keywords:
             if keyword in text_lower:
-                # 提取关键词附近的内容
                 pattern = f"{keyword}([^，。,.!！?？]*)"
                 match = re.search(pattern, text)
                 if match:
                     detail = match.group(1).strip()[:50]
-                    memories.append({
+                    add_memories.append({
                         "content": f"用户{keyword}{detail}",
                         "category": "preference",
                         "importance": 2
                     })
                 break
 
-        # 事件相关关键词
         event_keywords = ["生日", "约会", "聚会", "旅行", "结婚", "纪念日", "考试", "面试"]
         for keyword in event_keywords:
             if keyword in text_lower:
-                memories.append({
+                add_memories.append({
                     "content": f"用户提到重要事件：{keyword}",
                     "category": "event",
                     "importance": 4
                 })
                 break
 
-        return memories
+        return {
+            "add": add_memories,
+            "update": [],
+            "delete": delete_keywords
+        }
 
     async def extract_memories(
         self,
@@ -98,80 +104,92 @@ class MemoryExtractor:
         assistant_message: str,
         existing_memories: List[Dict] = None,
         user_id: int = None
-    ) -> Tuple[List[Dict], bool]:
+    ) -> Tuple[Dict, bool]:
         """
-        从对话轮次中提取重要记忆
+        从对话轮次中提取重要记忆，支持新增、更新、删除操作
 
         Args:
             user_message: 用户消息
             assistant_message: AI回复
-            existing_memories: 已存在的记忆列表（用于去重）
-            user_id: 用户ID（用于向量去重检查）
+            existing_memories: 已存在的记忆列表
+            user_id: 用户ID
 
         Returns:
-            (提取的记忆列表, 是否使用了备用方案)
+            (记忆操作字典, 是否使用了备用方案)
+            操作字典结构: {"add": [...], "update": [...], "delete": [...]}
         """
         used_fallback = False
 
         if not user_message or len(user_message.strip()) < 2:
-            return [], used_fallback
+            return {"add": [], "update": [], "delete": []}, used_fallback
 
         try:
-            # 优先使用 LLM 提取
             if self.client:
-                memories = await self._llm_extract(user_message, assistant_message, existing_memories)
+                result = await self._llm_extract(user_message, assistant_message, existing_memories)
             else:
-                # 回退到关键词提取
                 print("[MemoryExtractor] 使用关键词提取作为备用方案")
-                memories = self._simple_keyword_extraction(user_message)
+                result = self._simple_keyword_extraction(user_message)
                 used_fallback = True
 
-            # 去重处理
-            if memories and (existing_memories or user_id):
-                memories = await self._deduplicate_memories(
-                    memories,
+            original_count = len(result.get("add", []))
+            if result.get("add") and (existing_memories or user_id):
+                result["add"] = await self._deduplicate_memories(
+                    result["add"],
                     existing_memories,
                     user_id
                 )
+            final_count = len(result.get("add", []))
+            if original_count != final_count:
+                print(f"[MemoryExtractor] 去重完成: {original_count} -> {final_count} 条")
 
-            # 重要性评估
-            memories = self._assess_importance(memories)
+            result["add"] = self._assess_importance(result.get("add", []))
 
-            print(f"[MemoryExtractor] 最终提取到 {len(memories)} 条记忆")
-            for mem in memories:
-                print(f"  - [{mem.get('category')}] {mem.get('content')} (重要性: {mem.get('importance')})")
+            add_count = len(result.get("add", []))
+            update_count = len(result.get("update", []))
+            delete_count = len(result.get("delete", []))
+            print(f"[MemoryExtractor] 记忆操作: 新增={add_count}, 更新={update_count}, 删除={delete_count}")
 
-            return memories, used_fallback
+            if add_count:
+                for mem in result["add"]:
+                    print(f"  + [{mem.get('category')}] {mem.get('content')} (重要性: {mem.get('importance')})")
+            if update_count:
+                for mem in result["update"]:
+                    print(f"  ~ [id:{mem.get('id')}] {mem.get('content')}")
+            if delete_count:
+                for mem in result["delete"]:
+                    print(f"  - [id:{mem.get('id')}] 原因: {mem.get('reason', '')}")
+
+            return result, used_fallback
 
         except Exception as e:
             print(f"[MemoryExtractor] 记忆提取失败，使用备用方案: {e}")
             try:
-                # 最终回退：关键词提取
-                memories = self._simple_keyword_extraction(user_message)
+                result = self._simple_keyword_extraction(user_message)
                 used_fallback = True
-                return memories, used_fallback
+                return result, used_fallback
             except Exception as e2:
                 print(f"[MemoryExtractor] 备用方案也失败: {e2}")
-                return [], True
+                return {"add": [], "update": [], "delete": []}, True
 
     async def _llm_extract(
         self,
         user_message: str,
         assistant_message: str,
         existing_memories: List[Dict] = None
-    ) -> List[Dict]:
-        """使用 LLM 提取记忆"""
+    ) -> Dict:
+        """使用 LLM 提取记忆，返回包含 add/update/delete 操作的字典"""
         category_desc = "\n".join([f"- {k}: {v}" for k, v in self.CATEGORIES.items()])
 
         existing_content = ""
         if existing_memories:
-            existing_content = "已存在的记忆（不要重复提取）：\n"
-            for mem in existing_memories[:10]:
+            existing_content = "已有的记忆：\n"
+            for i, mem in enumerate(existing_memories[:15]):
                 content = mem.get('content', '') or mem.get('metadata', {}).get('content', '')
+                mem_id = mem.get('id', '')
                 if content:
-                    existing_content += f"- {content}\n"
+                    existing_content += f"{i+1}. [id:{mem_id}] {content}\n"
 
-        prompt = f"""你是一个智能记忆提取助手。你的任务是从用户和AI的对话中提取关于用户的重要信息作为记忆。
+        prompt = f"""你是一个智能记忆管理助手。你需要根据对话内容，管理用户的记忆。
 
 对话内容：
 用户: {user_message}
@@ -182,43 +200,55 @@ AI: {assistant_message}
 记忆分类：
 {category_desc}
 
-请提取记忆，要求：
-1. 只提取关于用户的客观事实信息
-2. 不要提取主观推测或无关内容
-3. 每个记忆要简洁清晰（一句话）
-4. 给每个记忆打分：1=不重要 5=非常重要
-5. 选择最合适的分类
+请分析对话，执行以下记忆管理操作：
 
-请以JSON格式返回结果：
+1. **add**（新增）：从对话中提取关于用户的新的事实信息（已有记忆绝对不要重复添加！）
+2. **update**（更新）：用户的信息发生了变化，需要更新已有记忆（如：感冒好了→更新健康状态）
+3. **delete**（删除）：某条记忆已经过时或不再准确（如：用户说之前的病已经好了）
+
+重要规则：
+- 只提取关于用户的客观事实
+- 每个记忆简洁清晰（一句话）
+- 给每个记忆打分：1=不重要 5=非常重要
+- 选择最合适的分类
+- update 和 delete 必须指定已有记忆的 id
+- update 时提供新的 content 替换旧内容
+- 最重要：如果某条信息已经在"已有的记忆"列表中，绝对不要在 add 中再次添加！对于语义相似的信息，应该使用 update 而不是 add！
+
+请以JSON格式返回：
 {{
-    "memories": [
-        {{
-            "content": "记忆内容",
-            "category": "分类key",
-            "importance": 1-5
-        }}
+    "add": [
+        {{"content": "新记忆内容", "category": "分类key", "importance": 1-5}}
+    ],
+    "update": [
+        {{"id": "已有记忆id", "content": "更新后的内容", "category": "分类key", "importance": 1-5}}
+    ],
+    "delete": [
+        {{"id": "要删除的记忆id", "reason": "删除原因"}}
     ]
 }}
 
-如果没有可提取的记忆，返回 {{"memories": []}}
-"""
+如果没有需要执行的操作，返回 {{"add": [], "update": [], "delete": []}}"""
 
-        # 调用 LLM
         response = await self.client.chat.completions.create(
             model=settings.LLM_MODEL or "gpt-3.5-turbo",
             messages=[
-                {"role": "system", "content": "你是一个专业的记忆提取助手。只返回JSON格式数据。"},
+                {"role": "system", "content": "你是一个专业的记忆管理助手。只返回JSON格式数据。"},
                 {"role": "user", "content": prompt}
             ],
             temperature=0.3,
-            max_tokens=500,
+            max_tokens=800,
             response_format={"type": "json_object"}
         )
 
         result_text = response.choices[0].message.content
         result = json.loads(result_text)
 
-        return result.get("memories", [])
+        return {
+            "add": result.get("add", []),
+            "update": result.get("update", []),
+            "delete": result.get("delete", [])
+        }
 
     async def _deduplicate_memories(
         self,
@@ -241,38 +271,52 @@ AI: {assistant_message}
                     existing_contents.add(content.lower().strip())
 
         # 如果有 user_id，使用向量搜索进行去重
-        vector_existing_contents = set()
+        duplicate_marks = set()
         if user_id:
             try:
-                for new_mem in new_memories:
-                    # 搜索相似度超过阈值的已有记忆
+                for idx, new_mem in enumerate(new_memories):
+                    new_content = new_mem.get('content', '').lower().strip()
+                    if not new_content:
+                        continue
+                    
                     similar = vector_db.search_memories(
                         user_id=user_id,
                         query=new_mem['content'],
-                        n_results=3
+                        n_results=5
                     )
                     for sim_mem in similar:
-                        # 相似度距离小于阈值认为是重复
                         distance = sim_mem.get('distance', 1.0)
-                        if distance < 0.2:  # 阈值可以调整
-                            content = sim_mem.get('content', '')
-                            vector_existing_contents.add(content.lower().strip())
+                        existing_content = sim_mem.get('content', '').lower().strip()
+                        if distance < 0.4:  # 阈值调大，更宽松
+                            print(f"[MemoryExtractor] 向量去重匹配: 新记忆='{new_content}', 已有='{existing_content}', 距离={distance:.4f}")
+                            duplicate_marks.add(idx)
+                            break
             except Exception as e:
-                print(f"[MemoryExtractor] 向量去重失败，使用简单去重: {e}")
+                print(f"[MemoryExtractor] 向量去重失败: {e}")
 
         # 去重
-        for mem in new_memories:
+        for idx, mem in enumerate(new_memories):
             content = mem.get('content', '').lower().strip()
             if not content:
                 continue
 
-            # 检查内容重复
+            # 检查内容完全重复
             if content in existing_contents:
-                print(f"[MemoryExtractor] 发现重复记忆（简单匹配），跳过: {content}")
+                print(f"[MemoryExtractor] 发现重复记忆（完全匹配），跳过: {content}")
+                continue
+
+            # 检查包含关系（子字符串匹配）
+            is_substring = False
+            for existing_content in existing_contents:
+                if content in existing_content or existing_content in content:
+                    print(f"[MemoryExtractor] 发现包含重复: 新='{content}' 包含于='{existing_content}'")
+                    is_substring = True
+                    break
+            if is_substring:
                 continue
 
             # 检查向量去重
-            if content in vector_existing_contents:
+            if idx in duplicate_marks:
                 print(f"[MemoryExtractor] 发现重复记忆（向量匹配），跳过: {content}")
                 continue
 

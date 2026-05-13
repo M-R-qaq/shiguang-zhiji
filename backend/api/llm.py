@@ -57,7 +57,9 @@ class ChatRequest(BaseModel):
 class ChatResponse(BaseModel):
     response: str
     should_exit: bool = False
-    memories_extracted: int = 0
+    memories_added: int = 0
+    memories_updated: int = 0
+    memories_deleted: int = 0
 
 
 @router.post("/chat", response_model=ChatResponse)
@@ -148,19 +150,22 @@ async def chat(
         await db.commit()
         print("[LLM] 对话记录已保存")
 
-        # 2. 异步提取新记忆（不阻塞响应）
+        # 2. 记忆管理（新增、更新、删除）
         extracted_count = 0
+        updated_count = 0
+        deleted_count = 0
         try:
-            # 获取现有记忆用于去重
             existing = vector_db.get_user_memories(current_user.id, limit=20)
 
-            extracted = await memory_extractor.extract_memories(
+            result, used_fallback = await memory_extractor.extract_memories(
                 user_message=request.message,
                 assistant_message=assistant_message,
-                existing_memories=existing
+                existing_memories=existing,
+                user_id=current_user.id
             )
 
-            for mem in extracted:
+            # 新增记忆
+            for mem in result.get("add", []):
                 db_memory = Memory(
                     user_id=current_user.id,
                     content=mem["content"],
@@ -178,12 +183,66 @@ async def chat(
                     category=mem["category"],
                     metadata={"importance": mem["importance"]}
                 )
+                extracted_count += 1
 
-            extracted_count = len(extracted)
-            if extracted_count > 0:
-                print(f"[LLM] 提取并保存了 {extracted_count} 条新记忆")
+            # 更新记忆
+            for mem in result.get("update", []):
+                memory_id = mem.get("id", "")
+                if memory_id.startswith("memory_"):
+                    memory_id = memory_id.replace("memory_", "")
+                new_content = mem.get("content", "")
+                new_category = mem.get("category")
+                new_metadata = {}
+                if new_category:
+                    new_metadata["category"] = new_category
+                if mem.get("importance"):
+                    new_metadata["importance"] = mem["importance"]
+
+                vector_db.update_memory(
+                    memory_id=memory_id,
+                    content=new_content,
+                    metadata=new_metadata if new_metadata else None
+                )
+
+                try:
+                    mid = int(memory_id)
+                    db_mem = await db.execute(select(Memory).where(Memory.id == mid))
+                    db_obj = db_mem.scalar_one_or_none()
+                    if db_obj:
+                        if new_content:
+                            db_obj.content = new_content
+                        if new_category:
+                            db_obj.category = new_category
+                        await db.commit()
+                except Exception as e:
+                    print(f"[LLM] 同步更新SQL记忆失败(可忽略): {e}")
+
+                updated_count += 1
+                print(f"[LLM] 更新记忆: {memory_id} -> {new_content}")
+
+            # 删除记忆
+            for mem in result.get("delete", []):
+                memory_id = mem.get("id", "")
+                if memory_id.startswith("memory_"):
+                    memory_id = memory_id.replace("memory_", "")
+
+                vector_db.delete_memory(memory_id)
+
+                try:
+                    mid = int(memory_id)
+                    await db.execute(delete(Memory).where(Memory.id == mid))
+                    await db.commit()
+                except Exception as e:
+                    print(f"[LLM] 同步删除SQL记忆失败(可忽略): {e}")
+
+                deleted_count += 1
+                print(f"[LLM] 删除记忆: {memory_id}, 原因: {mem.get('reason', '')}")
+
+            total_changes = extracted_count + updated_count + deleted_count
+            if total_changes > 0:
+                print(f"[LLM] 记忆变更: 新增={extracted_count}, 更新={updated_count}, 删除={deleted_count}")
         except Exception as e:
-            print(f"[LLM] 记忆提取失败: {e}")
+            print(f"[LLM] 记忆管理失败: {e}")
             traceback.print_exc()
 
         # 检查是否应该退出
@@ -193,7 +252,9 @@ async def chat(
         return ChatResponse(
             response=assistant_message,
             should_exit=should_exit,
-            memories_extracted=extracted_count
+            memories_added=extracted_count,
+            memories_updated=updated_count,
+            memories_deleted=deleted_count
         )
 
     except Exception as e:
@@ -278,16 +339,17 @@ async def chat_stream(
             db.add_all([user_msg, assistant_msg])
             await db.commit()
 
-            # 提取记忆
+            # 记忆管理
             try:
                 existing = vector_db.get_user_memories(current_user.id, limit=20)
-                extracted = await memory_extractor.extract_memories(
+                result, used_fallback = await memory_extractor.extract_memories(
                     user_message=request.message,
                     assistant_message=full_response,
-                    existing_memories=existing
+                    existing_memories=existing,
+                    user_id=current_user.id
                 )
 
-                for mem in extracted:
+                for mem in result.get("add", []):
                     db_memory = Memory(
                         user_id=current_user.id,
                         content=mem["content"],
@@ -305,8 +367,31 @@ async def chat_stream(
                         category=mem["category"],
                         metadata={"importance": mem["importance"]}
                     )
+
+                for mem in result.get("update", []):
+                    memory_id = mem.get("id", "")
+                    if memory_id.startswith("memory_"):
+                        memory_id = memory_id.replace("memory_", "")
+                    vector_db.update_memory(
+                        memory_id=memory_id,
+                        content=mem.get("content"),
+                        metadata={"category": mem.get("category"), "importance": mem.get("importance")} if mem.get("category") else None
+                    )
+
+                for mem in result.get("delete", []):
+                    memory_id = mem.get("id", "")
+                    if memory_id.startswith("memory_"):
+                        memory_id = memory_id.replace("memory_", "")
+                    vector_db.delete_memory(memory_id)
+                    try:
+                        mid = int(memory_id)
+                        await db.execute(delete(Memory).where(Memory.id == mid))
+                        await db.commit()
+                    except Exception:
+                        pass
+
             except Exception as e:
-                print(f"[LLM Stream] 记忆提取失败: {e}")
+                print(f"[LLM Stream] 记忆管理失败: {e}")
 
             yield f"data: {json.dumps({'done': True})}\n\n"
 

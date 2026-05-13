@@ -11,24 +11,29 @@ import {
   Platform,
   ScrollView,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native';
 import { useAuth } from '../store/AuthContext';
-
-type RootStackParamList = {
-  Login: undefined;
-  Home: undefined;
-};
+import { RootStackParamList } from '../../App';
 
 export default function LoginScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-  const { login, register, isLoading } = useAuth();
-  
+  const {
+    login,
+    register,
+    backendUrl,
+    backendDetecting,
+    setManualBackendUrl,
+    retryDetectBackend
+  } = useAuth();
+
   const [isLogin, setIsLogin] = useState(true);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [nickname, setNickname] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showManualUrl, setShowManualUrl] = useState(false);
+  const [manualUrl, setManualUrl] = useState('');
 
   const handleSubmit = async () => {
     if (!username.trim() || !password.trim()) {
@@ -41,9 +46,13 @@ export default function LoginScreen() {
       return;
     }
 
-    // 验证昵称长度
     if (!isLogin && (nickname.length < 2 || nickname.length > 5)) {
       Alert.alert('错误', '昵称长度需要在2-5个字之间');
+      return;
+    }
+
+    if (!backendUrl) {
+      Alert.alert('错误', '未连接到后端服务，请检查网络或手动设置后端地址');
       return;
     }
 
@@ -63,6 +72,20 @@ export default function LoginScreen() {
     }
   };
 
+  const handleSetManualUrl = () => {
+    if (!manualUrl.trim()) {
+      Alert.alert('错误', '请输入后端地址');
+      return;
+    }
+    let url = manualUrl.trim();
+    if (!url.startsWith('http://') && !url.startsWith('https://')) {
+      url = `http://${url}`;
+    }
+    setManualBackendUrl(url);
+    setShowManualUrl(false);
+    Alert.alert('成功', '后端地址已设置');
+  };
+
   return (
     <KeyboardAvoidingView
       style={styles.container}
@@ -72,7 +95,6 @@ export default function LoginScreen() {
         contentContainerStyle={styles.scrollContent}
         keyboardShouldPersistTaps="handled"
       >
-        {/* Logo区域 */}
         <View style={styles.header}>
           <View style={styles.logoContainer}>
             <Text style={styles.logoText}>食</Text>
@@ -81,7 +103,65 @@ export default function LoginScreen() {
           <Text style={styles.subtitle}>跨越千年的知己相逢</Text>
         </View>
 
-        {/* 表单区域 */}
+        <View style={styles.connectionStatus}>
+          {backendDetecting ? (
+            <View style={styles.statusRow}>
+              <ActivityIndicator size="small" color="#e94560" />
+              <Text style={styles.statusText}>正在检测后端服务...</Text>
+            </View>
+          ) : backendUrl ? (
+            <View style={styles.statusRow}>
+              <Text style={[styles.statusDot, styles.statusDotOnline]} />
+              <Text style={styles.statusText}>已连接: {backendUrl}</Text>
+            </View>
+          ) : (
+            <TouchableOpacity
+              style={styles.statusRow}
+              onPress={() => {
+                retryDetectBackend();
+              }}
+            >
+              <Text style={[styles.statusDot, styles.statusDotOffline]} />
+              <Text style={styles.statusErrorText}>未检测到后端服务</Text>
+              <Text style={styles.retryText}>点击重试</Text>
+            </TouchableOpacity>
+          )}
+        </View>
+
+        {!backendUrl && (
+          <View style={styles.manualUrlSection}>
+            {showManualUrl ? (
+              <>
+                <Text style={styles.manualUrlLabel}>手动输入后端地址</Text>
+                <View style={styles.manualUrlRow}>
+                  <TextInput
+                    style={styles.manualUrlInput}
+                    placeholder="192.168.x.x:8000"
+                    placeholderTextColor="#666"
+                    value={manualUrl}
+                    onChangeText={setManualUrl}
+                    autoCapitalize="none"
+                    keyboardType="url"
+                  />
+                  <TouchableOpacity
+                    style={styles.setUrlButton}
+                    onPress={handleSetManualUrl}
+                  >
+                    <Text style={styles.setUrlButtonText}>设置</Text>
+                  </TouchableOpacity>
+                </View>
+              </>
+            ) : (
+              <TouchableOpacity
+                style={styles.showManualUrlButton}
+                onPress={() => setShowManualUrl(true)}
+              >
+                <Text style={styles.showManualUrlText}>手动设置后端地址</Text>
+              </TouchableOpacity>
+            )}
+          </View>
+        )}
+
         <View style={styles.form}>
           <Text style={styles.formTitle}>
             {isLogin ? '欢迎回来' : '创建账号'}
@@ -132,7 +212,7 @@ export default function LoginScreen() {
           <TouchableOpacity
             style={[styles.button, loading && styles.buttonDisabled]}
             onPress={handleSubmit}
-            disabled={loading}
+            disabled={loading || !backendUrl}
           >
             {loading ? (
               <ActivityIndicator color="#fff" />
@@ -153,7 +233,6 @@ export default function LoginScreen() {
           </TouchableOpacity>
         </View>
 
-        {/* 底部说明 */}
         <View style={styles.footer}>
           <Text style={styles.footerText}>
             登录即表示同意我们的服务条款
@@ -176,7 +255,7 @@ const styles = StyleSheet.create({
   },
   header: {
     alignItems: 'center',
-    marginBottom: 40,
+    marginBottom: 20,
   },
   logoContainer: {
     width: 80,
@@ -206,6 +285,82 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 14,
     color: '#888',
+  },
+  connectionStatus: {
+    backgroundColor: 'rgba(233, 69, 96, 0.1)',
+    borderRadius: 12,
+    padding: 12,
+    marginBottom: 16,
+  },
+  statusRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  statusDot: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+  },
+  statusDotOnline: {
+    backgroundColor: '#4caf50',
+  },
+  statusDotOffline: {
+    backgroundColor: '#e94560',
+  },
+  statusText: {
+    color: '#999',
+    fontSize: 13,
+    flex: 1,
+  },
+  statusErrorText: {
+    color: '#e94560',
+    fontSize: 13,
+  },
+  retryText: {
+    color: '#e94560',
+    fontSize: 13,
+    textDecorationLine: 'underline',
+  },
+  manualUrlSection: {
+    marginBottom: 16,
+  },
+  manualUrlLabel: {
+    color: '#999',
+    fontSize: 12,
+    marginBottom: 8,
+  },
+  manualUrlRow: {
+    flexDirection: 'row',
+    gap: 8,
+  },
+  manualUrlInput: {
+    flex: 1,
+    backgroundColor: 'rgba(255,255,255,0.1)',
+    borderRadius: 8,
+    padding: 10,
+    fontSize: 14,
+    color: '#fff',
+  },
+  setUrlButton: {
+    backgroundColor: '#e94560',
+    borderRadius: 8,
+    paddingHorizontal: 16,
+    justifyContent: 'center',
+  },
+  setUrlButtonText: {
+    color: '#fff',
+    fontSize: 14,
+    fontWeight: '600',
+  },
+  showManualUrlButton: {
+    alignItems: 'center',
+    padding: 8,
+  },
+  showManualUrlText: {
+    color: '#666',
+    fontSize: 13,
+    textDecorationLine: 'underline',
   },
   form: {
     backgroundColor: 'rgba(255,255,255,0.05)',

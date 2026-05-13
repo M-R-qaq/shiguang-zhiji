@@ -209,17 +209,23 @@ class VectorDB:
         metadata: Optional[Dict] = None
     ):
         try:
-            update_data = {}
+            update_data = {"ids": [f"memory_{memory_id}"]}
             if content:
                 update_data["documents"] = [content]
             if metadata:
-                update_data["metadatas"] = [metadata]
+                try:
+                    existing = self.memory_collection.get(ids=[f"memory_{memory_id}"])
+                    if existing["metadatas"] and existing["metadatas"][0]:
+                        merged = dict(existing["metadatas"][0])
+                        merged.update(metadata)
+                        update_data["metadatas"] = [merged]
+                    else:
+                        update_data["metadatas"] = [metadata]
+                except Exception:
+                    update_data["metadatas"] = [metadata]
 
-            if update_data:
-                self.memory_collection.update(
-                    ids=[f"memory_{memory_id}"],
-                    **update_data
-                )
+            if len(update_data) > 1:
+                self.memory_collection.update(**update_data)
                 print(f"[VectorDB] 更新记忆: memory_id={memory_id}")
         except Exception as e:
             print(f"[VectorDB] 更新记忆失败: {e}")

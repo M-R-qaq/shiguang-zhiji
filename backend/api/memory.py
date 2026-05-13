@@ -106,37 +106,48 @@ async def add_memory(
     )
 
 
-@router.get("", response_model=List[MemoryResponse])
+@router.get("")
 async def get_memories(
     category: Optional[str] = None,
     limit: int = 100,
-    current_user: User = Depends(get_current_user),
-    db: AsyncSession = Depends(get_db)
+    current_user: User = Depends(get_current_user)
 ):
     """
-    获取用户记忆列表
+    获取用户记忆列表（从ChromaDB读取，确保与语义搜索数据源一致）
     """
-    query = select(Memory).where(Memory.user_id == current_user.id)
-    
-    if category:
-        query = query.where(Memory.category == category)
-    
-    query = query.order_by(Memory.created_at.desc()).limit(limit)
-    
-    result = await db.execute(query)
-    memories = result.scalars().all()
-    
-    return [
-        MemoryResponse(
-            id=m.id,
-            content=m.content,
-            category=m.category,
-            importance=3,  # 默认值
-            created_at=m.created_at,
-            is_cared=m.is_cared
+    try:
+        raw_memories = vector_db.get_user_memories(
+            user_id=current_user.id,
+            category=category,
+            limit=limit
         )
-        for m in memories
-    ]
+
+        memories = []
+        for m in raw_memories:
+            memory_id_str = m.get("id", "")
+            numeric_id = 0
+            if memory_id_str.startswith("memory_"):
+                try:
+                    numeric_id = int(memory_id_str.replace("memory_", ""))
+                except ValueError:
+                    pass
+
+            metadata = m.get("metadata", {})
+            memories.append({
+                "id": numeric_id,
+                "content": m.get("content", ""),
+                "category": metadata.get("category", "general"),
+                "importance": metadata.get("importance", 3),
+                "created_at": None,
+                "is_cared": False
+            })
+
+        print(f"[Memory API] 获取记忆: user_id={current_user.id}, category={category}, count={len(memories)}")
+        return memories
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail=f"获取记忆失败: {str(e)}")
 
 
 @router.post("/search")
@@ -173,24 +184,28 @@ async def delete_memory(
     """
     删除记忆
     """
-    # 检查所有权
-    query = select(Memory).where(
-        Memory.id == memory_id,
-        Memory.user_id == current_user.id
-    )
-    result = await db.execute(query)
-    memory = result.scalar_one_or_none()
-    
-    if not memory:
-        raise HTTPException(status_code=404, detail="记忆不存在")
-    
-    # 从数据库删除
-    await db.execute(delete(Memory).where(Memory.id == memory_id))
-    await db.commit()
-    
-    # 从向量数据库删除
+    vector_id = f"memory_{memory_id}"
+
+    try:
+        result = vector_db.memory_collection.get(ids=[vector_id])
+        if not result["ids"]:
+            raise HTTPException(status_code=404, detail="记忆不存在")
+        metadata = result["metadatas"][0] if result["metadatas"] else {}
+        if int(metadata.get("user_id", 0)) != current_user.id:
+            raise HTTPException(status_code=403, detail="无权删除此记忆")
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"[Memory API] 检查记忆所有权失败: {e}")
+
+    try:
+        await db.execute(delete(Memory).where(Memory.id == memory_id))
+        await db.commit()
+    except Exception as e:
+        print(f"[Memory API] 从SQL删除记忆失败(可忽略): {e}")
+
     vector_db.delete_memory(str(memory_id))
-    
+
     return {"message": "删除成功"}
 
 
@@ -218,16 +233,15 @@ async def extract_memories_from_conversation(
     try:
         existing = vector_db.get_user_memories(current_user.id, limit=20)
 
-        extracted, used_fallback = await memory_extractor.extract_memories(
+        result, used_fallback = await memory_extractor.extract_memories(
             user_message=request.user_message,
             assistant_message=request.assistant_message,
             existing_memories=existing,
             user_id=current_user.id
         )
 
-        saved_memories = []
-
-        for mem in extracted:
+        added = []
+        for mem in result.get("add", []):
             db_memory = Memory(
                 user_id=current_user.id,
                 content=mem["content"],
@@ -246,16 +260,44 @@ async def extract_memories_from_conversation(
                 metadata={"importance": mem["importance"]}
             )
 
-            saved_memories.append({
+            added.append({
                 "id": db_memory.id,
                 "content": mem["content"],
                 "category": mem["category"],
                 "importance": mem["importance"]
             })
 
+        for mem in result.get("update", []):
+            memory_id = mem.get("id", "")
+            if memory_id.startswith("memory_"):
+                memory_id = memory_id.replace("memory_", "")
+            vector_db.update_memory(
+                memory_id=memory_id,
+                content=mem.get("content"),
+                metadata={"category": mem.get("category"), "importance": mem.get("importance")} if mem.get("category") else None
+            )
+
+        deleted_ids = []
+        for mem in result.get("delete", []):
+            memory_id = mem.get("id", "")
+            if memory_id.startswith("memory_"):
+                memory_id = memory_id.replace("memory_", "")
+            vector_db.delete_memory(memory_id)
+            deleted_ids.append(memory_id)
+            try:
+                mid = int(memory_id)
+                await db.execute(delete(Memory).where(Memory.id == mid))
+                await db.commit()
+            except Exception:
+                pass
+
         return {
-            "extracted_count": len(saved_memories),
-            "memories": saved_memories,
+            "added": added,
+            "updated": result.get("update", []),
+            "deleted_ids": deleted_ids,
+            "added_count": len(added),
+            "updated_count": len(result.get("update", [])),
+            "deleted_count": len(deleted_ids),
             "used_fallback": used_fallback
         }
     except Exception as e:

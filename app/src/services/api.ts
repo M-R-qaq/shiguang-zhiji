@@ -1,25 +1,60 @@
 import axios, { AxiosInstance, AxiosError } from 'axios';
+import { Platform } from 'react-native';
 
-// API Base URL - Update IP as needed
-const API_BASE_URL = 'http://192.168.10.107:8000'
+const COMMON_IPS = [
+  '192.168.1.100',
+  '192.168.1.101',
+  '192.168.1.102',
+  '192.168.2.100',
+  '192.168.31.100',
+  '192.168.10.107',
+  '10.0.2.2',
+  '127.0.0.1',
+];
+
+async function detectBackend(): Promise<string | null> {
+  const port = 8000;
+  const candidates = COMMON_IPS.map(ip => `http://${ip}:${port}`);
+
+  const results = await Promise.allSettled(
+    candidates.map(url =>
+      axios.get(`${url}/`, { timeout: 1500 })
+        .then(() => url)
+        .catch(() => null)
+    )
+  );
+
+  for (const result of results) {
+    if (result.status === 'fulfilled' && result.value) {
+      return result.value;
+    }
+  }
+
+  return null;
+}
 
 class ApiService {
   private client: AxiosInstance;
   private token: string | null = null;
+  private baseUrl: string | null = null;
 
   constructor() {
     this.client = axios.create({
-      baseURL: API_BASE_URL,
       timeout: 60000,
-      headers: {
-        'Content-Type': 'application/json',
-      },
     });
 
     this.client.interceptors.request.use(
       (config) => {
+        if (this.baseUrl) {
+          config.baseURL = this.baseUrl;
+        }
         if (this.token) {
           config.headers.Authorization = `Bearer ${this.token}`;
+        }
+        if (config.data instanceof FormData) {
+          delete config.headers['Content-Type'];
+        } else {
+          config.headers['Content-Type'] = 'application/json';
         }
         return config;
       },
@@ -28,13 +63,25 @@ class ApiService {
 
     this.client.interceptors.response.use(
       (response) => response,
-      (error: AxiosError) => {
-        if (error.response?.status === 401) {
-          console.log('认证过期');
-        }
-        return Promise.reject(error);
-      }
+      (error: AxiosError) => Promise.reject(error)
     );
+  }
+
+  async autoDetect(): Promise<string | null> {
+    const url = await detectBackend();
+    if (url) {
+      this.baseUrl = url;
+      console.log('[API] 自动检测到后端地址:', url);
+    }
+    return url;
+  }
+
+  setBaseUrl(url: string) {
+    this.baseUrl = url;
+  }
+
+  getBaseUrl(): string | null {
+    return this.baseUrl;
   }
 
   setToken(token: string | null) {
@@ -87,25 +134,89 @@ class ApiService {
     return response.data;
   }
 
-  async transcribe(audioBlob: Blob) {
+  async transcribe(audioUri: string) {
     const formData = new FormData();
-    formData.append('file', audioBlob);
-    const response = await this.client.post('/asr/transcribe', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
+    formData.append('file', {
+      uri: audioUri,
+      type: 'audio/wav',
+      name: 'recording.wav',
+    } as any);
+
+    const headers: Record<string, string> = {};
+    if (this.token) {
+      headers['Authorization'] = `Bearer ${this.token}`;
+    }
+
+    try {
+      const response = await fetch(`${this.baseUrl}/asr/transcribe`, {
+        method: 'POST',
+        headers,
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`上传失败: ${response.status} - ${errorText}`);
+      }
+
+      return await response.json();
+    } catch {
+      return await this.transcribeBase64Fallback(audioUri);
+    }
+  }
+
+  async transcribeBase64(audioBase64: string) {
+    const headers: Record<string, string> = {
+      'Content-Type': 'application/json',
+    };
+    if (this.token) {
+      headers['Authorization'] = `Bearer ${this.token}`;
+    }
+
+    const response = await fetch(`${this.baseUrl}/asr/transcribe-base64`, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({ audio_base64: audioBase64, format: 'wav' }),
     });
-    return response.data;
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`ASR识别失败: ${response.status} - ${errorText}`);
+    }
+
+    return await response.json();
+  }
+
+  private async transcribeBase64Fallback(audioUri: string): Promise<{ text: string }> {
+    // 如果 FormData 上传失败，尝试用 FileSystem 读取�?base64 上传
+    const { readAsStringAsync, EncodingType } = await import('expo-file-system/legacy');
+    const base64Audio = await readAsStringAsync(audioUri, { encoding: EncodingType.Base64 });
+    return await this.transcribeBase64(base64Audio);
   }
 
   async synthesize(text: string) {
-    const response = await this.client.post('/tts/synthesize', {
-      text,
+    const headers: Record<string, string> = {
+      'Content-Type': 'application/json',
+    };
+    if (this.token) {
+      headers['Authorization'] = `Bearer ${this.token}`;
+    }
+
+    const response = await fetch(`${this.baseUrl}/tts/synthesize`, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({ text }),
     });
-    return response.data;
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`TTS失败: ${response.status} - ${errorText}`);
+    }
+
+    return await response.json();
   }
 
-  async chat(message: string, history: Array<{role: string; content: string}> = []) {
+  async chat(message: string, history: Array<{ role: string; content: string }> = []) {
     const response = await this.client.post('/llm/chat', {
       message,
       history,
@@ -113,7 +224,11 @@ class ApiService {
     return response.data;
   }
 
-  async chatStream(message: string, history: Array<{role: string; content: string}> = [], onChunk: (chunk: string) => void) {
+  async chatStream(
+    message: string,
+    history: Array<{ role: string; content: string }> = [],
+    onChunk: (chunk: string) => void
+  ) {
     const response = await this.client.post('/llm/chat/stream', {
       message,
       history,

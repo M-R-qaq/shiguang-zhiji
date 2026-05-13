@@ -15,7 +15,7 @@ export interface Memory {
 // 对话消息类型
 export interface Message {
   id: string;
-  role: 'user' | 'assistant';
+  role: 'user' | 'assistant' | 'system';
   content: string;
   timestamp: Date;
 }
@@ -43,6 +43,7 @@ interface AppStore {
   setAppState: (state: AppState) => void;
   setIsRecording: (recording: boolean) => void;
   setIsPlaying: (playing: boolean) => void;
+  setIsLoading: (loading: boolean) => void;
   setWakeWordDetected: (detected: boolean) => void;
   setNickname: (nickname: string | null) => void;
   
@@ -51,7 +52,7 @@ interface AppStore {
   updateMemory: (id: number, updates: Partial<Memory>) => void;
   
   // 消息动作
-  addMessage: (role: 'user' | 'assistant', content: string) => void;
+  addMessage: (role: 'user' | 'assistant' | 'system', content: string) => void;
   clearMessages: () => void;
   setMessages: (messages: Message[]) => void;
   
@@ -81,6 +82,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
   setAppState: (state) => set({ appState: state }),
   setIsRecording: (recording) => set({ isRecording: recording }),
   setIsPlaying: (playing) => set({ isPlaying: playing }),
+  setIsLoading: (loading) => set({ isLoading: loading }),
   setWakeWordDetected: (detected) => set({ wakeWordDetected: detected }),
   setNickname: (nickname) => set({ nickname }),
   
