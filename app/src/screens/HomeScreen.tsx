@@ -556,7 +556,7 @@ export default function HomeScreen() {
         let webSearchData: { query: string; results: Array<{title: string; content: string; url: string}> } | null = null;
 
         const enqueueSentencePlayback = (sentence: string) => {
-          const cleaned = sentence.replace(/【食光鉴[|｜].*?】/g, '').trim();
+          const cleaned = sentence.replace(/【食光鉴[|｜].*?】/g, '').replace(/（[^）]*）/g, '').replace(/\([^)]*\)/g, '').trim();
           if (!cleaned) return;
 
           accumulatedText += cleaned;
@@ -763,8 +763,11 @@ export default function HomeScreen() {
     }
   };
 
-  const playTTS = async (text: string, preloadedFile?: string | null): Promise<void> => {
+  const playTTS = async (rawText: string, preloadedFile?: string | null): Promise<void> => {
     return new Promise(async (resolve) => {
+      const text = rawText.replace(/【[^】]*】/g, '').replace(/（[^）]*）/g, '').replace(/\([^)]*\)/g, '').trim();
+      if (!text) { resolve(); return; }
+
       ttsResolverRef.current = resolve;
       ttsTempFileRef.current = '';
 

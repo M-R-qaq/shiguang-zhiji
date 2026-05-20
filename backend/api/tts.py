@@ -12,6 +12,7 @@ from models.user import User
 import base64
 import hashlib
 import hmac
+import re
 import time
 import json
 from email.utils import formatdate
@@ -333,13 +334,30 @@ async def mimo_tts_stream(text: str):
         raise
 
 
+import _re
+
+_TTS_CLEAN_PATTERNS = [
+    re.compile(r'（[^）]*）'),
+    re.compile(r'\([^)]*\)'),
+    re.compile(r'【食光鉴[|｜][^】]*】'),
+    re.compile(r'【[^】]*】'),
+]
+
+def _clean_tts_text(text: str) -> str:
+    for pattern in _TTS_CLEAN_PATTERNS:
+        text = pattern.sub('', text)
+    return text.strip()
+
+
 @router.post("/synthesize")
 async def synthesize_speech(
     request: TTSRequest,
     current_user: User = Depends(get_current_user)
 ):
     """文字转语音 API"""
-    text = request.text
+    text = _clean_tts_text(request.text)
+    if not text:
+        raise HTTPException(status_code=400, detail="清理后文本为空")
     if len(text) > 1000:
         import re as _re
         sentences = _re.split(r'([。！？；\n])', text)
@@ -451,7 +469,9 @@ async def synthesize_speech_stream(
 async def _generate_sse_stream(request: TTSRequest):
     import json as _json
 
-    text = request.text
+    text = _clean_tts_text(request.text)
+    if not text:
+        return
     if len(text) > 1000:
         import re as _re
         sentences = _re.split(r'([。！？；\n])', text)
