@@ -1,0 +1,65 @@
+# OS 文件
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+yarn.lock
+package-lock.json
+
+# Expo
+.expo/
+.expo-shared/
+web-build/
+dist/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.env
+venv/
+env/
+.venv/
+.idea/
+.vscode/
+*.db
+*.sqlite
+*.sqlite3
+shiguang.db
+
+# ChromaDB 向量数据库（运行时生成）
+chroma_db/
+
+# TTS 缓存文件（运行时生成）
+tts_cache/
+lipsync_tmp/
+
+# AI 模型文件（体积过大）
+*.pth
+*.pt
+*.onnx
+*.bin
+
+# AI 对话记录（非项目代码）
+chat_memory/
+
+# Android/IOS
+*.apk
+*.ipa
+*.xcarchive
+Pods/
+
+# Logs
+logs/
+*.log
+
+# IDE
+.trae/
+
+# 测试报告（本地运行生成）
+test_reports/
