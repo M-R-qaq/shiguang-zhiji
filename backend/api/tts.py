@@ -334,8 +334,6 @@ async def mimo_tts_stream(text: str):
         raise
 
 
-import _re
-
 _TTS_CLEAN_PATTERNS = [
     re.compile(r'（[^）]*）'),
     re.compile(r'\([^)]*\)'),
