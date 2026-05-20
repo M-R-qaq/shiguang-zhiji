@@ -304,7 +304,7 @@ class ConversationItem(BaseModel):
 
 class SessionInfo(BaseModel):
     session_id: str
-    last_message_time: Optional[datetime] = None
+    last_message_time: Optional[str] = None
     message_count: int = 0
     preview: str = ""
     title: str = ""
@@ -1180,7 +1180,7 @@ async def get_sessions(
 
         sessions.append(SessionInfo(
             session_id=row.session_id,
-            last_message_time=row.last_time,
+            last_message_time=(row.last_time.isoformat() + ("Z" if row.last_time and not row.last_time.tzinfo else "")) if row.last_time else None,
             message_count=row.msg_count,
             preview=preview,
             title=title or ""
