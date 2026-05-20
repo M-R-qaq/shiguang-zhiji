@@ -161,7 +161,7 @@ async def get_memories(
                 "content": m.get("content", ""),
                 "category": metadata.get("category", "general"),
                 "importance": metadata.get("importance", 3),
-                "created_at": db_mem.created_at.isoformat() if db_mem and db_mem.created_at else None,
+                "created_at": (db_mem.created_at.isoformat() + ("Z" if not db_mem.created_at.tzinfo else "")) if db_mem and db_mem.created_at else None,
                 "is_cared": db_mem.is_cared if db_mem else False
             })
 

@@ -1118,7 +1118,7 @@ async def get_history(
                 "role": row.role,
                 "content": row.content,
                 "session_id": row.session_id,
-                "timestamp": row.timestamp.isoformat() if row.timestamp else None,
+                "timestamp": (row.timestamp.isoformat() + ("Z" if not row.timestamp.tzinfo else "")) if row.timestamp else None,
                 "metadata": row.metadata_
             }
             for row in rows
@@ -1219,7 +1219,7 @@ async def get_session_detail(
                 "id": row.id,
                 "role": row.role,
                 "content": row.content,
-                "timestamp": row.timestamp.isoformat() if row.timestamp else None,
+                "timestamp": (row.timestamp.isoformat() + ("Z" if not row.timestamp.tzinfo else "")) if row.timestamp else None,
                 "metadata": row.metadata_
             }
             for row in rows
