@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { apiService as authService } from '../services/api';
+import { useAppStore } from './appStore';
 
 interface User {
   id: number;
@@ -49,6 +50,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         await AsyncStorage.removeItem('auth_token');
         await AsyncStorage.removeItem('auth_user');
         authService.setToken(null);
+        useAppStore.getState().resetForNewUser();
       }
     });
   }, [token]);
@@ -95,6 +97,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     await AsyncStorage.setItem('auth_token', response.access_token);
     await AsyncStorage.setItem('auth_user', JSON.stringify(userData));
     authService.setToken(response.access_token);
+
+    useAppStore.getState().resetForNewUser();
   };
 
   const register = async (username: string, password: string, nickname?: string) => {
@@ -115,6 +119,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       await AsyncStorage.removeItem('auth_token');
       await AsyncStorage.removeItem('auth_user');
       authService.setToken(null);
+      useAppStore.getState().resetForNewUser();
     }
   };
 

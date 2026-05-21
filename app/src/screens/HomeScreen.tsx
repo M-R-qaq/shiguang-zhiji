@@ -1,4 +1,4 @@
-﻿﻿﻿import React, { useEffect, useRef, useState } from 'react';
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿import React, { useEffect, useRef, useState } from 'react';
 import {
   View,
   Text,
@@ -55,6 +55,7 @@ export default function HomeScreen() {
     messages,
     isLoading,
     sessionId,
+    showChatText,
     setIsLoading,
     addMessage,
     finalizeLastAssistantMessage,
@@ -1006,7 +1007,7 @@ export default function HomeScreen() {
       />
 
       <TouchableWithoutFeedback onPress={handleScreenTap}>
-        <View style={styles.tapArea} />
+        <View style={[styles.tapArea, !showChatText && styles.tapAreaFull]} />
       </TouchableWithoutFeedback>
 
       <View style={styles.topBar}>
@@ -1018,7 +1019,7 @@ export default function HomeScreen() {
 
           <View style={styles.statusIndicator}>
             <Text style={styles.statusText}>
-              {appState === 'idle' ? '点击屏幕开始对话' :
+              {appState === 'idle' ? (showChatText ? '点击屏幕开始对话' : '点击任意位置开始对话') :
                appState === 'listening' ? getStatusText() :
                appState === 'speaking' ? '点击打断' : ''}
             </Text>
@@ -1058,6 +1059,7 @@ export default function HomeScreen() {
           </View>
         )}
 
+        {showChatText && (
         <View style={styles.messagesWrapper}>
           <ScrollView
             ref={scrollViewRef}
@@ -1152,6 +1154,7 @@ export default function HomeScreen() {
             )}
           </ScrollView>
         </View>
+        )}
 
         <ShiguangjianModal />
 
@@ -1187,6 +1190,10 @@ const styles = StyleSheet.create({
     right: 0,
     height: SCREEN_HEIGHT * 0.5,
     zIndex: 1,
+  },
+  tapAreaFull: {
+    height: SCREEN_HEIGHT,
+    bottom: 0,
   },
   topBar: {
     position: 'absolute',

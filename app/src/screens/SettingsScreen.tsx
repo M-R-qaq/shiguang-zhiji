@@ -8,6 +8,7 @@ import {
   Alert,
   ActivityIndicator,
   ScrollView,
+  Switch,
 } from 'react-native';
 import { useAuth } from '../store/AuthContext';
 import { useAppStore } from '../store/appStore';
@@ -23,7 +24,7 @@ import AppCard from '../components/AppCard';
 export default function SettingsScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const { user, logout, updateNickname } = useAuth();
-  const { clearMessages, startNewSession } = useAppStore();
+  const { clearMessages, startNewSession, showChatText, setShowChatText } = useAppStore();
   const [nickname, setNickname] = useState(user?.nickname || '');
   const [wakeWordName, setWakeWordName] = useState('知己');
   const [wakeWordLoading, setWakeWordLoading] = useState(true);
@@ -245,6 +246,22 @@ export default function SettingsScreen() {
             disabled={saving}
             variant="danger"
           />
+        </AppCard>
+      </View>
+
+      {/* 对话显示 */}
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>对话显示</Text>
+        <AppCard padding={spacing.lg}>
+          <View style={styles.row}>
+            <Text style={styles.label}>显示对话文本</Text>
+            <Switch
+              value={showChatText}
+              onValueChange={setShowChatText}
+              trackColor={{ false: colors.surfaceLight, true: colors.primary }}
+              thumbColor="#fff"
+            />
+          </View>
         </AppCard>
       </View>
 

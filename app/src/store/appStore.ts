@@ -46,6 +46,7 @@ export interface Message {
 
 const MESSAGES_STORAGE_KEY = '@shiguang:messages';
 const SESSION_ID_KEY = '@shiguang:session_id';
+const SHOW_CHAT_TEXT_KEY = '@shiguang:show_chat_text';
 const MAX_PERSISTED_MESSAGES = 200;
 
 async function persistMessages(messages: Message[]) {
@@ -96,6 +97,23 @@ async function loadSessionId(): Promise<string | null> {
   }
 }
 
+async function persistShowChatText(show: boolean) {
+  try {
+    await AsyncStorage.setItem(SHOW_CHAT_TEXT_KEY, show ? 'true' : 'false');
+  } catch (e) {
+    console.error('[Store] 持久化文本显示设置失败:', e);
+  }
+}
+
+async function loadShowChatText(): Promise<boolean> {
+  try {
+    const value = await AsyncStorage.getItem(SHOW_CHAT_TEXT_KEY);
+    return value !== 'false';
+  } catch (e) {
+    return true;
+  }
+}
+
 interface AppStore {
   appState: AppState;
   isRecording: boolean;
@@ -110,6 +128,7 @@ interface AppStore {
   initialized: boolean;
   shiguangjianVisible: boolean;
   shiguangjianData: { query: string; results: VideoResult[] } | null;
+  showChatText: boolean;
 
   setAppState: (state: AppState) => void;
   setIsRecording: (recording: boolean) => void;
@@ -133,11 +152,13 @@ interface AppStore {
 
   showShiguangjian: (query: string, results: VideoResult[]) => void;
   dismissShiguangjian: () => void;
+  setShowChatText: (show: boolean) => void;
 
   enterListeningState: () => void;
   enterSpeakingState: () => void;
   enterIdleState: () => void;
   resetSession: () => void;
+  resetForNewUser: () => void;
 
   initializeStore: () => Promise<void>;
 }
@@ -156,6 +177,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
   initialized: false,
   shiguangjianVisible: false,
   shiguangjianData: null,
+  showChatText: true,
 
   setAppState: (state) => set({ appState: state }),
   setIsRecording: (recording) => set({ isRecording: recording }),
@@ -266,6 +288,11 @@ export const useAppStore = create<AppStore>((set, get) => ({
     shiguangjianData: null,
   }),
 
+  setShowChatText: (show) => {
+    set({ showChatText: show });
+    persistShowChatText(show);
+  },
+
   enterListeningState: () => set({
     appState: 'listening',
     wakeWordDetected: true,
@@ -293,17 +320,29 @@ export const useAppStore = create<AppStore>((set, get) => ({
     wakeWordDetected: false,
   }),
 
+  resetForNewUser: () => {
+    set({
+      messages: [],
+      sessionId: null,
+      initialized: false,
+    });
+    persistMessages([]);
+    persistSessionId(null);
+  },
+
   initializeStore: async () => {
     if (get().initialized) return;
-    const [messages, sessionId] = await Promise.all([
+    const [messages, sessionId, showChatText] = await Promise.all([
       loadPersistedMessages(),
       loadSessionId(),
+      loadShowChatText(),
     ]);
     set({
       messages,
       sessionId,
+      showChatText,
       initialized: true,
     });
-    console.log(`[Store] 初始化完成: ${messages.length} 条消息, session: ${sessionId?.slice(0, 8) || 'none'}`);
+    console.log(`[Store] 初始化完成: ${messages.length} 条消息, session: ${sessionId?.slice(0, 8) || 'none'}, showChatText: ${showChatText}`);
   },
 }));
