@@ -302,7 +302,7 @@ export default function SettingsScreen() {
         <AppCard padding={spacing.lg}>
           <View style={styles.row}>
             <Text style={styles.label}>版本</Text>
-            <Text style={styles.value}>v0.6.0</Text>
+            <Text style={styles.value}>v0.7.0</Text>
           </View>
           <View style={styles.divider} />
           <View style={styles.row}>

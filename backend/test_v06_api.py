@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 """
-食光知己 v0.6 API 自动测试脚本
+食光知己 v0.7 API 自动测试脚本
 运行方式：cd backend && python test_v06_api.py
 
 前置条件：
 1. 后端服务已启动 (python main.py)
 2. .env 配置正确 (LLM API Key, Tavily API Key 等)
 
-测试覆盖 v0.6 新增功能：
+测试覆盖 v0.7 新增功能：
 1. 版本号检查
 2. 联网搜索 - 地点确认逻辑 (needs_web_search)
 3. 联网搜索 - 含地点时的搜索触发
@@ -90,7 +90,7 @@ class ApiTester:
             data = r.json()
             record("根路径可访问", r.status_code == 200)
             version = data.get("version", "")
-            record("版本号为 0.6.x", version.startswith("0.6"),
+            record("版本号为 0.7.x", version.startswith("0.7"),
                    f"实际版本: {version}")
             features = data.get("features", [])
             record("features 包含食光鉴搜索", "食光鉴搜索" in features)
@@ -102,7 +102,7 @@ class ApiTester:
             r = self.client.get("/health")
             data = r.json()
             record("健康检查可访问", r.status_code == 200)
-            record("健康检查版本 0.6.x", data.get("version", "").startswith("0.6"),
+            record("健康检查版本 0.7.x", data.get("version", "").startswith("0.7"),
                    f"实际版本: {data.get('version')}")
         except Exception as e:
             record("健康检查可访问", False, str(e))
@@ -681,7 +681,7 @@ class ApiTester:
 
     def run(self):
         print("=" * 60)
-        print(f"食光知己 v0.6 API 自动测试")
+        print(f"食光知己 v0.7 API 自动测试")
         print(f"时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
         print(f"目标: {BASE_URL}")
         print("=" * 60)
@@ -741,7 +741,7 @@ class ApiTester:
         report_path = report_dir / "api_v06_test_report.md"
 
         with open(report_path, "w", encoding="utf-8") as f:
-            f.write(f"# 食光知己 v0.6 API 测试报告\n\n")
+            f.write(f"# 食光知己 v0.7 API 测试报告\n\n")
             f.write(f"**时间**: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
             f.write(f"**目标**: {BASE_URL}\n\n")
             f.write(f"## 汇总\n\n")

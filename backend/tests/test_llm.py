@@ -40,7 +40,7 @@ async def test_health_check(client):
     assert response.status_code == 200
     data = response.json()
     assert data["status"] == "healthy"
-    assert data["version"] == "0.6.0"
+    assert data["version"] == "0.7.0"
 
 
 @pytest.mark.asyncio
@@ -50,5 +50,5 @@ async def test_root_endpoint(client):
     assert response.status_code == 200
     data = response.json()
     assert data["name"] is not None
-    assert data["version"] == "0.6.0"
+    assert data["version"] == "0.7.0"
     assert isinstance(data["features"], list)

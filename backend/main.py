@@ -175,7 +175,7 @@ def _preload_whisper():
 app = FastAPI(
     title=settings.APP_NAME,
     description="食光知己后端服务 - 跨越千年的知己相逢",
-    version="0.6.0",
+    version="0.7.0",
     lifespan=lifespan
 )
 
@@ -205,7 +205,7 @@ async def root():
     """根路径"""
     return {
         "name": settings.APP_NAME,
-        "version": "0.6.0",
+        "version": "0.7.0",
         "status": "running",
         "features": ["语音对话", "记忆系统", "向量检索", "主动关怀", "唤醒词检测", "食光鉴搜索", "对话历史持久化", "流式对话", "会话管理", "智能标题"],
         "docs": "/docs"
@@ -218,7 +218,7 @@ async def health_check():
     return {
         "status": "healthy",
         "service": settings.APP_NAME,
-        "version": "0.6.0"
+        "version": "0.7.0"
     }
 
 

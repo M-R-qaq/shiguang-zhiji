@@ -1,5 +1,26 @@
 # Changelog
 
+## v0.7.0 - 2026-05-22
+
+### ✨ 新增功能
+
+#### 🔍 搜索后端统一为 Tavily
+- 移除 B站 API 搜索（BilibiliSearcher），所有搜索统一使用 Tavily API
+- 新增 `WebSearcher.search_content()` 方法，用于食光鉴内容推荐搜索
+- 新增 `convert_tavily_to_video_results()` 转换函数，将 Tavily 结果转换为 VideoResult 格式
+- 前端展示完全不变：食光鉴推荐仍弹出视频卡片弹窗，联网搜索仍为徽章
+
+#### 🎨 前端 UI 优化
+- 新增 `FeatureTip` 组件（功能提示气泡/横幅）
+- 新增 `OnboardingOverlay` 组件（新手引导遮罩）
+- 新增 `welcomeMessage.ts` 工具模块
+
+### 🔄 重要变更
+- 版本号从 v0.6.0 升级到 v0.7.0
+- 移除配置项：`BILIBILI_SEARCH_ENABLED`、`BILIBILI_SEARCH_CACHE_TTL`、`SEARCH_HTTP_PROXY`
+- 新增配置项：`WEB_SEARCH_CONTENT_MAX_RESULTS`（默认 3）
+- `/search` API 后端从 B站 API 切换为 Tavily，返回格式不变
+
 ## v0.6.0 - 2026-05-16
 
 ### ✨ 新增功能
