@@ -255,6 +255,26 @@ def extract_shiguangjian_keyword(response_text: str) -> Tuple[Optional[str], str
     return None, response_text
 
 
+def convert_tavily_to_video_results(tavily_results: List[Dict]) -> List[Dict]:
+    video_results = []
+    for r in tavily_results:
+        url = r.get("url", "")
+        bvid = ""
+        bv_match = re.search(r'BV[a-zA-Z0-9]+', url)
+        if bv_match:
+            bvid = bv_match.group(0)
+        video_results.append({
+            "title": r.get("title", ""),
+            "bvid": bvid,
+            "cover": "",
+            "author": "",
+            "duration": "",
+            "play_count": "",
+            "url": url,
+        })
+    return video_results
+
+
 class Message(BaseModel):
     role: str
     content: str
@@ -621,9 +641,9 @@ async def chat(
                         break
 
             try:
-                from core.search_engine import bilibili_searcher
-                if settings.BILIBILI_SEARCH_ENABLED:
-                    raw_results = await bilibili_searcher.search(keyword_result, limit=3)
+                if web_searcher.is_enabled() and keyword_result:
+                    raw_results = await web_searcher.search_content(keyword_result)
+                    video_data = convert_tavily_to_video_results(raw_results)
                     search_results = [
                         VideoResult(
                             title=r["title"],
@@ -634,7 +654,7 @@ async def chat(
                             play_count=r.get("play_count", ""),
                             url=r.get("url", "")
                         )
-                        for r in raw_results
+                        for r in video_data
                     ]
                     print(f"[LLM] 食光鉴搜索结果: {len(search_results)} 条")
             except Exception as e:
@@ -968,25 +988,13 @@ async def chat_stream(
                 full_response = cleaned_response
                 print(f"[食光鉴] 检测到关键词: {keyword_result}")
                 try:
-                    from core.search_engine import bilibili_searcher
-                    if settings.BILIBILI_SEARCH_ENABLED:
-                        raw_results = await bilibili_searcher.search(keyword_result, limit=3)
-                        search_data = [
-                            {
-                                "title": r["title"],
-                                "bvid": r.get("bvid", ""),
-                                "cover": r.get("cover", ""),
-                                "author": r.get("author", ""),
-                                "duration": r.get("duration", ""),
-                                "play_count": r.get("play_count", ""),
-                                "url": r.get("url", "")
-                            }
-                            for r in raw_results
-                        ]
+                    if web_searcher.is_enabled():
+                        raw_results = await web_searcher.search_content(keyword_result)
+                        search_data = convert_tavily_to_video_results(raw_results)
                         print(f"[食光鉴] 搜索完成: {len(search_data)} 条结果")
                         yield f"data: {json.dumps({'type': 'search', 'search_query': keyword_result, 'search_results': search_data})}\n\n"
                     else:
-                        print(f"[食光鉴] BILIBILI_SEARCH_ENABLED=False，跳过搜索")
+                        print(f"[食光鉴] 联网搜索未启用，跳过搜索")
                 except Exception as e:
                     print(f"[食光鉴] 搜索失败: {e}")
 

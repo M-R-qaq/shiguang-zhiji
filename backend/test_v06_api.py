@@ -93,7 +93,7 @@ class ApiTester:
             record("版本号为 0.6.x", version.startswith("0.6"),
                    f"实际版本: {version}")
             features = data.get("features", [])
-            record("features 包含联网搜索", "联网搜索" in features)
+            record("features 包含食光鉴搜索", "食光鉴搜索" in features)
             record("features 包含会话标题", "会话标题" in features or "智能标题" in features)
         except Exception as e:
             record("根路径可访问", False, str(e))

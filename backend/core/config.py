@@ -62,15 +62,11 @@ class Settings(BaseSettings):
     # Whisper配置
     WHISPER_MODEL: str = "base"  # tiny, base, small, medium, large
     
-    # 食光鉴搜索配置
-    BILIBILI_SEARCH_ENABLED: bool = True
-    BILIBILI_SEARCH_CACHE_TTL: int = 300
-    SEARCH_HTTP_PROXY: str = ""
-
     # 联网搜索配置 (Tavily)
     TAVILY_API_KEY: str = ""
     WEB_SEARCH_ENABLED: bool = True
     WEB_SEARCH_MAX_RESULTS: int = 3
+    WEB_SEARCH_CONTENT_MAX_RESULTS: int = 3
     WEB_SEARCH_TIMEOUT: int = 10
 
     # 记忆系统配置
