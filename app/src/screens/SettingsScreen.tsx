@@ -20,19 +20,27 @@ import { RootStackParamList } from '../../App';
 import { colors, spacing, radius, typography } from '../theme';
 import AppButton from '../components/AppButton';
 import AppCard from '../components/AppCard';
+import FeatureTip from '../components/FeatureTip';
 
 export default function SettingsScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const { user, logout, updateNickname } = useAuth();
-  const { clearMessages, startNewSession, showChatText, setShowChatText } = useAppStore();
+  const { clearMessages, startNewSession, showChatText, setShowChatText, featureTips, markFeatureTip } = useAppStore();
   const [nickname, setNickname] = useState(user?.nickname || '');
   const [wakeWordName, setWakeWordName] = useState('知己');
   const [wakeWordLoading, setWakeWordLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [wakeWordTipVisible, setWakeWordTipVisible] = useState(false);
 
   useEffect(() => {
     loadWakeWordConfig();
   }, []);
+
+  useEffect(() => {
+    if (!featureTips.wake_word && wakeWordName === '知己') {
+      setWakeWordTipVisible(true);
+    }
+  }, [featureTips.wake_word, wakeWordName]);
 
   const loadWakeWordConfig = async () => {
     try {
@@ -193,6 +201,15 @@ export default function SettingsScreen() {
       </View>
 
       {/* 唤醒词配置 */}
+      <FeatureTip
+        visible={wakeWordTipVisible}
+        text="设置你的专属唤醒词"
+        onDismiss={() => {
+          setWakeWordTipVisible(false);
+          markFeatureTip('wake_word');
+        }}
+        variant="bubble"
+      />
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>唤醒词配置</Text>
         <AppCard padding={spacing.lg}>

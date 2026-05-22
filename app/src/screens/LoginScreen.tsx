@@ -45,12 +45,12 @@ export default function LoginScreen() {
     }
 
     if (!isLogin && !nickname.trim()) {
-      Alert.alert('错误', '请输入昵称（用于唤醒词）');
+      Alert.alert('错误', '请输入昵称，让苏怀真知道怎么称呼你');
       return;
     }
 
-    if (!isLogin && (nickname.length < 2 || nickname.length > 5)) {
-      Alert.alert('错误', '昵称长度需要在2-5个字之间');
+    if (!isLogin && (nickname.length < 2 || nickname.length > 10)) {
+      Alert.alert('错误', '昵称长度需要在2-10个字之间');
       return;
     }
 
@@ -193,16 +193,14 @@ export default function LoginScreen() {
 
           {!isLogin && (
             <View style={styles.inputContainer}>
-              <Text style={styles.label}>昵称</Text>
+              <Text style={styles.label}>苏怀真怎么称呼你</Text>
               <AppInput
-                placeholder="2-5个字（用于唤醒词：你好，XX）"
+                placeholder="2-10个字，如：小明、阿华"
                 value={nickname}
                 onChangeText={setNickname}
-                maxLength={5}
+                maxLength={10}
               />
-              <Text style={styles.hint}>
-                唤醒词格式：你好，{nickname || 'XX'}
-              </Text>
+
             </View>
           )}
 

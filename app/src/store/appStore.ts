@@ -47,6 +47,9 @@ export interface Message {
 const MESSAGES_STORAGE_KEY = '@shiguang:messages';
 const SESSION_ID_KEY = '@shiguang:session_id';
 const SHOW_CHAT_TEXT_KEY = '@shiguang:show_chat_text';
+const ONBOARDING_COMPLETED_KEY = '@shiguang:onboarding_completed';
+const WELCOME_DONE_KEY = '@shiguang:welcome_done';
+const FEATURE_TIPS_KEY = '@shiguang:feature_tips';
 const MAX_PERSISTED_MESSAGES = 200;
 
 async function persistMessages(messages: Message[]) {
@@ -114,6 +117,57 @@ async function loadShowChatText(): Promise<boolean> {
   }
 }
 
+async function persistOnboardingCompleted(completed: boolean) {
+  try {
+    await AsyncStorage.setItem(ONBOARDING_COMPLETED_KEY, completed ? 'true' : 'false');
+  } catch (e) {
+    console.error('[Store] 持久化onboarding状态失败:', e);
+  }
+}
+
+async function loadOnboardingCompleted(): Promise<boolean> {
+  try {
+    const value = await AsyncStorage.getItem(ONBOARDING_COMPLETED_KEY);
+    return value === null ? true : value === 'true';
+  } catch (e) {
+    return true;
+  }
+}
+
+async function persistWelcomeDone(done: boolean) {
+  try {
+    await AsyncStorage.setItem(WELCOME_DONE_KEY, done ? 'true' : 'false');
+  } catch (e) {
+    console.error('[Store] 持久化welcome状态失败:', e);
+  }
+}
+
+async function loadWelcomeDone(): Promise<boolean> {
+  try {
+    const value = await AsyncStorage.getItem(WELCOME_DONE_KEY);
+    return value === null ? true : value === 'true';
+  } catch (e) {
+    return true;
+  }
+}
+
+async function persistFeatureTips(tips: Record<string, boolean>) {
+  try {
+    await AsyncStorage.setItem(FEATURE_TIPS_KEY, JSON.stringify(tips));
+  } catch (e) {
+    console.error('[Store] 持久化功能提示状态失败:', e);
+  }
+}
+
+async function loadFeatureTips(): Promise<Record<string, boolean>> {
+  try {
+    const value = await AsyncStorage.getItem(FEATURE_TIPS_KEY);
+    return value ? JSON.parse(value) : {};
+  } catch (e) {
+    return {};
+  }
+}
+
 interface AppStore {
   appState: AppState;
   isRecording: boolean;
@@ -129,6 +183,9 @@ interface AppStore {
   shiguangjianVisible: boolean;
   shiguangjianData: { query: string; results: VideoResult[] } | null;
   showChatText: boolean;
+  onboardingCompleted: boolean;
+  welcomeDone: boolean;
+  featureTips: Record<string, boolean>;
 
   setAppState: (state: AppState) => void;
   setIsRecording: (recording: boolean) => void;
@@ -153,6 +210,9 @@ interface AppStore {
   showShiguangjian: (query: string, results: VideoResult[]) => void;
   dismissShiguangjian: () => void;
   setShowChatText: (show: boolean) => void;
+  setOnboardingCompleted: () => void;
+  setWelcomeDone: () => void;
+  markFeatureTip: (tipId: string) => void;
 
   enterListeningState: () => void;
   enterSpeakingState: () => void;
@@ -178,6 +238,9 @@ export const useAppStore = create<AppStore>((set, get) => ({
   shiguangjianVisible: false,
   shiguangjianData: null,
   showChatText: true,
+  onboardingCompleted: true,
+  welcomeDone: true,
+  featureTips: {},
 
   setAppState: (state) => set({ appState: state }),
   setIsRecording: (recording) => set({ isRecording: recording }),
@@ -293,6 +356,22 @@ export const useAppStore = create<AppStore>((set, get) => ({
     persistShowChatText(show);
   },
 
+  setOnboardingCompleted: () => {
+    set({ onboardingCompleted: true });
+    persistOnboardingCompleted(true);
+  },
+
+  setWelcomeDone: () => {
+    set({ welcomeDone: true });
+    persistWelcomeDone(true);
+  },
+
+  markFeatureTip: (tipId) => {
+    const updated = { ...get().featureTips, [tipId]: true };
+    set({ featureTips: updated });
+    persistFeatureTips(updated);
+  },
+
   enterListeningState: () => set({
     appState: 'listening',
     wakeWordDetected: true,
@@ -325,22 +404,34 @@ export const useAppStore = create<AppStore>((set, get) => ({
       messages: [],
       sessionId: null,
       initialized: false,
+      onboardingCompleted: false,
+      welcomeDone: false,
+      featureTips: {},
     });
     persistMessages([]);
     persistSessionId(null);
+    persistOnboardingCompleted(false);
+    persistWelcomeDone(false);
+    persistFeatureTips({});
   },
 
   initializeStore: async () => {
     if (get().initialized) return;
-    const [messages, sessionId, showChatText] = await Promise.all([
+    const [messages, sessionId, showChatText, onboardingCompleted, welcomeDone, featureTips] = await Promise.all([
       loadPersistedMessages(),
       loadSessionId(),
       loadShowChatText(),
+      loadOnboardingCompleted(),
+      loadWelcomeDone(),
+      loadFeatureTips(),
     ]);
     set({
       messages,
       sessionId,
       showChatText,
+      onboardingCompleted,
+      welcomeDone,
+      featureTips,
       initialized: true,
     });
     console.log(`[Store] 初始化完成: ${messages.length} 条消息, session: ${sessionId?.slice(0, 8) || 'none'}, showChatText: ${showChatText}`);

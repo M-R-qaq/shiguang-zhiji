@@ -11,10 +11,12 @@ import {
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 import { useAuth } from '../store/AuthContext';
+import { useAppStore } from '../store/appStore';
 import { apiService } from '../services/api';
 import { RootStackParamList } from '../../App';
 import { colors, spacing, radius } from '../theme';
 import { Ionicons } from '@expo/vector-icons';
+import FeatureTip from '../components/FeatureTip';
 
 interface SessionInfo {
   session_id: string;
@@ -27,9 +29,11 @@ interface SessionInfo {
 export default function SessionListScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const { user } = useAuth();
+  const { featureTips, markFeatureTip } = useAppStore();
   const [sessions, setSessions] = useState<SessionInfo[]>([]);
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [sessionsTipVisible, setSessionsTipVisible] = useState(false);
 
   const loadSessions = useCallback(async () => {
     try {
@@ -46,6 +50,12 @@ export default function SessionListScreen() {
   useEffect(() => {
     loadSessions();
   }, [loadSessions]);
+
+  useEffect(() => {
+    if (!featureTips.sessions) {
+      setSessionsTipVisible(true);
+    }
+  }, [featureTips.sessions]);
 
   const handleRefresh = () => {
     setRefreshing(true);
@@ -132,6 +142,17 @@ export default function SessionListScreen() {
         data={sessions}
         keyExtractor={(item) => item.session_id}
         renderItem={renderItem}
+        ListHeaderComponent={
+          <FeatureTip
+            visible={sessionsTipVisible}
+            text="这里保存了你和苏怀真的所有对话"
+            onDismiss={() => {
+              setSessionsTipVisible(false);
+              markFeatureTip('sessions');
+            }}
+            variant="banner"
+          />
+        }
         ListEmptyComponent={!loading ? renderEmpty : null}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={handleRefresh} tintColor={colors.primary} />

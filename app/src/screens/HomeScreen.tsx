@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿import React, { useEffect, useRef, useState } from 'react';
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿import React, { useEffect, useRef, useState } from 'react';
 import {
   View,
   Text,
@@ -24,9 +24,12 @@ import { useAppStore, VideoResult } from '../store/appStore';
 import { apiService } from '../services/api';
 import { wakeWordService } from '../services/wakeWordService';
 import ShiguangjianModal from '../components/ShiguangjianModal';
+import FeatureTip from '../components/FeatureTip';
+import OnboardingOverlay from '../components/OnboardingOverlay';
 import MessageActionSheet from '../components/MessageActionSheet';
 import IconButton from '../components/IconButton';
 import { colors, spacing, radius, typography } from '../theme';
+import { getWelcomeMessage } from '../utils/welcomeMessage';
 import { RootStackParamList } from '../../App';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -71,6 +74,12 @@ export default function HomeScreen() {
     initializeStore,
     showShiguangjian,
     dismissShiguangjian,
+    onboardingCompleted,
+    welcomeDone,
+    setOnboardingCompleted,
+    setWelcomeDone,
+    featureTips,
+    markFeatureTip,
   } = useAppStore();
 
   const videoRef = useRef<Video>(null);
@@ -94,6 +103,15 @@ export default function HomeScreen() {
   const [detectionProgress, setDetectionProgress] = useState<number>(0);
   const [expandedWebSearch, setExpandedWebSearch] = useState<Set<string>>(new Set());
   const [actionSheetMessage, setActionSheetMessage] = useState<{ id: string; role: string; content: string } | null>(null);
+  const [webSearchTipVisible, setWebSearchTipVisible] = useState(false);
+  const [careTipVisible, setCareTipVisible] = useState(false);
+  const [shiguangjianTipVisible, setShiguangjianTipVisible] = useState(false);
+
+  const micButtonRef = useRef<View>(null);
+  const textInputRef = useRef<View>(null);
+  const shiguangjianRef = useRef<View>(null);
+  const topBarRef = useRef<View>(null);
+  const [showOnboarding, setShowOnboarding] = useState(false);
 
   const toggleWebSearchExpand = (msgId: string) => {
     setExpandedWebSearch(prev => {
@@ -165,6 +183,26 @@ export default function HomeScreen() {
   }, [appState]);
 
   useEffect(() => {
+    if (!onboardingCompleted) {
+      const timer = setTimeout(() => {
+        setShowOnboarding(true);
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [onboardingCompleted]);
+
+  useEffect(() => {
+    if (onboardingCompleted && !welcomeDone && messages.length === 0) {
+      const timer = setTimeout(() => {
+        const welcomeMsg = getWelcomeMessage(user?.nickname || null);
+        addMessage('assistant', welcomeMsg);
+        setWelcomeDone();
+      }, 800);
+      return () => clearTimeout(timer);
+    }
+  }, [onboardingCompleted, welcomeDone, messages.length]);
+
+  useEffect(() => {
     initializeStore();
 
     if (Platform.OS === 'android') {
@@ -180,6 +218,10 @@ export default function HomeScreen() {
           const ok = await wakeWordService.initialize(keyword);
           if (ok) {
             console.log('[WakeWord] 初始化成功，准备启动监听');
+            if (!useAppStore.getState().onboardingCompleted) {
+              console.log('[WakeWord] onboarding未完成，暂不启动监听');
+              return;
+            }
             const started = await wakeWordService.startListening(async (detectedKeyword) => {
               console.log('[唤醒词] 检测到:', detectedKeyword);
               await wakeWordService.stopListening();
@@ -201,7 +243,7 @@ export default function HomeScreen() {
   }, []);
 
   useEffect(() => {
-    if (appState === 'idle' && Platform.OS === 'android' && wakeWordService.isInitialized() && !wakeWordService.isListening()) {
+    if (appState === 'idle' && Platform.OS === 'android' && wakeWordService.isInitialized() && !wakeWordService.isListening() && !showOnboarding) {
       console.log('[WakeWord] 进入idle，启动监听');
       wakeWordService.startListening(async (keyword) => {
         console.log('[唤醒词] 检测到:', keyword);
@@ -211,11 +253,11 @@ export default function HomeScreen() {
       }).then(ok => {
         console.log('[WakeWord] idle监听启动结果:', ok);
       });
-    } else if (appState !== 'idle' && wakeWordService.isListening()) {
-      console.log('[WakeWord] 离开idle，停止监听');
+    } else if ((appState !== 'idle' || showOnboarding) && wakeWordService.isListening()) {
+      console.log('[WakeWord] 离开idle或onboarding中，停止监听');
       wakeWordService.stopListening();
     }
-  }, [appState]);
+  }, [appState, showOnboarding]);
 
   useEffect(() => {
     if (messages.length > 0) {
@@ -224,6 +266,29 @@ export default function HomeScreen() {
       }, 100);
     }
   }, [messages]);
+
+  useEffect(() => {
+    if (featureTips.web_search) return;
+    const hasWebSearch = messages.some(m => m.webSearchData);
+    if (hasWebSearch) {
+      setWebSearchTipVisible(true);
+    }
+  }, [messages, featureTips.web_search]);
+
+  useEffect(() => {
+    if (featureTips.care) return;
+    const hasCare = messages.some(m => m.careInjected);
+    if (hasCare) {
+      setCareTipVisible(true);
+    }
+  }, [messages, featureTips.care]);
+
+  useEffect(() => {
+    if (featureTips.shiguangjian) return;
+    if (shiguangjianVisible) {
+      setShiguangjianTipVisible(true);
+    }
+  }, [shiguangjianVisible, featureTips.shiguangjian]);
 
   useEffect(() => {
     return () => {
@@ -930,6 +995,16 @@ export default function HomeScreen() {
     }, VAD_CONFIG.MAX_RECORDING_DURATION + 5000);
   };
 
+  const handleOnboardingComplete = () => {
+    setShowOnboarding(false);
+    setOnboardingCompleted();
+  };
+
+  const handleOnboardingSkip = () => {
+    setShowOnboarding(false);
+    setOnboardingCompleted();
+  };
+
   const handleScreenTap = () => {
     console.log('[屏幕点击] 当前状态:', appState);
     if (appState === 'speaking') {
@@ -1017,7 +1092,7 @@ export default function HomeScreen() {
             size="sm"
           />
 
-          <View style={styles.statusIndicator}>
+          <View ref={micButtonRef} style={styles.statusIndicator}>
             <Text style={styles.statusText}>
               {appState === 'idle' ? (showChatText ? '点击屏幕开始对话' : '点击任意位置开始对话') :
                appState === 'listening' ? getStatusText() :
@@ -1026,7 +1101,7 @@ export default function HomeScreen() {
             {isLoading && <ActivityIndicator color={colors.text} size="small" style={styles.loader} />}
           </View>
 
-          <View style={styles.topBarRight}>
+          <View ref={topBarRef} style={styles.topBarRight}>
             <IconButton
               icon={<Ionicons name="time-outline" size={18} color={colors.text} />}
               onPress={() => navigation.navigate('SessionList')}
@@ -1060,7 +1135,7 @@ export default function HomeScreen() {
         )}
 
         {showChatText && (
-        <View style={styles.messagesWrapper}>
+        <View ref={textInputRef} style={styles.messagesWrapper}>
           <ScrollView
             ref={scrollViewRef}
             style={styles.messagesContainer}
@@ -1156,7 +1231,37 @@ export default function HomeScreen() {
         </View>
         )}
 
-        <ShiguangjianModal />
+        <FeatureTip
+          visible={webSearchTipVisible}
+          text="苏怀真联网搜索了实时信息，点击查看详情"
+          onDismiss={() => {
+            setWebSearchTipVisible(false);
+            markFeatureTip('web_search');
+          }}
+          variant="bubble"
+        />
+        <FeatureTip
+          visible={careTipVisible}
+          text="苏怀真记住了关于你的事，在关心你呢"
+          onDismiss={() => {
+            setCareTipVisible(false);
+            markFeatureTip('care');
+          }}
+          variant="bubble"
+        />
+
+        <View ref={shiguangjianRef}>
+          <ShiguangjianModal />
+        </View>
+        <FeatureTip
+          visible={shiguangjianTipVisible}
+          text="这是食光鉴推荐，来自苏怀真的美食发现"
+          onDismiss={() => {
+            setShiguangjianTipVisible(false);
+            markFeatureTip('shiguangjian');
+          }}
+          variant="banner"
+        />
 
         <MessageActionSheet
           visible={actionSheetMessage !== null}
@@ -1170,6 +1275,12 @@ export default function HomeScreen() {
               return next;
             });
           }}
+        />
+        <OnboardingOverlay
+          visible={showOnboarding}
+          onComplete={handleOnboardingComplete}
+          onSkip={handleOnboardingSkip}
+          targetRefs={[micButtonRef, textInputRef, shiguangjianRef, topBarRef]}
         />
       </View>
   );
