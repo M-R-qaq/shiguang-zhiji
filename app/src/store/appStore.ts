@@ -168,6 +168,25 @@ async function loadFeatureTips(): Promise<Record<string, boolean>> {
   }
 }
 
+const READ_ANNOUNCEMENT_IDS_KEY = '@shiguang:read_announcement_ids';
+
+async function persistReadAnnouncementIds(ids: number[]) {
+  try {
+    await AsyncStorage.setItem(READ_ANNOUNCEMENT_IDS_KEY, JSON.stringify(ids));
+  } catch (e) {
+    console.error('[Store] 持久化公告已读状态失败:', e);
+  }
+}
+
+async function loadReadAnnouncementIds(): Promise<number[]> {
+  try {
+    const value = await AsyncStorage.getItem(READ_ANNOUNCEMENT_IDS_KEY);
+    return value ? JSON.parse(value) : [];
+  } catch (e) {
+    return [];
+  }
+}
+
 interface AppStore {
   appState: AppState;
   isRecording: boolean;
@@ -186,6 +205,7 @@ interface AppStore {
   onboardingCompleted: boolean;
   welcomeDone: boolean;
   featureTips: Record<string, boolean>;
+  readAnnouncementIds: number[];
 
   setAppState: (state: AppState) => void;
   setIsRecording: (recording: boolean) => void;
@@ -213,6 +233,7 @@ interface AppStore {
   setOnboardingCompleted: () => void;
   setWelcomeDone: () => void;
   markFeatureTip: (tipId: string) => void;
+  markAnnouncementReadId: (id: number) => void;
 
   enterListeningState: () => void;
   enterSpeakingState: () => void;
@@ -242,6 +263,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
   onboardingCompleted: true,
   welcomeDone: true,
   featureTips: {},
+  readAnnouncementIds: [],
 
   setAppState: (state) => set({ appState: state }),
   setIsRecording: (recording) => set({ isRecording: recording }),
@@ -373,6 +395,12 @@ export const useAppStore = create<AppStore>((set, get) => ({
     persistFeatureTips(updated);
   },
 
+  markAnnouncementReadId: (id) => {
+    const updated = [...get().readAnnouncementIds, id];
+    set({ readAnnouncementIds: updated });
+    persistReadAnnouncementIds(updated);
+  },
+
   enterListeningState: () => set({
     appState: 'listening',
     wakeWordDetected: true,
@@ -405,6 +433,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
       messages: [],
       sessionId: null,
       initialized: false,
+      readAnnouncementIds: [],
     });
     persistMessages([]);
     persistSessionId(null);
@@ -423,11 +452,12 @@ export const useAppStore = create<AppStore>((set, get) => ({
 
   initializeStore: async () => {
     if (get().initialized) return;
-    const [showChatText, onboardingCompleted, welcomeDone, featureTips] = await Promise.all([
+    const [showChatText, onboardingCompleted, welcomeDone, featureTips, readAnnouncementIds] = await Promise.all([
       loadShowChatText(),
       loadOnboardingCompleted(),
       loadWelcomeDone(),
       loadFeatureTips(),
+      loadReadAnnouncementIds(),
     ]);
     set({
       messages: [],
@@ -436,6 +466,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
       onboardingCompleted,
       welcomeDone,
       featureTips,
+      readAnnouncementIds,
       initialized: true,
     });
     persistMessages([]);

@@ -1,5 +1,6 @@
 import sys
 import asyncio
+import os
 from pathlib import Path
 from datetime import datetime, timedelta
 
@@ -18,7 +19,9 @@ from core.config import settings
 from core.vector_db import vector_db
 from core.memory_extractor import memory_extractor
 from models.user import User, Memory, TokenBlacklist
-from api import auth, asr, llm, tts, memory, wakeword, search
+from models.admin import Admin
+from core.security import get_password_hash
+from api import auth, asr, llm, tts, memory, wakeword, search, admin_auth, admin_manage, announcement
 
 
 async def cleanup_token_blacklist():
@@ -126,6 +129,19 @@ async def lifespan(app: FastAPI):
     await init_db()
     print("✅ 数据库初始化完成")
 
+    async with AsyncSessionLocal() as session:
+        result = await session.execute(select(Admin))
+        if not result.scalars().first():
+            super_admin = Admin(
+                username="admin",
+                hashed_password=get_password_hash("admin"),
+                role="super_admin",
+                display_name="超级管理员"
+            )
+            session.add(super_admin)
+            await session.commit()
+            print("⚠️ 超级管理员已创建（admin/admin），请尽快修改默认密码！")
+
     from core.tts_cache import tts_cache
     await tts_cache.initialize()
     print("✅ TTS 缓存初始化完成")
@@ -175,7 +191,7 @@ def _preload_whisper():
 app = FastAPI(
     title=settings.APP_NAME,
     description="食光知己后端服务 - 跨越千年的知己相逢",
-    version="0.7.0",
+    version="0.8.0",
     lifespan=lifespan
 )
 
@@ -198,6 +214,20 @@ app.include_router(tts.router)
 app.include_router(memory.router)
 app.include_router(wakeword.router)
 app.include_router(search.router)
+app.include_router(admin_auth.router)
+app.include_router(admin_manage.router)
+app.include_router(announcement.router)
+
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+
+admin_static_dir = os.path.join(os.path.dirname(__file__), "static", "admin")
+if os.path.isdir(admin_static_dir):
+    app.mount("/admin/static", StaticFiles(directory=admin_static_dir), name="admin_static")
+
+@app.get("/admin/")
+async def admin_page():
+    return FileResponse(os.path.join(admin_static_dir, "index.html"))
 
 
 @app.get("/")
@@ -205,9 +235,9 @@ async def root():
     """根路径"""
     return {
         "name": settings.APP_NAME,
-        "version": "0.7.0",
+        "version": "0.8.0",
         "status": "running",
-        "features": ["语音对话", "记忆系统", "向量检索", "主动关怀", "唤醒词检测", "食光鉴搜索", "对话历史持久化", "流式对话", "会话管理", "智能标题"],
+        "features": ["语音对话", "记忆系统", "向量检索", "主动关怀", "唤醒词检测", "食光鉴搜索", "对话历史持久化", "流式对话", "会话管理", "智能标题", "管理员系统", "公告系统"],
         "docs": "/docs"
     }
 
@@ -218,7 +248,7 @@ async def health_check():
     return {
         "status": "healthy",
         "service": settings.APP_NAME,
-        "version": "0.7.0"
+        "version": "0.8.0"
     }
 
 

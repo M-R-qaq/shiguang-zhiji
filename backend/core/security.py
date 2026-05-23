@@ -116,4 +116,96 @@ async def get_current_user(
     if not user.is_active:
         raise HTTPException(status_code=400, detail="用户已停用")
     
+    if user.sessions_invalidated_at:
+        token_iat = payload.get("iat")
+        if token_iat:
+            token_issued = datetime.fromtimestamp(token_iat, tz=timezone.utc)
+            if token_issued < user.sessions_invalidated_at:
+                raise HTTPException(
+                    status_code=status.HTTP_401_UNAUTHORIZED,
+                    detail="会话已失效，请重新登录",
+                    headers={"WWW-Authenticate": "Bearer"},
+                )
+    
     return user
+
+
+def create_admin_token(data: dict, expires_delta: Optional[timedelta] = None) -> str:
+    to_encode = data.copy()
+    to_encode.update({"type": "admin"})
+    if expires_delta:
+        expire = datetime.now(timezone.utc) + expires_delta
+    else:
+        expire = datetime.now(timezone.utc) + timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
+    to_encode.update({"exp": expire})
+    encoded_jwt = jwt.encode(to_encode, settings.SECRET_KEY, algorithm=settings.ALGORITHM)
+    return encoded_jwt
+
+
+async def is_admin_token_blacklisted(token: str, db: AsyncSession) -> bool:
+    from models.admin import AdminTokenBlacklist
+    result = await db.execute(select(AdminTokenBlacklist).where(AdminTokenBlacklist.token == token))
+    return result.scalar_one_or_none() is not None
+
+
+async def add_admin_token_to_blacklist(token: str, admin_id: int, db: AsyncSession):
+    from models.admin import AdminTokenBlacklist
+    payload = decode_token(token)
+    expires_at = datetime.fromtimestamp(payload.get("exp", 0), tz=timezone.utc) if payload else datetime.now(timezone.utc)
+
+    blacklisted_token = AdminTokenBlacklist(
+        token=token,
+        admin_id=admin_id,
+        expires_at=expires_at
+    )
+    db.add(blacklisted_token)
+    await db.commit()
+
+
+async def get_current_admin(
+    credentials: HTTPAuthorizationCredentials = Depends(security),
+    db: AsyncSession = Depends(get_db)
+):
+    from models.admin import Admin
+    credentials_exception = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="无法验证凭证",
+        headers={"WWW-Authenticate": "Bearer"},
+    )
+
+    token = credentials.credentials
+
+    if await is_admin_token_blacklisted(token, db):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Token已失效，请重新登录",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+
+    payload = decode_token(token)
+
+    if payload is None:
+        raise credentials_exception
+
+    if payload.get("type") != "admin":
+        raise credentials_exception
+
+    admin_id_str = payload.get("sub")
+    if admin_id_str is None:
+        raise credentials_exception
+
+    try:
+        admin_id = int(admin_id_str)
+    except (ValueError, TypeError):
+        raise credentials_exception
+
+    result = await db.execute(select(Admin).where(Admin.id == admin_id))
+    admin = result.scalar_one_or_none()
+
+    if admin is None:
+        raise credentials_exception
+
+    if not admin.is_active:
+        raise HTTPException(status_code=400, detail="管理员已停用")
+
+    return admin

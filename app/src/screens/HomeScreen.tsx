@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿import React, { useEffect, useRef, useState, useCallback } from 'react';
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿import React, { useEffect, useRef, useState, useCallback } from 'react';
 import {
   View,
   Text,
@@ -304,6 +304,34 @@ export default function HomeScreen() {
         FileSystem.deleteAsync(ttsTempFileRef.current, { idempotent: true }).catch(() => {});
       }
     };
+  }, []);
+
+  useEffect(() => {
+    const checkAnnouncements = async () => {
+      try {
+        const announcements = await apiService.getAnnouncements();
+        const readIds = useAppStore.getState().readAnnouncementIds;
+        const unread = announcements.find(
+          (a: any) => a.priority === 'high' && !readIds.includes(a.id)
+        );
+        if (unread) {
+          Alert.alert(
+            unread.title,
+            unread.content,
+            [{
+              text: '我知道了',
+              onPress: async () => {
+                try {
+                  await apiService.markAnnouncementRead(unread.id);
+                } catch {}
+                useAppStore.getState().markAnnouncementReadId(unread.id);
+              }
+            }]
+          );
+        }
+      } catch {}
+    };
+    checkAnnouncements();
   }, []);
 
   const stopVAD = () => {

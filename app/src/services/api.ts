@@ -528,6 +528,16 @@ class ApiService {
     return response.data;
   }
 
+  async getAnnouncements() {
+    const response = await this.client.get('/announcements');
+    return response.data;
+  }
+
+  async markAnnouncementRead(announcementId: number) {
+    const response = await this.client.post(`/announcements/${announcementId}/read`);
+    return response.data;
+  }
+
 }
 
 export const apiService = new ApiService();

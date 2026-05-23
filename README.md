@@ -451,7 +451,7 @@ TAVILY_API_KEY=your-tavily-api-key
 
 详见 [CHANGELOG.md](./CHANGELOG.md)
 
-当前版本：**v0.6.0**
+当前版本：**v0.7.0**
 
 ### 开发计划
 

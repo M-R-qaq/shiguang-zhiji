@@ -3,6 +3,7 @@ from sqlalchemy.orm import declarative_base
 from sqlalchemy import text
 from core.config import settings
 from models.user import Base
+import models.admin
 
 engine = create_async_engine(
     settings.DATABASE_URL,
@@ -54,6 +55,16 @@ async def init_db():
                 print("[DB] 已添加 session_title 列到 conversations 表")
         except Exception as e:
             print(f"[DB] conversations 表迁移检查失败(可忽略): {e}")
+
+        try:
+            result = await conn.execute(text("PRAGMA table_info(users)"))
+            columns = [row[1] for row in result.fetchall()]
+
+            if 'sessions_invalidated_at' not in columns:
+                await conn.execute(text("ALTER TABLE users ADD COLUMN sessions_invalidated_at DATETIME"))
+                print("[DB] 已添加 sessions_invalidated_at 列到 users 表")
+        except Exception as e:
+            print(f"[DB] users 表迁移检查失败(可忽略): {e}")
 
 
 async def get_db():
