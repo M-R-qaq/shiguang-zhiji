@@ -316,6 +316,14 @@ export default function SettingsScreen() {
         <AppCard padding={spacing.lg}>
           <TouchableOpacity
             style={[styles.row, { justifyContent: 'space-between' }]}
+            onPress={() => navigation.navigate('Diagnostics')}
+          >
+            <Text style={styles.label}>系统诊断</Text>
+            <Text style={styles.value}>进入 {'>'}</Text>
+          </TouchableOpacity>
+          <View style={styles.divider} />
+          <TouchableOpacity
+            style={[styles.row, { justifyContent: 'space-between' }]}
             onPress={() => navigation.navigate('TestMode')}
           >
             <Text style={styles.label}>ASR 连续对话测试</Text>

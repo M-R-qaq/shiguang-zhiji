@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿import React, { useEffect, useRef, useState, useCallback } from 'react';
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿import React, { useEffect, useRef, useState, useCallback } from 'react';
 import {
   View,
   Text,
@@ -10,6 +10,8 @@ import {
   Dimensions,
   Linking,
   TouchableOpacity,
+  Modal,
+  FlatList,
   Platform,
   AppState,
   AppStateStatus,
@@ -306,25 +308,30 @@ export default function HomeScreen() {
     };
   }, []);
 
+  const [announcements, setAnnouncements] = useState<any[]>([]);
+  const [showAnnouncements, setShowAnnouncements] = useState(false);
+
   useEffect(() => {
     const checkAnnouncements = async () => {
       try {
-        const announcements = await apiService.getAnnouncements();
+        const anns = await apiService.getAnnouncements();
+        setAnnouncements(anns);
         const readIds = useAppStore.getState().readAnnouncementIds;
-        const unread = announcements.find(
+        const unreadHigh = anns.find(
           (a: any) => a.priority === 'high' && !readIds.includes(a.id)
         );
-        if (unread) {
+        if (unreadHigh) {
           Alert.alert(
-            unread.title,
-            unread.content,
+            unreadHigh.title,
+            unreadHigh.content,
             [{
               text: '我知道了',
               onPress: async () => {
                 try {
-                  await apiService.markAnnouncementRead(unread.id);
+                  await apiService.markAnnouncementRead(unreadHigh.id);
                 } catch {}
-                useAppStore.getState().markAnnouncementReadId(unread.id);
+                useAppStore.getState().markAnnouncementReadId(unreadHigh.id);
+                setAnnouncements(prev => prev.map(a => a.id === unreadHigh.id ? {...a, is_read: true} : a));
               }
             }]
           );
@@ -1132,6 +1139,18 @@ export default function HomeScreen() {
 
           <View ref={topBarRef} style={styles.topBarRight}>
             <IconButton
+              icon={
+                <View>
+                  <Ionicons name="notifications-outline" size={18} color={colors.text} />
+                  {announcements.some(a => !a.is_read && !useAppStore.getState().readAnnouncementIds.includes(a.id)) && (
+                    <View style={styles.notificationDot} />
+                  )}
+                </View>
+              }
+              onPress={() => setShowAnnouncements(true)}
+              size="sm"
+            />
+            <IconButton
               icon={<Ionicons name="time-outline" size={18} color={colors.text} />}
               onPress={() => navigation.navigate('SessionList')}
               size="sm"
@@ -1139,11 +1158,6 @@ export default function HomeScreen() {
             <IconButton
               icon={<Ionicons name="add-circle-outline" size={18} color={colors.text} />}
               onPress={handleNewConversation}
-              size="sm"
-            />
-            <IconButton
-              icon={<Ionicons name="medical-outline" size={18} color={colors.text} />}
-              onPress={() => navigation.navigate('Diagnostics')}
               size="sm"
             />
             <IconButton
@@ -1309,6 +1323,57 @@ export default function HomeScreen() {
           onSkip={handleOnboardingSkip}
           targetRefs={[tapAreaRef, statusIndicatorRef, topBarRef]}
         />
+
+        <Modal
+          visible={showAnnouncements}
+          transparent
+          animationType="fade"
+          onRequestClose={() => setShowAnnouncements(false)}
+        >
+          <View style={styles.announcementOverlay}>
+            <View style={styles.announcementContainer}>
+              <View style={styles.announcementHeader}>
+                <Text style={styles.announcementTitle}>系统公告</Text>
+                <TouchableOpacity onPress={() => setShowAnnouncements(false)}>
+                  <Ionicons name="close" size={24} color={colors.text} />
+                </TouchableOpacity>
+              </View>
+              <FlatList
+                data={announcements}
+                keyExtractor={(item) => item.id.toString()}
+                contentContainerStyle={styles.announcementList}
+                ListEmptyComponent={
+                  <Text style={styles.announcementEmpty}>暂无公告</Text>
+                }
+                renderItem={({ item }) => (
+                  <View style={[styles.announcementItem, item.is_read && styles.announcementItemRead]}>
+                    <View style={styles.announcementItemHeader}>
+                      <Text style={styles.announcementItemTitle}>{item.title}</Text>
+                      <View style={[styles.priorityDot, item.priority === 'high' && styles.priorityDotHigh, item.priority === 'normal' && styles.priorityDotNormal]} />
+                    </View>
+                    <Text style={styles.announcementItemContent}>{item.content}</Text>
+                    <View style={styles.announcementItemFooter}>
+                      <Text style={styles.announcementItemDate}>{item.created_at ? new Date(item.created_at).toLocaleDateString('zh-CN') : ''}</Text>
+                      {!item.is_read && (
+                        <TouchableOpacity
+                          onPress={async () => {
+                            try {
+                              await apiService.markAnnouncementRead(item.id);
+                            } catch {}
+                            useAppStore.getState().markAnnouncementReadId(item.id);
+                            setAnnouncements(prev => prev.map(a => a.id === item.id ? {...a, is_read: true} : a));
+                          }}
+                        >
+                          <Text style={styles.announcementMarkRead}>标为已读</Text>
+                        </TouchableOpacity>
+                      )}
+                    </View>
+                  </View>
+                )}
+              />
+            </View>
+          </View>
+        </Modal>
       </View>
   );
 }
@@ -1572,5 +1637,105 @@ const styles = StyleSheet.create({
     fontSize: typography.caption,
     lineHeight: 18,
     marginBottom: 2,
+  },
+  notificationDot: {
+    position: 'absolute',
+    top: -2,
+    right: -2,
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: colors.gold || '#cdaa64',
+  },
+  announcementOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  announcementContainer: {
+    width: '85%',
+    maxHeight: '70%',
+    backgroundColor: colors.card || '#1e1e28',
+    borderRadius: 16,
+    overflow: 'hidden',
+  },
+  announcementHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.border || 'rgba(255,255,255,0.1)',
+  },
+  announcementTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: colors.text,
+  },
+  announcementList: {
+    padding: 16,
+  },
+  announcementEmpty: {
+    color: colors.textSecondary || '#888',
+    textAlign: 'center',
+    paddingVertical: 40,
+    fontSize: 14,
+  },
+  announcementItem: {
+    backgroundColor: colors.background || '#15151c',
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 12,
+    borderLeftWidth: 3,
+    borderLeftColor: colors.gold || '#cdaa64',
+  },
+  announcementItemRead: {
+    opacity: 0.5,
+    borderLeftColor: colors.textSecondary || '#888',
+  },
+  announcementItemHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 8,
+  },
+  announcementItemTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: colors.text,
+    flex: 1,
+  },
+  priorityDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: colors.textSecondary || '#888',
+  },
+  priorityDotHigh: {
+    backgroundColor: '#ef4444',
+  },
+  priorityDotNormal: {
+    backgroundColor: '#f59e0b',
+  },
+  announcementItemContent: {
+    fontSize: 14,
+    color: colors.textSecondary || '#aaa',
+    lineHeight: 20,
+    marginBottom: 10,
+  },
+  announcementItemFooter: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  announcementItemDate: {
+    fontSize: 12,
+    color: colors.textSecondary || '#666',
+  },
+  announcementMarkRead: {
+    fontSize: 13,
+    color: colors.gold || '#cdaa64',
+    fontWeight: '500',
   },
 });
