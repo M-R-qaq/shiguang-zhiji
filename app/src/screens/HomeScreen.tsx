@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿import React, { useEffect, useRef, useState } from 'react';
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿import React, { useEffect, useRef, useState, useCallback } from 'react';
 import {
   View,
   Text,
@@ -18,7 +18,7 @@ import { Video, ResizeMode } from 'expo-av';
 import { Audio } from 'expo-av';
 import * as FileSystem from 'expo-file-system/legacy';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { useAuth } from '../store/AuthContext';
 import { useAppStore, VideoResult } from '../store/appStore';
 import { apiService } from '../services/api';
@@ -107,9 +107,8 @@ export default function HomeScreen() {
   const [careTipVisible, setCareTipVisible] = useState(false);
   const [shiguangjianTipVisible, setShiguangjianTipVisible] = useState(false);
 
-  const micButtonRef = useRef<View>(null);
-  const textInputRef = useRef<View>(null);
-  const shiguangjianRef = useRef<View>(null);
+  const tapAreaRef = useRef<View>(null);
+  const statusIndicatorRef = useRef<View>(null);
   const topBarRef = useRef<View>(null);
   const [showOnboarding, setShowOnboarding] = useState(false);
 
@@ -182,14 +181,16 @@ export default function HomeScreen() {
     }
   }, [appState]);
 
-  useEffect(() => {
-    if (!onboardingCompleted) {
-      const timer = setTimeout(() => {
-        setShowOnboarding(true);
-      }, 500);
-      return () => clearTimeout(timer);
-    }
-  }, [onboardingCompleted]);
+  useFocusEffect(
+    useCallback(() => {
+      if (!onboardingCompleted) {
+        const timer = setTimeout(() => {
+          setShowOnboarding(true);
+        }, 500);
+        return () => clearTimeout(timer);
+      }
+    }, [onboardingCompleted])
+  );
 
   useEffect(() => {
     if (onboardingCompleted && !welcomeDone && messages.length === 0) {
@@ -1082,7 +1083,7 @@ export default function HomeScreen() {
       />
 
       <TouchableWithoutFeedback onPress={handleScreenTap}>
-        <View style={[styles.tapArea, !showChatText && styles.tapAreaFull]} />
+        <View ref={tapAreaRef} style={[styles.tapArea, !showChatText && styles.tapAreaFull]} />
       </TouchableWithoutFeedback>
 
       <View style={styles.topBar}>
@@ -1092,7 +1093,7 @@ export default function HomeScreen() {
             size="sm"
           />
 
-          <View ref={micButtonRef} style={styles.statusIndicator}>
+          <View ref={statusIndicatorRef} style={styles.statusIndicator}>
             <Text style={styles.statusText}>
               {appState === 'idle' ? (showChatText ? '点击屏幕开始对话' : '点击任意位置开始对话') :
                appState === 'listening' ? getStatusText() :
@@ -1135,7 +1136,7 @@ export default function HomeScreen() {
         )}
 
         {showChatText && (
-        <View ref={textInputRef} style={styles.messagesWrapper}>
+        <View style={styles.messagesWrapper}>
           <ScrollView
             ref={scrollViewRef}
             style={styles.messagesContainer}
@@ -1250,9 +1251,7 @@ export default function HomeScreen() {
           variant="bubble"
         />
 
-        <View ref={shiguangjianRef}>
-          <ShiguangjianModal />
-        </View>
+        <ShiguangjianModal />
         <FeatureTip
           visible={shiguangjianTipVisible}
           text="这是食光鉴推荐，来自苏怀真的美食发现"
@@ -1280,7 +1279,7 @@ export default function HomeScreen() {
           visible={showOnboarding}
           onComplete={handleOnboardingComplete}
           onSkip={handleOnboardingSkip}
-          targetRefs={[micButtonRef, textInputRef, shiguangjianRef, topBarRef]}
+          targetRefs={[tapAreaRef, statusIndicatorRef, topBarRef]}
         />
       </View>
   );

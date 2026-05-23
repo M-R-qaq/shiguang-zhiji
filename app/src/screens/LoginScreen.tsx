@@ -44,12 +44,7 @@ export default function LoginScreen() {
       return;
     }
 
-    if (!isLogin && !nickname.trim()) {
-      Alert.alert('错误', '请输入昵称，让苏怀真知道怎么称呼你');
-      return;
-    }
-
-    if (!isLogin && (nickname.length < 2 || nickname.length > 10)) {
+    if (!isLogin && nickname.trim() && (nickname.length < 2 || nickname.length > 10)) {
       Alert.alert('错误', '昵称长度需要在2-10个字之间');
       return;
     }
@@ -64,7 +59,7 @@ export default function LoginScreen() {
       if (isLogin) {
         await login(username, password);
       } else {
-        await register(username, password, nickname);
+        await register(username, password, nickname.trim() || username);
       }
       navigation.replace('Home');
     } catch (error: any) {

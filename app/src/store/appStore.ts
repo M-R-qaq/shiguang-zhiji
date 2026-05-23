@@ -219,6 +219,7 @@ interface AppStore {
   enterIdleState: () => void;
   resetSession: () => void;
   resetForNewUser: () => void;
+  resetOnboardingForNewUser: () => void;
 
   initializeStore: () => Promise<void>;
 }
@@ -404,12 +405,17 @@ export const useAppStore = create<AppStore>((set, get) => ({
       messages: [],
       sessionId: null,
       initialized: false,
+    });
+    persistMessages([]);
+    persistSessionId(null);
+  },
+
+  resetOnboardingForNewUser: () => {
+    set({
       onboardingCompleted: false,
       welcomeDone: false,
       featureTips: {},
     });
-    persistMessages([]);
-    persistSessionId(null);
     persistOnboardingCompleted(false);
     persistWelcomeDone(false);
     persistFeatureTips({});
@@ -417,23 +423,23 @@ export const useAppStore = create<AppStore>((set, get) => ({
 
   initializeStore: async () => {
     if (get().initialized) return;
-    const [messages, sessionId, showChatText, onboardingCompleted, welcomeDone, featureTips] = await Promise.all([
-      loadPersistedMessages(),
-      loadSessionId(),
+    const [showChatText, onboardingCompleted, welcomeDone, featureTips] = await Promise.all([
       loadShowChatText(),
       loadOnboardingCompleted(),
       loadWelcomeDone(),
       loadFeatureTips(),
     ]);
     set({
-      messages,
-      sessionId,
+      messages: [],
+      sessionId: null,
       showChatText,
       onboardingCompleted,
       welcomeDone,
       featureTips,
       initialized: true,
     });
-    console.log(`[Store] 初始化完成: ${messages.length} 条消息, session: ${sessionId?.slice(0, 8) || 'none'}, showChatText: ${showChatText}`);
+    persistMessages([]);
+    persistSessionId(null);
+    console.log(`[Store] 初始化完成: 新对话, showChatText: ${showChatText}`);
   },
 }));

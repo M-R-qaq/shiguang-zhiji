@@ -25,7 +25,7 @@ import FeatureTip from '../components/FeatureTip';
 export default function SettingsScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const { user, logout, updateNickname } = useAuth();
-  const { clearMessages, startNewSession, showChatText, setShowChatText, featureTips, markFeatureTip } = useAppStore();
+  const { clearMessages, startNewSession, showChatText, setShowChatText, featureTips, markFeatureTip, resetOnboardingForNewUser } = useAppStore();
   const [nickname, setNickname] = useState(user?.nickname || '');
   const [wakeWordName, setWakeWordName] = useState('知己');
   const [wakeWordLoading, setWakeWordLoading] = useState(true);
@@ -145,6 +145,22 @@ export default function SettingsScreen() {
             await apiService.logout();
           } catch {}
           await logout();
+        }},
+      ]
+    );
+  };
+
+  const handleReplayTutorial = () => {
+    Alert.alert(
+      '重温新手教程',
+      '确定要重新观看新手引导吗？',
+      [
+        { text: '取消', style: 'cancel' },
+        { text: '确定', onPress: () => {
+          navigation.navigate('Home');
+          setTimeout(() => {
+            resetOnboardingForNewUser();
+          }, 300);
         }},
       ]
     );
@@ -282,7 +298,19 @@ export default function SettingsScreen() {
         </AppCard>
       </View>
 
-      {/* 测试模式 */}
+      {/* 新手教程 */}
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>新手教程</Text>
+        <AppCard padding={spacing.lg}>
+          <AppButton
+            title="重温新手教程"
+            onPress={handleReplayTutorial}
+            variant="secondary"
+          />
+        </AppCard>
+      </View>
+
+      {/* 开发测试 */}
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>开发测试</Text>
         <AppCard padding={spacing.lg}>

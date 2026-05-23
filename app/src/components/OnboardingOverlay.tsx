@@ -6,22 +6,39 @@ import {
   Animated,
   Dimensions,
   Modal,
+  Platform,
+  StatusBar,
 } from 'react-native';
 import { colors, spacing, radius, typography } from '../theme';
 import AppButton from './AppButton';
+import { Ionicons } from '@expo/vector-icons';
 
 const STEPS = [
   { title: '欢迎来到食光知己', description: '我是苏怀真，一面食光鉴带我穿越千年，来到你的餐桌旁。让我带你了解这里的一切~', hasTarget: false },
-  { title: '语音对话', description: '点击麦克风按钮，就可以用语音和苏怀真对话啦', hasTarget: true },
-  { title: '文字输入', description: '也可以在这里输入文字消息，和苏怀真聊天', hasTarget: true },
-  { title: '食光鉴', description: '苏怀真会通过食光鉴，为你推荐美食视频', hasTarget: true },
+  { title: '点击屏幕开始对话', description: '点击屏幕任意位置，就可以开始和苏怀真对话啦', hasTarget: true },
+  { title: '语音唤醒', description: '说"你好知己"也可以唤醒苏怀真，开始语音对话', hasTarget: true },
+  { title: '食光鉴', description: '苏怀真会通过食光鉴，为他推荐美食视频', hasTarget: false, isDemo: true },
   { title: '更多功能', description: '这里可以查看历史会话、管理记忆、修改设置', hasTarget: true },
 ];
+
+const STEP_OFFSETS: Record<number, { dy: number; maxH?: number }> = {
+  1: { dy: 0, maxH: SCREEN_HEIGHT * 0.42 },
+  2: { dy: 12 },
+  4: { dy: 12 },
+};
+
+const DEMO_VIDEO = {
+  title: '示例：深夜食堂里的温暖拉面',
+  author: '美食探店君',
+  duration: '12:34',
+  play_count: '2.3万',
+};
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SPOT_PADDING = 8;
 const OVERLAY_COLOR = 'rgba(0, 0, 0, 0.75)';
+const STATUS_BAR_OFFSET = Platform.OS === 'android' ? (StatusBar.currentHeight || 0) : 0;
 
 interface OnboardingOverlayProps {
   visible: boolean;
@@ -49,7 +66,7 @@ export default function OnboardingOverlay({
 
   const measureTarget = useCallback(
     (step: number) => {
-      const refIndex = step - 1;
+      const refIndex = step === 4 ? 2 : step - 1;
       if (refIndex < 0 || refIndex >= targetRefs.length) return;
       const ref = targetRefs[refIndex];
       if (!ref?.current) return;
@@ -59,11 +76,20 @@ export default function OnboardingOverlay({
           (ref.current as any).measureInWindow(
             (x: number, y: number, width: number, height: number) => {
               if (x === undefined) return;
+
+              const offset = STEP_OFFSETS[step] || { dy: 0 };
+              let adjustedY = y + STATUS_BAR_OFFSET + offset.dy;
+              let adjustedH = height - offset.dy;
+              if (offset.maxH && adjustedH > offset.maxH) {
+                adjustedY = adjustedY + (adjustedH - offset.maxH) / 2;
+                adjustedH = offset.maxH;
+              }
+
               const padded = {
                 x: x - SPOT_PADDING,
-                y: y - SPOT_PADDING,
+                y: adjustedY - SPOT_PADDING,
                 width: width + SPOT_PADDING * 2,
-                height: height + SPOT_PADDING * 2,
+                height: adjustedH + SPOT_PADDING * 2,
               };
               setTargetLayout(padded);
               setMeasured(true);
@@ -212,11 +238,57 @@ export default function OnboardingOverlay({
     );
   };
 
+  const renderDemoShiguangjian = () => (
+    <View style={styles.welcomeWrap}>
+      <View style={styles.demoCard}>
+        <View style={styles.demoHeader}>
+          <Ionicons name="videocam-outline" size={20} color={colors.gold} />
+          <Text style={styles.demoHeaderTitle}>食光鉴</Text>
+        </View>
+        <View style={styles.demoQueryBar}>
+          <Text style={styles.demoQueryLabel}>推荐主题：</Text>
+          <Text style={styles.demoQueryText}>深夜食堂</Text>
+        </View>
+        <View style={styles.demoVideoCard}>
+          <Text style={styles.demoVideoTitle} numberOfLines={2}>{DEMO_VIDEO.title}</Text>
+          <View style={styles.demoVideoMeta}>
+            <Text style={styles.demoVideoMetaText}>{DEMO_VIDEO.author}</Text>
+            <Text style={styles.demoVideoMetaDot}>·</Text>
+            <Text style={styles.demoVideoMetaText}>{DEMO_VIDEO.duration}</Text>
+            <Text style={styles.demoVideoMetaDot}>·</Text>
+            <Text style={styles.demoVideoMetaText}>{DEMO_VIDEO.play_count}播放</Text>
+          </View>
+          <View style={styles.demoWatchButton}>
+            <Text style={styles.demoWatchButtonText}>跳转观看</Text>
+          </View>
+        </View>
+        <Text style={[styles.description, styles.descriptionCenter, { marginTop: spacing.md }]}>
+          和苏怀真聊天时，她会通过食光鉴为你推荐美食视频
+        </Text>
+        {renderDots()}
+        <View style={styles.buttons}>
+          <AppButton title="跳过" onPress={handleSkip} variant="ghost" size="md" />
+          <AppButton title="下一步" onPress={handleNext} variant="primary" size="md" />
+        </View>
+      </View>
+    </View>
+  );
+
+  const renderContent = () => {
+    if ((step as any).isDemo) {
+      return renderDemoShiguangjian();
+    }
+    if (step.hasTarget && measured) {
+      return renderTooltipCard();
+    }
+    return renderWelcomeCard();
+  };
+
   return (
     <Modal transparent visible={visible} animationType="none" statusBarTranslucent>
       <Animated.View style={[styles.container, { opacity }]}>
         {renderSpotlight()}
-        {step.hasTarget && measured ? renderTooltipCard() : renderWelcomeCard()}
+        {renderContent()}
       </Animated.View>
     </Modal>
   );
@@ -247,6 +319,94 @@ const styles = StyleSheet.create({
     borderColor: colors.gold,
     padding: spacing.xl,
     alignItems: 'center',
+  },
+  demoCard: {
+    width: SCREEN_WIDTH - 48,
+    backgroundColor: colors.background,
+    borderRadius: radius.xl,
+    borderWidth: 1,
+    borderColor: 'rgba(205,175,100,0.2)',
+    padding: spacing.lg,
+    alignItems: 'center',
+    shadowColor: colors.gold,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 8,
+    elevation: 10,
+  },
+  demoHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginBottom: spacing.md,
+  },
+  demoHeaderTitle: {
+    color: colors.gold,
+    fontSize: typography.h3,
+    fontWeight: '700',
+    letterSpacing: 3,
+  },
+  demoQueryBar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: spacing.lg,
+    paddingVertical: spacing.sm,
+    backgroundColor: 'rgba(139,105,20,0.15)',
+    borderRadius: radius.md,
+    marginBottom: spacing.md,
+    width: '100%',
+  },
+  demoQueryLabel: {
+    color: 'rgba(205,175,100,0.7)',
+    fontSize: typography.small,
+  },
+  demoQueryText: {
+    color: colors.goldLight,
+    fontSize: typography.small,
+    fontWeight: '600',
+  },
+  demoVideoCard: {
+    backgroundColor: colors.surface,
+    borderRadius: radius.lg,
+    padding: spacing.md,
+    width: '100%',
+    borderWidth: 1,
+    borderColor: 'rgba(205,175,100,0.2)',
+  },
+  demoVideoTitle: {
+    color: colors.text,
+    fontSize: typography.small,
+    fontWeight: '600',
+    lineHeight: 20,
+    marginBottom: spacing.sm,
+  },
+  demoVideoMeta: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.sm,
+    marginBottom: spacing.md,
+  },
+  demoVideoMetaText: {
+    color: colors.textMuted,
+    fontSize: typography.caption,
+  },
+  demoVideoMetaDot: {
+    color: colors.textMuted,
+    fontSize: typography.caption,
+  },
+  demoWatchButton: {
+    alignSelf: 'flex-start',
+    backgroundColor: 'rgba(205,175,100,0.3)',
+    paddingHorizontal: spacing.lg,
+    paddingVertical: spacing.sm,
+    borderRadius: radius.lg,
+    borderWidth: 1,
+    borderColor: 'rgba(205,175,100,0.5)',
+  },
+  demoWatchButtonText: {
+    color: colors.gold,
+    fontSize: typography.small,
+    fontWeight: '600',
   },
   tooltip: {
     position: 'absolute',

@@ -104,6 +104,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const register = async (username: string, password: string, nickname?: string) => {
     await authService.register(username, password, nickname);
     await login(username, password);
+    useAppStore.getState().resetOnboardingForNewUser();
   };
 
   const logout = async () => {
