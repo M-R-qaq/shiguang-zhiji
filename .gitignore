@@ -57,6 +57,7 @@ Pods/
 # Logs
 logs/
 *.log
+build_log*.txt
 
 # IDE
 .trae/
