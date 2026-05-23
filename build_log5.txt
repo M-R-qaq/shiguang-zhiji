@@ -1,0 +1,2144 @@
+﻿To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.3/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :gradle-plugin:settings-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo-gradle-plugin:expo-autolinking-plugin-shared:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :gradle-plugin:shared:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:pluginDescriptors UP-TO-DATE
+> Task :gradle-plugin:settings-plugin:pluginDescriptors UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:processResources UP-TO-DATE
+> Task :gradle-plugin:settings-plugin:processResources UP-TO-DATE
+> Task :gradle-plugin:shared:compileKotlin UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin-shared:compileKotlin UP-TO-DATE
+> Task :gradle-plugin:shared:compileJava NO-SOURCE
+> Task :expo-gradle-plugin:expo-autolinking-plugin-shared:compileJava NO-SOURCE
+> Task :gradle-plugin:shared:processResources NO-SOURCE
+> Task :expo-gradle-plugin:expo-autolinking-plugin-shared:processResources NO-SOURCE
+> Task :gradle-plugin:shared:classes UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin-shared:classes UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin-shared:jar UP-TO-DATE
+> Task :gradle-plugin:shared:jar UP-TO-DATE
+> Task :gradle-plugin:settings-plugin:compileKotlin UP-TO-DATE
+> Task :gradle-plugin:settings-plugin:compileJava NO-SOURCE
+> Task :gradle-plugin:settings-plugin:classes UP-TO-DATE
+> Task :gradle-plugin:settings-plugin:jar UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:compileKotlin UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:compileJava NO-SOURCE
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:classes UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:jar UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :gradle-plugin:react-native-gradle-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo-module-gradle-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo-module-gradle-plugin:pluginDescriptors UP-TO-DATE
+> Task :expo-module-gradle-plugin:processResources UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin:compileKotlin UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin:compileJava NO-SOURCE
+> Task :expo-gradle-plugin:expo-autolinking-plugin:pluginDescriptors UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin:processResources UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin:classes UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:compileKotlin UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:compileJava NO-SOURCE
+> Task :expo-gradle-plugin:expo-autolinking-plugin:jar UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:pluginDescriptors UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:processResources UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:classes UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:jar UP-TO-DATE
+> Task :expo-module-gradle-plugin:compileKotlin UP-TO-DATE
+> Task :expo-module-gradle-plugin:compileJava NO-SOURCE
+> Task :expo-module-gradle-plugin:classes UP-TO-DATE
+> Task :expo-module-gradle-plugin:jar UP-TO-DATE
+
+> Configure project :
+[32m[ExpoRootProject][0m Using the following versions:
+  - buildTools:  [32m36.0.0[0m
+  - minSdk:      [32m24[0m
+  - compileSdk:  [32m36[0m
+  - targetSdk:   [32m36[0m
+  - ndk:         [32m27.1.12297006[0m
+  - kotlin:      [32m2.1.20[0m
+  - ksp:         [32m2.1.20-2.0.1[0m
+
+> Configure project :expo
+
+Using expo modules
+  - [32mexpo-constants[0m (18.0.13)
+  - [32mexpo-modules-core[0m (3.0.30)
+  - [33m[?][0m [32mexpo-asset[0m (12.0.13)
+  - [33m[?][0m [32mexpo-av[0m (16.0.8)
+  - [33m[?][0m [32mexpo-clipboard[0m (8.0.8)
+  - [33m[?][0m [32mexpo-file-system[0m (19.0.22)
+  - [33m[?][0m [32mexpo-font[0m (55.0.7)
+  - [33m[?][0m [32mexpo-keep-awake[0m (15.0.8)
+  - [33m[?][0m [32mexpo-sharing[0m (14.0.8)
+
+
+> Configure project :react-native-sherpa-onnx
+[react-native-sherpa-onnx] sherpa-onnx version (extracted/used): 1.12.34-2
+[react-native-sherpa-onnx] ffmpeg version (extracted/used): 8.0.1-1
+[react-native-sherpa-onnx] libarchive version (extracted/used): 3.8.5-2
+[react-native-sherpa-onnx] onnxruntime version (extracted/used): 1.24.4-qnn2.43.1.260218-1
+
+> Task :expo-modules-core:preBuild UP-TO-DATE
+> Task :expo-modules-core:preReleaseBuild UP-TO-DATE
+> Task :expo:generatePackagesList UP-TO-DATE
+> Task :expo:preBuild UP-TO-DATE
+> Task :expo:preReleaseBuild UP-TO-DATE
+> Task :expo:mergeReleaseJniLibFolders UP-TO-DATE
+> Task :expo:mergeReleaseNativeLibs NO-SOURCE
+> Task :expo:copyReleaseJniLibsProjectOnly UP-TO-DATE
+> Task :expo:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo:generateReleaseBuildConfig UP-TO-DATE
+> Task :expo:generateReleaseResValues UP-TO-DATE
+> Task :expo:generateReleaseResources UP-TO-DATE
+> Task :kesha-antonov_react-native-background-downloader:generateCodegenSchemaFromJavaScript UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:generateCodegenSchemaFromJavaScript UP-TO-DATE
+> Task :react-native-async-storage_async-storage:generateCodegenSchemaFromJavaScript UP-TO-DATE
+> Task :react-native-screens:generateCodegenSchemaFromJavaScript UP-TO-DATE
+> Task :react-native-safe-area-context:generateCodegenSchemaFromJavaScript UP-TO-DATE
+> Task :react-native-sherpa-onnx:generateCodegenSchemaFromJavaScript UP-TO-DATE
+> Task :kesha-antonov_react-native-background-downloader:generateCodegenArtifactsFromSchema UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:generateCodegenArtifactsFromSchema UP-TO-DATE
+> Task :kesha-antonov_react-native-background-downloader:preBuild UP-TO-DATE
+> Task :kesha-antonov_react-native-background-downloader:preReleaseBuild UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:preBuild UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:preReleaseBuild UP-TO-DATE
+> Task :expo:packageReleaseResources UP-TO-DATE
+> Task :react-native-async-storage_async-storage:generateCodegenArtifactsFromSchema UP-TO-DATE
+> Task :react-native-safe-area-context:generateCodegenArtifactsFromSchema UP-TO-DATE
+> Task :react-native-async-storage_async-storage:preBuild UP-TO-DATE
+> Task :kesha-antonov_react-native-background-downloader:mergeReleaseJniLibFolders UP-TO-DATE
+> Task :react-native-safe-area-context:preBuild UP-TO-DATE
+> Task :react-native-async-storage_async-storage:preReleaseBuild UP-TO-DATE
+> Task :react-native-safe-area-context:preReleaseBuild UP-TO-DATE
+> Task :react-native-screens:generateCodegenArtifactsFromSchema UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:mergeReleaseJniLibFolders UP-TO-DATE
+> Task :react-native-screens:preBuild UP-TO-DATE
+> Task :react-native-screens:preReleaseBuild UP-TO-DATE
+> Task :kesha-antonov_react-native-background-downloader:mergeReleaseNativeLibs NO-SOURCE
+> Task :dr.pogodin_react-native-fs:mergeReleaseNativeLibs NO-SOURCE
+> Task :react-native-async-storage_async-storage:mergeReleaseJniLibFolders UP-TO-DATE
+> Task :react-native-safe-area-context:mergeReleaseJniLibFolders UP-TO-DATE
+> Task :react-native-sherpa-onnx:generateCodegenArtifactsFromSchema UP-TO-DATE
+> Task :kesha-antonov_react-native-background-downloader:copyReleaseJniLibsProjectOnly UP-TO-DATE
+> Task :react-native-async-storage_async-storage:mergeReleaseNativeLibs NO-SOURCE
+> Task :react-native-safe-area-context:mergeReleaseNativeLibs NO-SOURCE
+> Task :dr.pogodin_react-native-fs:copyReleaseJniLibsProjectOnly UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :kesha-antonov_react-native-background-downloader:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo:parseReleaseLocalResources UP-TO-DATE
+> Task :react-native-safe-area-context:copyReleaseJniLibsProjectOnly UP-TO-DATE
+> Task :react-native-safe-area-context:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :react-native-async-storage_async-storage:copyReleaseJniLibsProjectOnly UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:generateReleaseBuildConfig UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:generateReleaseResValues UP-TO-DATE
+> Task :react-native-safe-area-context:generateReleaseBuildConfig UP-TO-DATE
+> Task :kesha-antonov_react-native-background-downloader:generateReleaseBuildConfig UP-TO-DATE
+> Task :react-native-async-storage_async-storage:generateReleaseBuildConfig UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:generateReleaseResources UP-TO-DATE
+> Task :react-native-async-storage_async-storage:generateReleaseResValues UP-TO-DATE
+> Task :react-native-safe-area-context:generateReleaseResValues UP-TO-DATE
+> Task :kesha-antonov_react-native-background-downloader:generateReleaseResValues UP-TO-DATE
+> Task :expo:generateReleaseRFile UP-TO-DATE
+> Task :react-native-async-storage_async-storage:generateReleaseResources UP-TO-DATE
+> Task :react-native-safe-area-context:generateReleaseResources UP-TO-DATE
+> Task :kesha-antonov_react-native-background-downloader:generateReleaseResources UP-TO-DATE
+> Task :expo:javaPreCompileRelease UP-TO-DATE
+> Task :expo:writeReleaseAarMetadata UP-TO-DATE
+> Task :expo:extractDeepLinksRelease UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:packageReleaseResources UP-TO-DATE
+> Task :react-native-safe-area-context:packageReleaseResources UP-TO-DATE
+> Task :react-native-async-storage_async-storage:packageReleaseResources UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:parseReleaseLocalResources UP-TO-DATE
+> Task :kesha-antonov_react-native-background-downloader:packageReleaseResources UP-TO-DATE
+> Task :expo:processReleaseManifest UP-TO-DATE
+> Task :react-native-safe-area-context:parseReleaseLocalResources UP-TO-DATE
+> Task :react-native-async-storage_async-storage:parseReleaseLocalResources UP-TO-DATE
+> Task :expo:compileReleaseLibraryResources UP-TO-DATE
+> Task :kesha-antonov_react-native-background-downloader:parseReleaseLocalResources UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:generateReleaseRFile UP-TO-DATE
+> Task :expo:prepareReleaseArtProfile UP-TO-DATE
+> Task :react-native-safe-area-context:generateReleaseRFile UP-TO-DATE
+> Task :react-native-async-storage_async-storage:generateReleaseRFile UP-TO-DATE
+> Task :kesha-antonov_react-native-background-downloader:generateReleaseRFile UP-TO-DATE
+> Task :expo:mergeReleaseShaders UP-TO-DATE
+> Task :react-native-async-storage_async-storage:javaPreCompileRelease UP-TO-DATE
+> Task :expo:compileReleaseShaders NO-SOURCE
+> Task :expo:generateReleaseAssets UP-TO-DATE
+> Task :app:generateAutolinkingNewArchitectureFiles
+> Task :expo:mergeReleaseAssets UP-TO-DATE
+> Task :expo:extractProguardFiles UP-TO-DATE
+> Task :expo:prepareLintJarForPublish UP-TO-DATE
+> Task :expo:stripReleaseDebugSymbols NO-SOURCE
+> Task :expo:copyReleaseJniLibsProjectAndLocalJars UP-TO-DATE
+> Task :expo:extractDeepLinksForAarRelease UP-TO-DATE
+> Task :expo:writeReleaseLintModelMetadata UP-TO-DATE
+> Task :react-native-async-storage_async-storage:compileReleaseJavaWithJavac UP-TO-DATE
+> Task :react-native-async-storage_async-storage:bundleLibRuntimeToDirRelease UP-TO-DATE
+> Task :react-native-async-storage_async-storage:writeReleaseAarMetadata UP-TO-DATE
+> Task :react-native-async-storage_async-storage:extractDeepLinksRelease UP-TO-DATE
+> Task :react-native-async-storage_async-storage:processReleaseManifest UP-TO-DATE
+> Task :react-native-async-storage_async-storage:compileReleaseLibraryResources UP-TO-DATE
+> Task :react-native-async-storage_async-storage:bundleLibCompileToJarRelease UP-TO-DATE
+> Task :react-native-async-storage_async-storage:prepareReleaseArtProfile UP-TO-DATE
+> Task :react-native-async-storage_async-storage:bundleLibRuntimeToJarRelease UP-TO-DATE
+> Task :react-native-async-storage_async-storage:mergeReleaseShaders UP-TO-DATE
+> Task :react-native-async-storage_async-storage:compileReleaseShaders NO-SOURCE
+> Task :react-native-async-storage_async-storage:generateReleaseAssets UP-TO-DATE
+> Task :react-native-async-storage_async-storage:mergeReleaseAssets UP-TO-DATE
+> Task :react-native-async-storage_async-storage:processReleaseJavaRes NO-SOURCE
+> Task :react-native-async-storage_async-storage:createFullJarRelease UP-TO-DATE
+> Task :react-native-async-storage_async-storage:extractProguardFiles UP-TO-DATE
+> Task :expo-constants:createExpoConfig
+> Task :expo-constants:preBuild
+> Task :expo-constants:preReleaseBuild
+> Task :expo-constants:mergeReleaseJniLibFolders UP-TO-DATE
+> Task :expo-constants:mergeReleaseNativeLibs NO-SOURCE
+> Task :expo-constants:copyReleaseJniLibsProjectOnly UP-TO-DATE
+> Task :expo-constants:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo-constants:generateReleaseBuildConfig UP-TO-DATE
+> Task :expo-constants:generateReleaseResValues UP-TO-DATE
+> Task :app:generateSherpaOnnxCodegen
+> Task :app:generateAutolinkingPackageList
+> Task :app:generateCodegenSchemaFromJavaScript SKIPPED
+> Task :app:generateCodegenArtifactsFromSchema SKIPPED
+> Task :app:generateReactNativeEntryPoint
+> Task :app:buildKotlinToolingMetadata
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo-constants:generateReleaseResources UP-TO-DATE
+> Task :expo-constants:packageReleaseResources UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:compileReleaseKotlin UP-TO-DATE
+> Task :react-native-safe-area-context:compileReleaseKotlin UP-TO-DATE
+> Task :kesha-antonov_react-native-background-downloader:compileReleaseKotlin UP-TO-DATE
+> Task :expo-constants:parseReleaseLocalResources UP-TO-DATE
+> Task :react-native-safe-area-context:javaPreCompileRelease UP-TO-DATE
+> Task :kesha-antonov_react-native-background-downloader:javaPreCompileRelease UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:javaPreCompileRelease UP-TO-DATE
+> Task :expo-constants:generateReleaseRFile UP-TO-DATE
+> Task :expo-constants:javaPreCompileRelease UP-TO-DATE
+> Task :expo-constants:writeReleaseAarMetadata UP-TO-DATE
+> Task :expo-constants:extractDeepLinksRelease UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:compileReleaseJavaWithJavac UP-TO-DATE
+> Task :react-native-safe-area-context:compileReleaseJavaWithJavac UP-TO-DATE
+> Task :expo-constants:processReleaseManifest UP-TO-DATE
+> Task :expo-constants:compileReleaseLibraryResources UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:bundleLibRuntimeToDirRelease UP-TO-DATE
+> Task :expo-constants:prepareReleaseArtProfile UP-TO-DATE
+> Task :react-native-safe-area-context:bundleLibRuntimeToDirRelease UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:writeReleaseAarMetadata UP-TO-DATE
+> Task :react-native-async-storage_async-storage:generateReleaseLintModel UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:extractDeepLinksRelease UP-TO-DATE
+> Task :react-native-safe-area-context:writeReleaseAarMetadata UP-TO-DATE
+> Task :expo-constants:mergeReleaseShaders UP-TO-DATE
+> Task :react-native-async-storage_async-storage:prepareLintJarForPublish UP-TO-DATE
+> Task :expo-constants:compileReleaseShaders NO-SOURCE
+> Task :react-native-safe-area-context:extractDeepLinksRelease UP-TO-DATE
+> Task :expo-constants:generateReleaseAssets UP-TO-DATE
+> Task :react-native-async-storage_async-storage:stripReleaseDebugSymbols NO-SOURCE
+> Task :react-native-async-storage_async-storage:copyReleaseJniLibsProjectAndLocalJars UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:processReleaseManifest UP-TO-DATE
+> Task :expo-constants:mergeReleaseAssets UP-TO-DATE
+> Task :react-native-safe-area-context:processReleaseManifest UP-TO-DATE
+> Task :react-native-async-storage_async-storage:extractDeepLinksForAarRelease UP-TO-DATE
+> Task :expo-constants:extractProguardFiles UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:compileReleaseLibraryResources UP-TO-DATE
+> Task :react-native-safe-area-context:compileReleaseLibraryResources UP-TO-DATE
+> Task :expo-constants:prepareLintJarForPublish UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:bundleLibCompileToJarRelease UP-TO-DATE
+> Task :react-native-safe-area-context:bundleLibCompileToJarRelease UP-TO-DATE
+> Task :expo-constants:stripReleaseDebugSymbols NO-SOURCE
+> Task :dr.pogodin_react-native-fs:prepareReleaseArtProfile UP-TO-DATE
+> Task :react-native-safe-area-context:prepareReleaseArtProfile UP-TO-DATE
+> Task :expo-constants:copyReleaseJniLibsProjectAndLocalJars UP-TO-DATE
+> Task :expo-constants:extractDeepLinksForAarRelease UP-TO-DATE
+> Task :react-native-safe-area-context:bundleLibRuntimeToJarRelease UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:bundleLibRuntimeToJarRelease UP-TO-DATE
+> Task :expo-constants:writeReleaseLintModelMetadata UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:mergeReleaseShaders UP-TO-DATE
+> Task :expo-constants:mapReleaseSourceSetPaths UP-TO-DATE
+> Task :react-native-safe-area-context:mergeReleaseShaders UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:compileReleaseShaders NO-SOURCE
+> Task :dr.pogodin_react-native-fs:generateReleaseAssets UP-TO-DATE
+> Task :react-native-safe-area-context:compileReleaseShaders NO-SOURCE
+> Task :react-native-safe-area-context:generateReleaseAssets UP-TO-DATE
+> Task :react-native-async-storage_async-storage:extractReleaseAnnotations UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:mergeReleaseAssets UP-TO-DATE
+> Task :react-native-async-storage_async-storage:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+> Task :react-native-safe-area-context:mergeReleaseAssets UP-TO-DATE
+> Task :expo-constants:mergeReleaseResources UP-TO-DATE
+> Task :react-native-async-storage_async-storage:mergeReleaseConsumerProguardFiles UP-TO-DATE
+> Task :expo-constants:verifyReleaseResources UP-TO-DATE
+> Task :react-native-safe-area-context:processReleaseJavaRes UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:processReleaseJavaRes UP-TO-DATE
+> Task :react-native-async-storage_async-storage:mergeReleaseJavaResource UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:createFullJarRelease UP-TO-DATE
+> Task :react-native-safe-area-context:createFullJarRelease UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:extractProguardFiles UP-TO-DATE
+> Task :react-native-safe-area-context:extractProguardFiles UP-TO-DATE
+> Task :react-native-async-storage_async-storage:syncReleaseLibJars UP-TO-DATE
+> Task :react-native-async-storage_async-storage:bundleReleaseLocalLintAar UP-TO-DATE
+> Task :react-native-safe-area-context:generateReleaseLintModel UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:generateReleaseLintModel UP-TO-DATE
+> Task :react-native-safe-area-context:prepareLintJarForPublish UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:prepareLintJarForPublish UP-TO-DATE
+> Task :react-native-safe-area-context:stripReleaseDebugSymbols NO-SOURCE
+> Task :dr.pogodin_react-native-fs:stripReleaseDebugSymbols NO-SOURCE
+> Task :react-native-async-storage_async-storage:lintVitalAnalyzeRelease UP-TO-DATE
+> Task :react-native-safe-area-context:copyReleaseJniLibsProjectAndLocalJars UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:copyReleaseJniLibsProjectAndLocalJars UP-TO-DATE
+> Task :react-native-async-storage_async-storage:writeReleaseLintModelMetadata UP-TO-DATE
+> Task :react-native-safe-area-context:extractDeepLinksForAarRelease UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:extractDeepLinksForAarRelease UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:extractReleaseAnnotations UP-TO-DATE
+> Task :react-native-async-storage_async-storage:generateReleaseLintVitalModel UP-TO-DATE
+> Task :react-native-safe-area-context:extractReleaseAnnotations UP-TO-DATE
+> Task :react-native-async-storage_async-storage:bundleReleaseAar UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:mergeReleaseConsumerProguardFiles UP-TO-DATE
+> Task :react-native-safe-area-context:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+> Task :react-native-safe-area-context:mergeReleaseConsumerProguardFiles UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:mergeReleaseJavaResource UP-TO-DATE
+> Task :react-native-safe-area-context:mergeReleaseJavaResource UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:syncReleaseLibJars UP-TO-DATE
+> Task :react-native-safe-area-context:syncReleaseLibJars UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:bundleReleaseLocalLintAar UP-TO-DATE
+> Task :react-native-safe-area-context:bundleReleaseLocalLintAar UP-TO-DATE
+> Task :react-native-async-storage_async-storage:mapReleaseSourceSetPaths UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:lintVitalAnalyzeRelease UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:writeReleaseLintModelMetadata UP-TO-DATE
+> Task :react-native-safe-area-context:lintVitalAnalyzeRelease UP-TO-DATE
+> Task :react-native-safe-area-context:writeReleaseLintModelMetadata UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:generateReleaseLintVitalModel UP-TO-DATE
+> Task :react-native-safe-area-context:generateReleaseLintVitalModel UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:bundleReleaseAar UP-TO-DATE
+> Task :react-native-safe-area-context:bundleReleaseAar UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:mapReleaseSourceSetPaths UP-TO-DATE
+> Task :react-native-safe-area-context:mapReleaseSourceSetPaths UP-TO-DATE
+> Task :react-native-async-storage_async-storage:mergeReleaseResources UP-TO-DATE
+> Task :expo-modules-core:configureCMakeRelWithDebInfo[arm64-v8a]
+
+> Task :react-native-screens:configureCMakeRelWithDebInfo[arm64-v8a]
+[CXX5304] This version only understands SDK XML versions up to 3 but an SDK XML file of version 4 was encountered. This can happen if you use versions of Android Studio and the command-line tools that were released at different times.
+[CXX5304] This version only understands SDK XML versions up to 3 but an SDK XML file of version 4 was encountered. This can happen if you use versions of Android Studio and the command-line tools that were released at different times.
+
+> Task :dr.pogodin_react-native-fs:mergeReleaseResources UP-TO-DATE
+> Task :react-native-safe-area-context:mergeReleaseResources UP-TO-DATE
+> Task :react-native-async-storage_async-storage:verifyReleaseResources UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:verifyReleaseResources UP-TO-DATE
+> Task :react-native-safe-area-context:verifyReleaseResources UP-TO-DATE
+> Task :react-native-safe-area-context:assembleRelease UP-TO-DATE
+> Task :dr.pogodin_react-native-fs:assembleRelease UP-TO-DATE
+> Task :react-native-async-storage_async-storage:assembleRelease UP-TO-DATE
+
+> Task :react-native-sherpa-onnx:downloadNativeLibsIfNeeded
+[prebuilt] Resolution order: (1) THIRD_PARTY  (2) LOCAL_SDK  (3) MAVEN_AAR  (4) GITHUB_RELEASE — see docs/PREBUILT_RESOLUTION.md
+[sherpa-onnx] jniLibs + C headers ................. LOCAL_SDK  version=1.12.34-2
+[FFmpeg] .................................... skipped (sherpaOnnxDisableFfmpeg=true)
+[libarchive] .............................. skipped (sherpaOnnxDisableLibarchive=true)
+
+> Task :react-native-screens:buildCMakeRelWithDebInfo[arm64-v8a]
+> Task :react-native-screens:mergeReleaseJniLibFolders
+> Task :react-native-screens:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :react-native-screens:generateReleaseBuildConfig
+> Task :react-native-screens:mergeReleaseNativeLibs
+> Task :react-native-screens:generateReleaseResValues
+> Task :react-native-screens:copyReleaseJniLibsProjectOnly
+> Task :react-native-screens:generateReleaseResources
+> Task :expo-modules-core:buildCMakeRelWithDebInfo[arm64-v8a]
+> Task :expo-modules-core:mergeReleaseJniLibFolders
+> Task :expo-modules-core:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo-modules-core:generateReleaseBuildConfig
+> Task :expo-modules-core:generateReleaseResValues
+> Task :expo-modules-core:generateReleaseResources
+> Task :react-native-screens:packageReleaseResources
+> Task :expo-modules-core:packageReleaseResources
+> Task :expo-modules-core:mergeReleaseNativeLibs
+> Task :expo-modules-core:javaPreCompileRelease
+> Task :react-native-screens:javaPreCompileRelease
+> Task :react-native-screens:writeReleaseAarMetadata
+> Task :react-native-screens:extractDeepLinksRelease
+> Task :expo-modules-core:writeReleaseAarMetadata
+> Task :expo-modules-core:extractDeepLinksRelease
+> Task :expo-modules-core:copyReleaseJniLibsProjectOnly
+> Task :react-native-screens:prepareReleaseArtProfile
+> Task :expo-modules-core:parseReleaseLocalResources
+> Task :react-native-screens:mergeReleaseShaders
+> Task :react-native-screens:compileReleaseShaders NO-SOURCE
+> Task :react-native-screens:generateReleaseAssets UP-TO-DATE
+> Task :expo:mapReleaseSourceSetPaths
+> Task :react-native-screens:parseReleaseLocalResources
+> Task :expo-modules-core:prepareReleaseArtProfile
+> Task :expo-modules-core:mergeReleaseShaders
+> Task :expo-modules-core:compileReleaseShaders NO-SOURCE
+> Task :expo-modules-core:generateReleaseAssets UP-TO-DATE
+> Task :expo-modules-core:compileReleaseLibraryResources
+> Task :expo-modules-core:mergeReleaseAssets
+
+> Task :expo-modules-core:processReleaseManifest
+D:\Projects\ShiGuangZhiJi\app\node_modules\expo-modules-core\android\src\main\AndroidManifest.xml:8:9-11:45 Warning:
+	meta-data#com.facebook.soloader.enabled@android:value was tagged at AndroidManifest.xml:8 to replace other declarations but no other declaration present
+
+> Task :react-native-screens:processReleaseManifest
+> Task :react-native-screens:mergeReleaseAssets
+> Task :expo-modules-core:extractProguardFiles
+> Task :react-native-screens:compileReleaseLibraryResources
+> Task :expo-modules-core:generateReleaseRFile
+> Task :react-native-screens:generateReleaseRFile
+> Task :expo-modules-core:prepareLintJarForPublish
+> Task :react-native-screens:extractProguardFiles
+> Task :expo-modules-core:stripReleaseDebugSymbols
+
+> Task :app:createBundleReleaseJsAndAssets
+Starting Metro Bundler
+
+> Task :kesha-antonov_react-native-background-downloader:compileReleaseJavaWithJavac
+> Task :kesha-antonov_react-native-background-downloader:writeReleaseAarMetadata UP-TO-DATE
+> Task :kesha-antonov_react-native-background-downloader:extractDeepLinksRelease UP-TO-DATE
+> Task :kesha-antonov_react-native-background-downloader:processReleaseManifest UP-TO-DATE
+> Task :kesha-antonov_react-native-background-downloader:compileReleaseLibraryResources UP-TO-DATE
+> Task :kesha-antonov_react-native-background-downloader:prepareReleaseArtProfile UP-TO-DATE
+> Task :kesha-antonov_react-native-background-downloader:mergeReleaseShaders UP-TO-DATE
+> Task :kesha-antonov_react-native-background-downloader:compileReleaseShaders NO-SOURCE
+> Task :kesha-antonov_react-native-background-downloader:generateReleaseAssets UP-TO-DATE
+> Task :kesha-antonov_react-native-background-downloader:mergeReleaseAssets UP-TO-DATE
+> Task :kesha-antonov_react-native-background-downloader:bundleLibRuntimeToJarRelease
+> Task :kesha-antonov_react-native-background-downloader:bundleLibCompileToJarRelease
+> Task :kesha-antonov_react-native-background-downloader:processReleaseJavaRes
+> Task :kesha-antonov_react-native-background-downloader:createFullJarRelease
+> Task :kesha-antonov_react-native-background-downloader:extractProguardFiles UP-TO-DATE
+> Task :kesha-antonov_react-native-background-downloader:generateReleaseLintModel
+> Task :kesha-antonov_react-native-background-downloader:prepareLintJarForPublish UP-TO-DATE
+> Task :kesha-antonov_react-native-background-downloader:stripReleaseDebugSymbols NO-SOURCE
+> Task :kesha-antonov_react-native-background-downloader:copyReleaseJniLibsProjectAndLocalJars UP-TO-DATE
+> Task :kesha-antonov_react-native-background-downloader:extractDeepLinksForAarRelease UP-TO-DATE
+> Task :kesha-antonov_react-native-background-downloader:extractReleaseAnnotations
+> Task :kesha-antonov_react-native-background-downloader:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+> Task :kesha-antonov_react-native-background-downloader:mergeReleaseConsumerProguardFiles UP-TO-DATE
+> Task :kesha-antonov_react-native-background-downloader:bundleLibRuntimeToDirRelease
+> Task :kesha-antonov_react-native-background-downloader:writeReleaseLintModelMetadata UP-TO-DATE
+> Task :kesha-antonov_react-native-background-downloader:generateReleaseLintVitalModel
+> Task :kesha-antonov_react-native-background-downloader:mapReleaseSourceSetPaths UP-TO-DATE
+> Task :kesha-antonov_react-native-background-downloader:mergeReleaseResources UP-TO-DATE
+> Task :kesha-antonov_react-native-background-downloader:verifyReleaseResources UP-TO-DATE
+> Task :kesha-antonov_react-native-background-downloader:mergeReleaseJavaResource
+> Task :kesha-antonov_react-native-background-downloader:syncReleaseLibJars
+> Task :kesha-antonov_react-native-background-downloader:bundleReleaseLocalLintAar
+> Task :kesha-antonov_react-native-background-downloader:bundleReleaseAar
+> Task :kesha-antonov_react-native-background-downloader:assembleRelease
+> Task :react-native-screens:prepareLintJarForPublish
+> Task :react-native-screens:extractDeepLinksForAarRelease
+> Task :react-native-screens:writeReleaseLintModelMetadata
+> Task :react-native-screens:mapReleaseSourceSetPaths
+> Task :react-native-screens:stripReleaseDebugSymbols
+
+> Task :react-native-screens:compileReleaseKotlin
+.\gradlew.bat : e: java.nio.file.AccessDeniedException: C:\Users\wjq29\AppData\Local\kotlin
+\daemon\kotlin-daemon-client-tsmarker8295879670813295105.tmp
+所在位置 行:1 字符: 331
++ ... ue | Out-Null; .\gradlew.bat assembleRelease --no-daemon 2>&1 | Out-F ...
++                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (e: java.nio.fil...70813295105.tmp:String) [], 
+    RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+e: Daemon compilation failed: Could not connect to Kotlin compile daemon
+java.lang.RuntimeException: Could not connect to Kotlin compile daemon
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.compileWithDaemon(GradleKo
+tlinCompilerWork.kt:214)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.compileWithDaemonOrFallbac
+kImpl(GradleKotlinCompilerWork.kt:159)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.run(GradleKotlinCompilerWo
+rk.kt:111)
+	at org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompile
+rWorkAction.execute(GradleCompilerRunnerWithWorkers.kt:76)
+	at org.gradle.workers.internal.DefaultWorkerServer.execute(DefaultWorkerServer.java:63)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactor
+y.java:66)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactor
+y.java:62)
+	at org.gradle.internal.classloader.ClassLoaderUtils.executeInClassloader(ClassLoaderUtils.
+java:100)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.lambda$execute$0(NoIsolationWork
+erFactory.java:62)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:44)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:41)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker
+.execute(DefaultBuildOperationRunner.java:210)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker
+.execute(DefaultBuildOperationRunner.java:205)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperat
+ionRunner.java:67)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperat
+ionRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperatio
+nRunner.java:167)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperatio
+nRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRu
+nner.java:54)
+	at org.gradle.workers.internal.AbstractWorker.executeWrappedInBuildOperation(AbstractWorke
+r.java:41)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.execute(NoIsolationWorkerFactory
+.java:59)
+	at org.gradle.workers.internal.DefaultWorkerExecutor.lambda$submitWork$0(DefaultWorkerExec
+utor.java:174)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runExecution(
+DefaultConditionalExecutionQueue.java:194)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.access$700(De
+faultConditionalExecutionQueue.java:127)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner$1.run(Default
+ConditionalExecutionQueue.java:169)
+	at org.gradle.internal.Factories$1.create(Factories.java:31)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.
+java:263)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLease
+Service.java:127)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLease
+Service.java:132)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runBatch(Defa
+ultConditionalExecutionQueue.java:164)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.run(DefaultCo
+nditionalExecutionQueue.java:133)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(Executor
+Policy.java:64)
+	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.ja
+va:48)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:113
+6)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:63
+5)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+
+Failed to compile with Kotlin daemon: java.lang.RuntimeException: Could not connect to Kotlin compile daemon
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.compileWithDaemon(GradleKotlinCompilerWork.kt:214)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.compileWithDaemonOrFallbackImpl(GradleKotlinCompilerWork.kt:159)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.run(GradleKotlinCompilerWork.kt:111)
+	at org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction.execute(GradleCompilerRunnerWithWorkers.kt:76)
+	at org.gradle.workers.internal.DefaultWorkerServer.execute(DefaultWorkerServer.java:63)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactory.java:66)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactory.java:62)
+	at org.gradle.internal.classloader.ClassLoaderUtils.executeInClassloader(ClassLoaderUtils.java:100)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.lambda$execute$0(NoIsolationWorkerFactory.java:62)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:44)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:41)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:210)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:205)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:54)
+	at org.gradle.workers.internal.AbstractWorker.executeWrappedInBuildOperation(AbstractWorker.java:41)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.execute(NoIsolationWorkerFactory.java:59)
+	at org.gradle.workers.internal.DefaultWorkerExecutor.lambda$submitWork$0(DefaultWorkerExecutor.java:174)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runExecution(DefaultConditionalExecutionQueue.java:194)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.access$700(DefaultConditionalExecutionQueue.java:127)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner$1.run(DefaultConditionalExecutionQueue.java:169)
+	at org.gradle.internal.Factories$1.create(Factories.java:31)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:263)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:127)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:132)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runBatch(DefaultConditionalExecutionQueue.java:164)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.run(DefaultConditionalExecutionQueue.java:133)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:48)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+Using fallback strategy: Compile without Kotlin daemon
+Try ./gradlew --stop if this issue persists
+If it does not look related to your configuration, please file an issue with logs to https://kotl.in/issue
+
+> Task :expo-modules-core:extractDeepLinksForAarRelease
+> Task :expo-modules-core:copyReleaseJniLibsProjectAndLocalJars
+
+> Task :expo-modules-core:compileReleaseKotlin
+e: java.nio.file.AccessDeniedException: C:\Users\wjq29\AppData\Local\kotlin\daemon\kotlin-d
+aemon-client-tsmarker6543196130337553688.tmp
+e: Daemon compilation failed: Could not connect to Kotlin compile daemon
+java.lang.RuntimeException: Could not connect to Kotlin compile daemon
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.compileWithDaemon(GradleKo
+tlinCompilerWork.kt:214)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.compileWithDaemonOrFallbac
+kImpl(GradleKotlinCompilerWork.kt:159)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.run(GradleKotlinCompilerWo
+rk.kt:111)
+	at org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompile
+rWorkAction.execute(GradleCompilerRunnerWithWorkers.kt:76)
+	at org.gradle.workers.internal.DefaultWorkerServer.execute(DefaultWorkerServer.java:63)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactor
+y.java:66)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactor
+y.java:62)
+	at org.gradle.internal.classloader.ClassLoaderUtils.executeInClassloader(ClassLoaderUtils.
+java:100)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.lambda$execute$0(NoIsolationWork
+erFactory.java:62)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:44)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:41)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker
+.execute(DefaultBuildOperationRunner.java:210)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker
+.execute(DefaultBuildOperationRunner.java:205)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperat
+ionRunner.java:67)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperat
+ionRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperatio
+nRunner.java:167)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperatio
+nRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRu
+nner.java:54)
+	at org.gradle.workers.internal.AbstractWorker.executeWrappedInBuildOperation(AbstractWorke
+r.java:41)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.execute(NoIsolationWorkerFactory
+.java:59)
+	at org.gradle.workers.internal.DefaultWorkerExecutor.lambda$submitWork$0(DefaultWorkerExec
+utor.java:174)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runExecution(
+DefaultConditionalExecutionQueue.java:194)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.access$700(De
+faultConditionalExecutionQueue.java:127)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner$1.run(Default
+ConditionalExecutionQueue.java:169)
+	at org.gradle.internal.Factories$1.create(Factories.java:31)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.
+java:263)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLease
+Service.java:127)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLease
+Service.java:132)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runBatch(Defa
+ultConditionalExecutionQueue.java:164)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.run(DefaultCo
+nditionalExecutionQueue.java:133)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(Executor
+Policy.java:64)
+	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.ja
+va:48)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:113
+6)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:63
+5)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+
+Failed to compile with Kotlin daemon: java.lang.RuntimeException: Could not connect to Kotlin compile daemon
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.compileWithDaemon(GradleKotlinCompilerWork.kt:214)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.compileWithDaemonOrFallbackImpl(GradleKotlinCompilerWork.kt:159)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.run(GradleKotlinCompilerWork.kt:111)
+	at org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction.execute(GradleCompilerRunnerWithWorkers.kt:76)
+	at org.gradle.workers.internal.DefaultWorkerServer.execute(DefaultWorkerServer.java:63)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactory.java:66)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactory.java:62)
+	at org.gradle.internal.classloader.ClassLoaderUtils.executeInClassloader(ClassLoaderUtils.java:100)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.lambda$execute$0(NoIsolationWorkerFactory.java:62)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:44)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:41)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:210)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:205)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:54)
+	at org.gradle.workers.internal.AbstractWorker.executeWrappedInBuildOperation(AbstractWorker.java:41)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.execute(NoIsolationWorkerFactory.java:59)
+	at org.gradle.workers.internal.DefaultWorkerExecutor.lambda$submitWork$0(DefaultWorkerExecutor.java:174)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runExecution(DefaultConditionalExecutionQueue.java:194)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.access$700(DefaultConditionalExecutionQueue.java:127)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner$1.run(DefaultConditionalExecutionQueue.java:169)
+	at org.gradle.internal.Factories$1.create(Factories.java:31)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:263)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:127)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:132)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runBatch(DefaultConditionalExecutionQueue.java:164)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.run(DefaultConditionalExecutionQueue.java:133)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:48)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+Using fallback strategy: Compile without Kotlin daemon
+Try ./gradlew --stop if this issue persists
+If it does not look related to your configuration, please file an issue with logs to https://kotl.in/issue
+
+> Task :expo-modules-core:writeReleaseLintModelMetadata
+> Task :expo-modules-core:mapReleaseSourceSetPaths
+> Task :expo:mergeReleaseResources
+> Task :expo-modules-core:mergeReleaseResources
+> Task :expo-modules-core:verifyReleaseResources
+> Task :react-native-screens:mergeReleaseResources
+> Task :react-native-screens:copyReleaseJniLibsProjectAndLocalJars
+> Task :expo:verifyReleaseResources
+> Task :react-native-screens:verifyReleaseResources
+> Task :kesha-antonov_react-native-background-downloader:lintVitalAnalyzeRelease
+
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\RNScreensPackage.kt:56:9: warning: the corresponding paramete
+r in the supertype 'BaseReactPackage' is named 'name'. This may cause problems when calling
+ this function with named arguments.
+exception:         s: String,
+exception:         ^
+> Task :react-native-screens:compileReleaseKotlin
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\RNScreensPackage.kt:57:9: warning: the corresponding paramete
+r in the supertype 'BaseReactPackage' is named 'reactContext'. This may cause problems when
+ calling this function with named arguments.
+exception:         reactApplicationContext: ReactApplicationContext,
+exception:         ^^^^^^^^^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\RNScreensPackage.kt:70:17: warning: 'constructor(name: String
+, className: String, canOverrideExistingModule: Boolean, needsEagerInit: Boolean, hasConsta
+nts: Boolean, isCxxModule: Boolean, isTurboModule: Boolean): ReactModuleInfo' is deprecated
+. This constructor is deprecated and will be removed in the future. Use ReactModuleInfo(Str
+ing, String, boolean, boolean, boolean, boolean)].
+exception:                 ReactModuleInfo(
+exception:                 ^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\Screen.kt:48:77: warning: unchecked cast of '(CoordinatorLayo
+ut.Behavior<View!>?..CoordinatorLayout.Behavior<*>?)' to 'BottomSheetBehavior<Screen>'.
+exception:         get() = (layoutParams as? CoordinatorLayout.LayoutParams)?.behavior as? 
+BottomSheetBehavior<Screen>
+exception:                                                                             ^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\Screen.kt:383:36: warning: 'fun setTranslucent(screen: Screen
+, activity: Activity?, context: ReactContext?): Unit' is deprecated. For apps targeting SDK
+ 35 or above this prop has no effect because edge-to-edge is enabled by default and the sta
+tus bar is always translucent.
+exception:                 ScreenWindowTraits.setTranslucent(
+exception:                                    ^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\Screen.kt:402:36: warning: 'fun setColor(screen: Screen, acti
+vity: Activity?, context: ReactContext?): Unit' is deprecated. For apps targeting SDK 35 or
+ above this prop has no effect because edge-to-edge is enabled by default and the status ba
+r is always translucent.
+exception:                 ScreenWindowTraits.setColor(
+exception:                                    ^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\Screen.kt:420:36: warning: 'fun setNavigationBarColor(screen:
+ Screen, activity: Activity?): Unit' is deprecated. For all apps targeting Android SDK 35 o
+r above edge-to-edge is enabled by default.
+exception:                 ScreenWindowTraits.setNavigationBarColor(
+exception:                                    ^^^^^^^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\Screen.kt:437:36: warning: 'fun setNavigationBarTranslucent(s
+creen: Screen, activity: Activity?): Unit' is deprecated. For all apps targeting Android SD
+K 35 or above edge-to-edge is enabled by default.
+exception:                 ScreenWindowTraits.setNavigationBarTranslucent(
+exception:                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\ScreenStackFragment.kt:217:31: warning: 'var targetElevation:
+ Float' is deprecated. Deprecated in Java.
+exception:                 appBarLayout?.targetElevation = 0f
+exception:                               ^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\ScreenStackFragment.kt:220:13: warning: 'fun setHasOptionsMen
+u(p0: Boolean): Unit' is deprecated. Deprecated in Java.
+exception:             setHasOptionsMenu(true)
+exception:             ^^^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\ScreenStackFragment.kt:397:18: warning: this declaration over
+rides a deprecated member but is not marked as deprecated itself. Add the '@Deprecated' ann
+otation or suppress the diagnostic.
+exception:     override fun onPrepareOptionsMenu(menu: Menu) {
+exception:                  ^^^^^^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\ScreenStackFragment.kt:404:22: warning: 'fun onPrepareOptions
+Menu(p0: Menu): Unit' is deprecated. Deprecated in Java.
+exception:         return super.onPrepareOptionsMenu(menu)
+exception:                      ^^^^^^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\ScreenStackFragment.kt:407:18: warning: this declaration over
+rides a deprecated member but is not marked as deprecated itself. Add the '@Deprecated' ann
+otation or suppress the diagnostic.
+exception:     override fun onCreateOptionsMenu(
+exception:                  ^^^^^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\ScreenStackFragment.kt:412:22: warning: 'fun onCreateOptionsM
+enu(p0: Menu, p1: MenuInflater): Unit' is deprecated. Deprecated in Java.
+exception:         return super.onCreateOptionsMenu(menu, inflater)
+exception:                      ^^^^^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\ScreenStackHeaderConfig.kt:435:18: warning: 'val reactNativeH
+ost: ReactNativeHost' is deprecated. You should not use ReactNativeHost directly in the New
+ Architecture. Use ReactHost instead.
+exception:                 .reactNativeHost
+exception:                  ^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\ScreenViewManager.kt:203:14: warning: 'var statusBarColor: In
+t?' is deprecated. For apps targeting SDK 35 or above this prop has no effect because edge-
+to-edge is enabled by default and the status bar is always translucent.
+exception:         view.statusBarColor = statusBarColor
+exception:              ^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\ScreenViewManager.kt:220:14: warning: 'var isStatusBarTranslu
+cent: Boolean?' is deprecated. For apps targeting SDK 35 or above this prop has no effect b
+ecause edge-to-edge is enabled by default and the status bar is always translucent.
+exception:         view.isStatusBarTranslucent = statusBarTranslucent
+exception:              ^^^^^^^^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\ScreenViewManager.kt:237:14: warning: 'var navigationBarColor
+: Int?' is deprecated. For all apps targeting Android SDK 35 or above edge-to-edge is enabl
+ed by default.
+exception:         view.navigationBarColor = navigationBarColor
+exception:              ^^^^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\ScreenViewManager.kt:246:14: warning: 'var isNavigationBarTra
+nslucent: Boolean?' is deprecated. For all apps targeting Android SDK 35 or above edge-to-e
+dge is enabled by default.
+exception:         view.isNavigationBarTranslucent = navigationBarTranslucent
+exception:              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\ScreenWindowTraits.kt:55:42: warning: 'fun replaceSystemWindo
+wInsets(p0: Int, p1: Int, p2: Int, p3: Int): WindowInsetsCompat' is deprecated. Deprecated 
+in Java.
+exception:                     return defaultInsets.replaceSystemWindowInsets(
+exception:                                          ^^^^^^^^^^^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\ScreenWindowTraits.kt:56:39: warning: 'val systemWindowInsetL
+eft: Int' is deprecated. Deprecated in Java.
+exception:                         defaultInsets.systemWindowInsetLeft,
+exception:                                       ^^^^^^^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\ScreenWindowTraits.kt:58:39: warning: 'val systemWindowInsetR
+ight: Int' is deprecated. Deprecated in Java.
+exception:                         defaultInsets.systemWindowInsetRight,
+exception:                                       ^^^^^^^^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\ScreenWindowTraits.kt:59:39: warning: 'val systemWindowInsetB
+ottom: Int' is deprecated. Deprecated in Java.
+exception:                         defaultInsets.systemWindowInsetBottom,
+exception:                                       ^^^^^^^^^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\ScreenWindowTraits.kt:102:53: warning: 'var statusBarColor: I
+nt' is deprecated. Deprecated in Java.
+exception:             defaultStatusBarColor = activity.window.statusBarColor
+exception:                                                     ^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\ScreenWindowTraits.kt:106:37: warning: 'var statusBarColor: I
+nt?' is deprecated. For apps targeting SDK 35 or above this prop has no effect because edge
+-to-edge is enabled by default and the status bar is always translucent.
+exception:         val color = screenForColor?.statusBarColor ?: defaultStatusBarColor
+exception:                                     ^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\ScreenWindowTraits.kt:113:48: warning: 'var statusBarColor: I
+nt' is deprecated. Deprecated in Java.
+exception:                     val curColor: Int = window.statusBarColor
+exception:                                                ^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\ScreenWindowTraits.kt:116:32: warning: 'var statusBarColor: I
+nt' is deprecated. Deprecated in Java.
+exception:                         window.statusBarColor = animator.animatedValue as Int
+exception:                                ^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\ScreenWindowTraits.kt:162:49: warning: 'var isStatusBarTransl
+ucent: Boolean?' is deprecated. For apps targeting SDK 35 or above this prop has no effect 
+because edge-to-edge is enabled by default and the status bar is always translucent.
+exception:         val translucent = screenForTranslucent?.isStatusBarTranslucent ?: false
+exception:                                                 ^^^^^^^^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\ScreenWindowTraits.kt:218:43: warning: 'var navigationBarColo
+r: Int?' is deprecated. For all apps targeting Android SDK 35 or above edge-to-edge is enab
+led by default.
+exception:         val color = screenForNavBarColor?.navigationBarColor ?: window.navigatio
+nBarColor
+exception:                                           ^^^^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\ScreenWindowTraits.kt:218:72: warning: 'var navigationBarColo
+r: Int' is deprecated. Deprecated in Java.
+exception:         val color = screenForNavBarColor?.navigationBarColor ?: window.navigatio
+nBarColor
+exception:                                                                        ^^^^^^^^^
+^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\ScreenWindowTraits.kt:224:16: warning: 'var navigationBarColo
+r: Int' is deprecated. Deprecated in Java.
+exception:         window.navigationBarColor = color
+exception:                ^^^^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\ScreenWindowTraits.kt:241:55: warning: 'var isNavigationBarTr
+anslucent: Boolean?' is deprecated. For all apps targeting Android SDK 35 or above edge-to-
+edge is enabled by default.
+exception:         val translucent = screenForNavBarTranslucent?.isNavigationBarTranslucent
+ ?: return
+exception:                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\ScreenWindowTraits.kt:283:13: warning: 'fun setColor(screen: 
+Screen, activity: Activity?, context: ReactContext?): Unit' is deprecated. For apps targeti
+ng SDK 35 or above this prop has no effect because edge-to-edge is enabled by default and t
+he status bar is always translucent.
+exception:             setColor(screen, activity, context)
+exception:             ^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\ScreenWindowTraits.kt:285:13: warning: 'fun setTranslucent(sc
+reen: Screen, activity: Activity?, context: ReactContext?): Unit' is deprecated. For apps t
+argeting SDK 35 or above this prop has no effect because edge-to-edge is enabled by default
+ and the status bar is always translucent.
+exception:             setTranslucent(screen, activity, context)
+exception:             ^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\ScreenWindowTraits.kt:289:13: warning: 'fun setNavigationBarC
+olor(screen: Screen, activity: Activity?): Unit' is deprecated. For all apps targeting Andr
+oid SDK 35 or above edge-to-edge is enabled by default.
+exception:             setNavigationBarColor(screen, activity)
+exception:             ^^^^^^^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\ScreenWindowTraits.kt:290:13: warning: 'fun setNavigationBarT
+ranslucent(screen: Screen, activity: Activity?): Unit' is deprecated. For all apps targetin
+g Android SDK 35 or above edge-to-edge is enabled by default.
+exception:             setNavigationBarTranslucent(screen, activity)
+exception:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\ScreenWindowTraits.kt:354:42: warning: 'var statusBarColor: I
+nt?' is deprecated. For apps targeting SDK 35 or above this prop has no effect because edge
+-to-edge is enabled by default and the status bar is always translucent.
+exception:             WindowTraits.COLOR -> screen.statusBarColor != null
+exception:                                          ^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\ScreenWindowTraits.kt:356:48: warning: 'var isStatusBarTransl
+ucent: Boolean?' is deprecated. For apps targeting SDK 35 or above this prop has no effect 
+because edge-to-edge is enabled by default and the status bar is always translucent.
+exception:             WindowTraits.TRANSLUCENT -> screen.isStatusBarTranslucent != null
+exception:                                                ^^^^^^^^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\ScreenWindowTraits.kt:359:57: warning: 'var navigationBarColo
+r: Int?' is deprecated. For all apps targeting Android SDK 35 or above edge-to-edge is enab
+led by default.
+exception:             WindowTraits.NAVIGATION_BAR_COLOR -> screen.navigationBarColor != nu
+ll
+exception:                                                         ^^^^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\ScreenWindowTraits.kt:360:63: warning: 'var isNavigationBarTr
+anslucent: Boolean?' is deprecated. For all apps targeting Android SDK 35 or above edge-to-
+edge is enabled by default.
+exception:             WindowTraits.NAVIGATION_BAR_TRANSLUCENT -> screen.isNavigationBarTra
+nslucent != null
+exception:                                                               ^^^^^^^^^^^^^^^^^^
+^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\bottomsheet\BottomSheetDialogRootView.kt:7:8: warning: 'objec
+t ReactFeatureFlags : Any' is deprecated. Use com.facebook.react.internal.featureflags.Reac
+tNativeFeatureFlags instead.
+exception: import com.facebook.react.config.ReactFeatureFlags
+exception:        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\bottomsheet\BottomSheetDialogRootView.kt:25:13: warning: 'obj
+ect ReactFeatureFlags : Any' is deprecated. Use com.facebook.react.internal.featureflags.Re
+actNativeFeatureFlags instead.
+exception:         if (ReactFeatureFlags.dispatchPointerEvents) {
+exception:             ^^^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\bottomsheet\BottomSheetDialogRootView.kt:32:9: warning: the c
+orresponding parameter in the supertype 'ReactViewGroup' is named 'left'. This may cause pr
+oblems when calling this function with named arguments.
+exception:         l: Int,
+exception:         ^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\bottomsheet\BottomSheetDialogRootView.kt:33:9: warning: the c
+orresponding parameter in the supertype 'ReactViewGroup' is named 'top'. This may cause pro
+blems when calling this function with named arguments.
+exception:         t: Int,
+exception:         ^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\bottomsheet\BottomSheetDialogRootView.kt:34:9: warning: the c
+orresponding parameter in the supertype 'ReactViewGroup' is named 'right'. This may cause p
+roblems when calling this function with named arguments.
+exception:         r: Int,
+exception:         ^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\bottomsheet\BottomSheetDialogRootView.kt:35:9: warning: the c
+orresponding parameter in the supertype 'ReactViewGroup' is named 'bottom'. This may cause 
+problems when calling this function with named arguments.
+exception:         b: Int,
+exception:         ^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\bottomsheet\BottomSheetDialogRootView.kt:71:9: warning: the c
+orresponding parameter in the supertype 'RootView' is named 'childView'. This may cause pro
+blems when calling this function with named arguments.
+exception:         view: View?,
+exception:         ^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\bottomsheet\BottomSheetDialogRootView.kt:72:9: warning: the c
+orresponding parameter in the supertype 'RootView' is named 'ev'. This may cause problems w
+hen calling this function with named arguments.
+exception:         event: MotionEvent,
+exception:         ^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\bottomsheet\BottomSheetDialogRootView.kt:79:46: warning: the 
+corresponding parameter in the supertype 'RootView' is named 'ev'. This may cause problems 
+when calling this function with named arguments.
+exception:     override fun onChildStartedNativeGesture(event: MotionEvent): Unit =
+exception:                                              ^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\bottomsheet\BottomSheetDialogRootView.kt:83:9: warning: the c
+orresponding parameter in the supertype 'RootView' is named 'childView'. This may cause pro
+blems when calling this function with named arguments.
+exception:         view: View,
+exception:         ^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\bottomsheet\BottomSheetDialogRootView.kt:84:9: warning: the c
+orresponding parameter in the supertype 'RootView' is named 'ev'. This may cause problems w
+hen calling this function with named arguments.
+exception:         event: MotionEvent,
+exception:         ^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\bottomsheet\BottomSheetDialogRootView.kt:95:34: warning: the 
+corresponding parameter in the supertype 'RootView' is named 't'. This may cause problems w
+hen calling this function with named arguments.
+exception:     override fun handleException(throwable: Throwable) {
+exception:                                  ^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\bottomsheet\DimmingView.kt:63:9: warning: the corresponding p
+arameter in the supertype 'ReactCompoundView' is named 'touchX'. This may cause problems wh
+en calling this function with named arguments.
+exception:         x: Float,
+exception:         ^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\bottomsheet\DimmingView.kt:64:9: warning: the corresponding p
+arameter in the supertype 'ReactCompoundView' is named 'touchY'. This may cause problems wh
+en calling this function with named arguments.
+exception:         y: Float,
+exception:         ^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\bottomsheet\DimmingView.kt:68:9: warning: the corresponding p
+arameter in the supertype 'ReactCompoundViewGroup' is named 'touchX'. This may cause proble
+ms when calling this function with named arguments.
+exception:         x: Float,
+exception:         ^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\bottomsheet\DimmingView.kt:69:9: warning: the corresponding p
+arameter in the supertype 'ReactCompoundViewGroup' is named 'touchY'. This may cause proble
+ms when calling this function with named arguments.
+exception:         y: Float,
+exception:         ^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android\src\main
+\java\com\swmansion\rnscreens\gamma\tabs\TabsHostViewManager.kt:37:9: warning: the correspo
+nding parameter in the supertype 'TabsHostViewManager' is named 'view'. This may cause prob
+lems when calling this function with named arguments.
+exception:         child: View,
+exception:         ^^^^^
+
+> Task :app:createBundleReleaseJsAndAssets
+warning: Bundler cache is empty, rebuilding (this may take a minute)
+Error "ENOENT" reading contents of "D:\Projects\ShiGuangZhiJi\app\node_modules\react-native
+-sherpa-onnx\android\build\prebuilt-downloads\onnxruntime-aar-extract\jni\x86_64", skipping
+. Add this directory to your ignore list to exclude it.
+Error "ENOENT" reading contents of "D:\Projects\ShiGuangZhiJi\app\node_modules\react-native
+-sherpa-onnx\android\build\prebuilt-downloads\onnxruntime-aar-extract\META-INF\com\android"
+, skipping. Add this directory to your ignore list to exclude it.
+
+> Task :react-native-screens:compileReleaseJavaWithJavac
+> Task :react-native-screens:processReleaseJavaRes
+> Task :react-native-screens:bundleLibCompileToJarRelease
+> Task :react-native-screens:bundleLibRuntimeToJarRelease
+> Task :react-native-screens:generateReleaseLintModel
+> Task :react-native-screens:createFullJarRelease
+> Task :react-native-screens:extractReleaseAnnotations
+> Task :react-native-screens:mergeReleaseGeneratedProguardFiles
+> Task :react-native-screens:mergeReleaseConsumerProguardFiles
+> Task :react-native-screens:generateReleaseLintVitalModel
+> Task :react-native-screens:mergeReleaseJavaResource
+
+> Task :app:createBundleReleaseJsAndAssets
+Android .\index.ts 鈻戔枒鈻戔枒鈻戔枒鈻戔枒鈻戔枒鈻戔枒鈻戔枒鈻戔枒  0.0% (0/1)
+
+> Task :react-native-sherpa-onnx:downloadNativeLibsIfNeeded
+[onnxruntime] libonnxruntime.so + libonnxruntime4j_jni.so (matched pair) .... MAVEN_AAR  onnxruntime-1.24.4-qnn2.43.1.260218-1.aar
+
+> Task :react-native-screens:syncReleaseLibJars
+
+> Task :react-native-sherpa-onnx:downloadNativeLibsIfNeeded
+
+
+> Task :react-native-sherpa-onnx:checkJniLibs
+> Task :react-native-sherpa-onnx:preBuild
+> Task :react-native-sherpa-onnx:extractOnnxruntimeClasses UP-TO-DATE
+> Task :react-native-sherpa-onnx:extractSherpaOnnxClasses UP-TO-DATE
+> Task :react-native-sherpa-onnx:preReleaseBuild
+> Task :react-native-screens:bundleReleaseLocalLintAar
+> Task :react-native-sherpa-onnx:configureCMakeRelWithDebInfo[arm64-v8a]
+> Task :react-native-screens:bundleReleaseAar
+> Task :react-native-screens:assembleRelease
+> Task :react-native-screens:bundleLibRuntimeToDirRelease
+> Task :react-native-sherpa-onnx:buildCMakeRelWithDebInfo[arm64-v8a]
+> Task :react-native-sherpa-onnx:configureCMakeRelWithDebInfo[armeabi-v7a]
+> Task :react-native-sherpa-onnx:buildCMakeRelWithDebInfo[armeabi-v7a]
+> Task :react-native-sherpa-onnx:configureCMakeRelWithDebInfo[x86]
+> Task :react-native-sherpa-onnx:buildCMakeRelWithDebInfo[x86]
+> Task :react-native-sherpa-onnx:configureCMakeRelWithDebInfo[x86_64]
+> Task :react-native-sherpa-onnx:buildCMakeRelWithDebInfo[x86_64]
+
+> Task :app:createBundleReleaseJsAndAssets
+Android .\index.ts 鈻戔枒鈻戔枒鈻戔枒鈻戔枒鈻戔枒鈻戔枒鈻戔枒鈻戔枒  1.0% (1/1)
+
+> Task :react-native-sherpa-onnx:mergeReleaseJniLibFolders UP-TO-DATE
+> Task :react-native-sherpa-onnx:mergeReleaseNativeLibs UP-TO-DATE
+> Task :react-native-sherpa-onnx:copyReleaseJniLibsProjectOnly UP-TO-DATE
+> Task :react-native-sherpa-onnx:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :react-native-sherpa-onnx:generateReleaseBuildConfig UP-TO-DATE
+> Task :react-native-sherpa-onnx:generateReleaseResValues UP-TO-DATE
+> Task :react-native-sherpa-onnx:generateReleaseResources UP-TO-DATE
+> Task :react-native-sherpa-onnx:packageReleaseResources UP-TO-DATE
+> Task :react-native-sherpa-onnx:parseReleaseLocalResources UP-TO-DATE
+> Task :react-native-sherpa-onnx:generateReleaseRFile UP-TO-DATE
+> Task :react-native-sherpa-onnx:compileReleaseKotlin UP-TO-DATE
+> Task :react-native-sherpa-onnx:javaPreCompileRelease UP-TO-DATE
+> Task :react-native-sherpa-onnx:compileReleaseJavaWithJavac UP-TO-DATE
+> Task :react-native-sherpa-onnx:bundleLibRuntimeToDirRelease UP-TO-DATE
+> Task :react-native-sherpa-onnx:writeReleaseAarMetadata UP-TO-DATE
+> Task :react-native-sherpa-onnx:extractDeepLinksRelease UP-TO-DATE
+> Task :react-native-sherpa-onnx:processReleaseManifest UP-TO-DATE
+> Task :react-native-sherpa-onnx:compileReleaseLibraryResources UP-TO-DATE
+> Task :react-native-sherpa-onnx:bundleLibCompileToJarRelease UP-TO-DATE
+> Task :react-native-sherpa-onnx:prepareReleaseArtProfile UP-TO-DATE
+> Task :react-native-sherpa-onnx:bundleLibRuntimeToJarRelease UP-TO-DATE
+> Task :react-native-sherpa-onnx:mergeReleaseShaders UP-TO-DATE
+> Task :react-native-sherpa-onnx:compileReleaseShaders NO-SOURCE
+> Task :react-native-sherpa-onnx:generateReleaseAssets UP-TO-DATE
+> Task :react-native-sherpa-onnx:mergeReleaseAssets UP-TO-DATE
+> Task :react-native-sherpa-onnx:processReleaseJavaRes UP-TO-DATE
+> Task :react-native-sherpa-onnx:createFullJarRelease UP-TO-DATE
+> Task :react-native-sherpa-onnx:extractProguardFiles UP-TO-DATE
+> Task :react-native-sherpa-onnx:generateReleaseLintModel UP-TO-DATE
+> Task :react-native-sherpa-onnx:prepareLintJarForPublish UP-TO-DATE
+> Task :react-native-sherpa-onnx:stripReleaseDebugSymbols UP-TO-DATE
+> Task :react-native-sherpa-onnx:copyReleaseJniLibsProjectAndLocalJars UP-TO-DATE
+> Task :react-native-sherpa-onnx:extractDeepLinksForAarRelease UP-TO-DATE
+> Task :react-native-sherpa-onnx:extractReleaseAnnotations UP-TO-DATE
+> Task :react-native-sherpa-onnx:mergeReleaseGeneratedProguardFiles
+> Task :react-native-sherpa-onnx:mergeReleaseConsumerProguardFiles
+> Task :react-native-sherpa-onnx:writeReleaseLintModelMetadata UP-TO-DATE
+> Task :react-native-sherpa-onnx:generateReleaseLintVitalModel
+> Task :react-native-sherpa-onnx:mapReleaseSourceSetPaths UP-TO-DATE
+> Task :react-native-sherpa-onnx:mergeReleaseJavaResource
+
+> Task :app:createBundleReleaseJsAndAssets
+Android .\index.ts 鈻撯枔鈻撯枔鈻撯枔鈻撯枔鈻撯枔鈻撯枒鈻戔枒鈻戔枒 69.1% (64/77)
+
+> Task :expo-modules-core:compileReleaseKotlin
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\expo-modules-core\android\src\main\ja
+va\expo\modules\adapters\react\apploader\RNHeadlessAppLoader.kt:48:87: warning: 'val reactN
+ativeHost: ReactNativeHost' is deprecated. You should not use ReactNativeHost directly in t
+he New Architecture. Use ReactHost instead.
+exception:           val reactInstanceManager = (context.applicationContext as ReactApplica
+tion).reactNativeHost.reactInstanceManager
+exception:                                                                                 
+      ^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\expo-modules-core\android\src\main\ja
+va\expo\modules\adapters\react\apploader\RNHeadlessAppLoader.kt:91:85: warning: 'val reactN
+ativeHost: ReactNativeHost' is deprecated. You should not use ReactNativeHost directly in t
+he New Architecture. Use ReactHost instead.
+exception:         val reactNativeHost = (reactContext.applicationContext as ReactApplicati
+on).reactNativeHost
+exception:                                                                                 
+    ^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\expo-modules-core\android\src\main\ja
+va\expo\modules\adapters\react\apploader\RNHeadlessAppLoader.kt:120:83: warning: 'val react
+NativeHost: ReactNativeHost' is deprecated. You should not use ReactNativeHost directly in 
+the New Architecture. Use ReactHost instead.
+exception:       val reactNativeHost = (reactContext.applicationContext as ReactApplication
+).reactNativeHost
+exception:                                                                                 
+  ^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\expo-modules-core\android\src\main\ja
+va\expo\modules\apploader\AppLoaderProvider.kt:34:52: warning: unchecked cast of 'Class<*>!
+' to 'Class<out HeadlessAppLoader>'.
+exception:       loaderClass = Class.forName(loaderClassName) as Class<out HeadlessAppLoade
+r>
+exception:                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\expo-modules-core\android\src\main\ja
+va\expo\modules\kotlin\AppContext.kt:30:8: warning: 'typealias ErrorManagerModule = JSLogge
+rModule' is deprecated. Use JSLoggerModule instead.
+exception: import expo.modules.kotlin.defaultmodules.ErrorManagerModule
+exception:        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\expo-modules-core\android\src\main\ja
+va\expo\modules\kotlin\AppContext.kt:253:21: warning: 'typealias ErrorManagerModule = JSLog
+gerModule' is deprecated. Use JSLoggerModule instead.
+exception:   val errorManager: ErrorManagerModule? by lazy {
+exception:                     ^^^^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\expo-modules-core\android\src\main\ja
+va\expo\modules\kotlin\AppContext.kt:343:21: warning: 'val DEFAULT: Int' is deprecated. UIM
+anagerType.DEFAULT will be deleted in the next release of React Native. Use [LEGACY] instea
+d.
+exception:       UIManagerType.DEFAULT
+exception:                     ^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\expo-modules-core\android\src\main\ja
+va\expo\modules\kotlin\defaultmodules\NativeModulesProxyModule.kt:16:5: warning: 'fun Const
+ants(legacyConstantsProvider: () -> Map<String, Any?>): Unit' is deprecated. Use `Constant`
+ or `Property` instead.
+exception:     Constants {
+exception:     ^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\expo-modules-core\android\src\main\ja
+va\expo\modules\kotlin\jni\PromiseImpl.kt:65:51: warning: 'val errorManager: JSLoggerModule
+?' is deprecated. Use AppContext.jsLogger instead.
+exception:       val errorManager = appContextHolder?.get()?.errorManager
+exception:                                                   ^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\expo-modules-core\android\src\main\ja
+va\expo\modules\kotlin\jni\PromiseImpl.kt:69:22: warning: 'fun reportExceptionToLogBox(code
+dException: CodedException): Unit' is deprecated. Use appContext.jsLogger.error(...) instea
+d.
+exception:         errorManager.reportExceptionToLogBox(exception)
+exception:                      ^^^^^^^^^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\expo-modules-core\android\src\main\ja
+va\expo\modules\kotlin\views\ViewDefinitionBuilder.kt:464:16: warning: 'val errorManager: J
+SLoggerModule?' is deprecated. Use AppContext.jsLogger instead.
+exception:     appContext.errorManager?.reportExceptionToLogBox(
+exception:                ^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\expo-modules-core\android\src\main\ja
+va\expo\modules\kotlin\views\ViewDefinitionBuilder.kt:464:30: warning: 'fun reportException
+ToLogBox(codedException: CodedException): Unit' is deprecated. Use appContext.jsLogger.erro
+r(...) instead.
+exception:     appContext.errorManager?.reportExceptionToLogBox(
+exception:                              ^^^^^^^^^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\expo-modules-core\android\src\main\ja
+va\expo\modules\kotlin\views\ViewManagerDefinition.kt:41:16: warning: 'val errorManager: JS
+LoggerModule?' is deprecated. Use AppContext.jsLogger instead.
+exception:     appContext.errorManager?.reportExceptionToLogBox(exception)
+exception:                ^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\expo-modules-core\android\src\main\ja
+va\expo\modules\kotlin\views\ViewManagerDefinition.kt:41:30: warning: 'fun reportExceptionT
+oLogBox(codedException: CodedException): Unit' is deprecated. Use appContext.jsLogger.error
+(...) instead.
+exception:     appContext.errorManager?.reportExceptionToLogBox(exception)
+exception:                              ^^^^^^^^^^^^^^^^^^^^^^^
+
+> Task :app:createBundleReleaseJsAndAssets
+Android .\index.ts 鈻撯枔鈻撯枔鈻撯枔鈻撯枔鈻撯枔鈻撯枒鈻戔枒鈻戔枒 71.3% (147/307)
+Android .\index.ts 鈻撯枔鈻撯枔鈻撯枔鈻撯枔鈻撯枔鈻撯枔鈻撯枔鈻戔枒 87.6% (790/844)
+
+> Task :react-native-sherpa-onnx:mergeReleaseResources
+> Task :react-native-sherpa-onnx:syncReleaseLibJars
+> Task :react-native-sherpa-onnx:bundleReleaseLocalLintAar
+
+> Task :expo-modules-core:compileReleaseJavaWithJavac
+注: 某些输入文件使用或覆盖了已过时的 API。
+注: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+
+> Task :react-native-screens:lintVitalAnalyzeRelease
+
+> Task :app:createBundleReleaseJsAndAssets
+Android .\index.ts 鈻撯枔鈻撯枔鈻撯枔鈻撯枔鈻撯枔鈻撯枔鈻撯枔鈻撯枒 99.9% (957/957)
+Android Bundled 18284ms index.ts (957 modules)
+Writing bundle output to: android\app\build\generated\assets\createBundleReleaseJsAndAssets\index.android.bundle
+Writing sourcemap output to: android\app\build\intermediates\sourcemaps\react\release\index.android.bundle.packager.map
+Copying 42 asset files
+Done writing bundle output
+Done writing sourcemap output
+
+> Task :expo-modules-core:processReleaseJavaRes
+> Task :expo-modules-core:generateReleaseLintModel
+> Task :expo-modules-core:extractReleaseAnnotations
+> Task :expo-modules-core:mergeReleaseGeneratedProguardFiles
+> Task :expo-modules-core:mergeReleaseConsumerProguardFiles
+> Task :expo-modules-core:generateReleaseLintVitalModel
+> Task :expo-modules-core:mergeReleaseJavaResource
+> Task :expo-modules-core:bundleLibCompileToJarRelease
+> Task :expo-modules-core:bundleLibRuntimeToJarRelease
+> Task :expo-modules-core:syncReleaseLibJars
+> Task :expo-modules-core:createFullJarRelease
+> Task :expo-modules-core:bundleReleaseLocalLintAar
+> Task :expo-modules-core:bundleReleaseAar
+> Task :expo-modules-core:assembleRelease
+> Task :react-native-sherpa-onnx:bundleReleaseAar
+
+e: java.nio.file.AccessDeniedException: C:\Users\wjq29\AppData\Local\kotlin\daemon\kotlin-d
+aemon-client-tsmarker3418260801489210052.tmp
+e: Daemon compilation failed: Could not connect to Kotlin compile daemon
+java.lang.RuntimeException: Could not connect to Kotlin compile daemon
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.compileWithDaemon(GradleKo
+tlinCompilerWork.kt:214)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.compileWithDaemonOrFallbac
+kImpl(GradleKotlinCompilerWork.kt:159)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.run(GradleKotlinCompilerWo
+rk.kt:111)
+> Task :expo-constants:compileReleaseKotlin
+	at org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompile
+rWorkAction.execute(GradleCompilerRunnerWithWorkers.kt:76)
+	at org.gradle.workers.internal.DefaultWorkerServer.execute(DefaultWorkerServer.java:63)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactor
+y.java:66)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactor
+y.java:62)
+	at org.gradle.internal.classloader.ClassLoaderUtils.executeInClassloader(ClassLoaderUtils.
+java:100)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.lambda$execute$0(NoIsolationWork
+erFactory.java:62)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:44)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:41)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker
+.execute(DefaultBuildOperationRunner.java:210)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker
+.execute(DefaultBuildOperationRunner.java:205)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperat
+ionRunner.java:67)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperat
+ionRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperatio
+nRunner.java:167)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperatio
+nRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRu
+nner.java:54)
+	at org.gradle.workers.internal.AbstractWorker.executeWrappedInBuildOperation(AbstractWorke
+r.java:41)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.execute(NoIsolationWorkerFactory
+.java:59)
+	at org.gradle.workers.internal.DefaultWorkerExecutor.lambda$submitWork$0(DefaultWorkerExec
+utor.java:174)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runExecution(
+DefaultConditionalExecutionQueue.java:194)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.access$700(De
+faultConditionalExecutionQueue.java:127)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner$1.run(Default
+ConditionalExecutionQueue.java:169)
+	at org.gradle.internal.Factories$1.create(Factories.java:31)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.
+java:263)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLease
+Service.java:127)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLease
+Service.java:132)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runBatch(Defa
+ultConditionalExecutionQueue.java:164)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.run(DefaultCo
+nditionalExecutionQueue.java:133)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(Executor
+Policy.java:64)
+	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.ja
+va:48)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:113
+6)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:63
+5)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+
+Failed to compile with Kotlin daemon: java.lang.RuntimeException: Could not connect to Kotlin compile daemon
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.compileWithDaemon(GradleKotlinCompilerWork.kt:214)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.compileWithDaemonOrFallbackImpl(GradleKotlinCompilerWork.kt:159)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.run(GradleKotlinCompilerWork.kt:111)
+	at org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction.execute(GradleCompilerRunnerWithWorkers.kt:76)
+	at org.gradle.workers.internal.DefaultWorkerServer.execute(DefaultWorkerServer.java:63)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactory.java:66)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactory.java:62)
+	at org.gradle.internal.classloader.ClassLoaderUtils.executeInClassloader(ClassLoaderUtils.java:100)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.lambda$execute$0(NoIsolationWorkerFactory.java:62)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:44)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:41)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:210)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:205)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:54)
+	at org.gradle.workers.internal.AbstractWorker.executeWrappedInBuildOperation(AbstractWorker.java:41)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.execute(NoIsolationWorkerFactory.java:59)
+	at org.gradle.workers.internal.DefaultWorkerExecutor.lambda$submitWork$0(DefaultWorkerExecutor.java:174)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runExecution(DefaultConditionalExecutionQueue.java:194)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.access$700(DefaultConditionalExecutionQueue.java:127)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner$1.run(DefaultConditionalExecutionQueue.java:169)
+	at org.gradle.internal.Factories$1.create(Factories.java:31)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:263)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:127)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:132)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runBatch(DefaultConditionalExecutionQueue.java:164)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.run(DefaultConditionalExecutionQueue.java:133)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:48)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+Using fallback strategy: Compile without Kotlin daemon
+Try ./gradlew --stop if this issue persists
+If it does not look related to your configuration, please file an issue with logs to https://kotl.in/issue
+
+> Task :react-native-sherpa-onnx:lintVitalAnalyzeRelease
+> Task :app:preBuild
+> Task :app:preReleaseBuild
+> Task :react-native-sherpa-onnx:verifyReleaseResources
+> Task :react-native-sherpa-onnx:assembleRelease
+> Task :expo-modules-core:bundleLibRuntimeToDirRelease
+
+> Task :expo-constants:compileReleaseKotlin
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\expo\node_modules\expo-constants\andr
+oid\src\main\java\expo\modules\constants\ConstantsModule.kt:12:5: warning: 'fun Constants(l
+egacyConstantsProvider: () -> Map<String, Any?>): Unit' is deprecated. Use `Constant` or `P
+roperty` instead.
+exception:     Constants {
+exception:     ^^^^^^^^^
+
+> Task :expo-constants:compileReleaseJavaWithJavac
+> Task :expo-constants:bundleLibCompileToJarRelease
+> Task :expo-constants:bundleLibRuntimeToJarRelease
+> Task :expo-constants:processReleaseJavaRes
+> Task :expo-constants:createFullJarRelease
+> Task :expo-constants:generateReleaseLintModel
+> Task :expo-constants:bundleLibRuntimeToDirRelease
+> Task :expo-constants:extractReleaseAnnotations
+> Task :expo-constants:mergeReleaseGeneratedProguardFiles
+> Task :expo-constants:mergeReleaseConsumerProguardFiles
+> Task :expo-constants:mergeReleaseJavaResource
+> Task :expo-constants:generateReleaseLintVitalModel
+> Task :expo-constants:syncReleaseLibJars
+> Task :expo-constants:bundleReleaseLocalLintAar
+> Task :expo-constants:bundleReleaseAar
+> Task :expo-constants:assembleRelease
+
+> Task :app:configureCMakeRelWithDebInfo[arm64-v8a]
+C/C++: CMake Error at C:/Users/wjq29/AppData/Local/Android/Sdk/cmake/3.22.1/share/cmake-3.22/Modules/CMakeTestCCompiler.cmake:69 (message):
+C/C++:   The C compiler
+C/C++:     "C:/Users/wjq29/AppData/Local/Android/Sdk/ndk/27.1.12297006/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe"
+C/C++:   is not able to compile a simple test program.
+C/C++:   It fails with the following output:
+C/C++:     Change Dir: D:/Projects/ShiGuangZhiJi/app/android/app/.cxx/RelWithDebInfo/3g47u5nk/arm64-v8a/CMakeFiles/CMakeTmp
+C/C++:     
+C/C++:     Run Build Command(s):C:\Users\wjq29\AppData\Local\Android\Sdk\cmake\3.22.1\bin\ninja.exe cmTC_306e6 && ninja: fatal: GetOverlappedResult: 操作成功完成。
+C/C++:     
+C/C++:     
+C/C++:     
+C/C++:   
+C/C++:   CMake will not be able to correctly generate this project.
+C/C++: Call Stack (most recent call first):
+C/C++:   CMakeLists.txt:28 (project)
+
+> Task :app:configureCMakeRelWithDebInfo[arm64-v8a] FAILED
+
+> Task :expo:compileReleaseKotlin
+e: java.nio.file.AccessDeniedException: C:\Users\wjq29\AppData\Local\kotlin\daemon\kotlin-d
+aemon-client-tsmarker9903888046288489802.tmp
+e: Daemon compilation failed: Could not connect to Kotlin compile daemon
+java.lang.RuntimeException: Could not connect to Kotlin compile daemon
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.compileWithDaemon(GradleKo
+tlinCompilerWork.kt:214)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.compileWithDaemonOrFallbac
+kImpl(GradleKotlinCompilerWork.kt:159)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.run(GradleKotlinCompilerWo
+rk.kt:111)
+	at org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompile
+rWorkAction.execute(GradleCompilerRunnerWithWorkers.kt:76)
+	at org.gradle.workers.internal.DefaultWorkerServer.execute(DefaultWorkerServer.java:63)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactor
+y.java:66)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactor
+y.java:62)
+	at org.gradle.internal.classloader.ClassLoaderUtils.executeInClassloader(ClassLoaderUtils.
+java:100)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.lambda$execute$0(NoIsolationWork
+erFactory.java:62)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:44)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:41)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker
+.execute(DefaultBuildOperationRunner.java:210)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker
+.execute(DefaultBuildOperationRunner.java:205)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperat
+ionRunner.java:67)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperat
+ionRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperatio
+nRunner.java:167)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperatio
+nRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRu
+nner.java:54)
+	at org.gradle.workers.internal.AbstractWorker.executeWrappedInBuildOperation(AbstractWorke
+r.java:41)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.execute(NoIsolationWorkerFactory
+.java:59)
+	at org.gradle.workers.internal.DefaultWorkerExecutor.lambda$submitWork$0(DefaultWorkerExec
+utor.java:174)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runExecution(
+DefaultConditionalExecutionQueue.java:194)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.access$700(De
+faultConditionalExecutionQueue.java:127)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner$1.run(Default
+ConditionalExecutionQueue.java:169)
+	at org.gradle.internal.Factories$1.create(Factories.java:31)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.
+java:263)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLease
+Service.java:127)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLease
+Service.java:132)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runBatch(Defa
+ultConditionalExecutionQueue.java:164)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.run(DefaultCo
+nditionalExecutionQueue.java:133)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(Executor
+Policy.java:64)
+	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.ja
+va:48)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:113
+6)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:63
+5)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+
+Failed to compile with Kotlin daemon: java.lang.RuntimeException: Could not connect to Kotlin compile daemon
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.compileWithDaemon(GradleKotlinCompilerWork.kt:214)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.compileWithDaemonOrFallbackImpl(GradleKotlinCompilerWork.kt:159)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.run(GradleKotlinCompilerWork.kt:111)
+	at org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction.execute(GradleCompilerRunnerWithWorkers.kt:76)
+	at org.gradle.workers.internal.DefaultWorkerServer.execute(DefaultWorkerServer.java:63)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactory.java:66)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactory.java:62)
+	at org.gradle.internal.classloader.ClassLoaderUtils.executeInClassloader(ClassLoaderUtils.java:100)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.lambda$execute$0(NoIsolationWorkerFactory.java:62)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:44)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:41)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:210)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:205)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:54)
+	at org.gradle.workers.internal.AbstractWorker.executeWrappedInBuildOperation(AbstractWorker.java:41)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.execute(NoIsolationWorkerFactory.java:59)
+	at org.gradle.workers.internal.DefaultWorkerExecutor.lambda$submitWork$0(DefaultWorkerExecutor.java:174)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runExecution(DefaultConditionalExecutionQueue.java:194)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.access$700(DefaultConditionalExecutionQueue.java:127)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner$1.run(DefaultConditionalExecutionQueue.java:169)
+	at org.gradle.internal.Factories$1.create(Factories.java:31)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:263)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:127)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:132)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runBatch(DefaultConditionalExecutionQueue.java:164)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.run(DefaultConditionalExecutionQueue.java:133)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:48)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+Using fallback strategy: Compile without Kotlin daemon
+Try ./gradlew --stop if this issue persists
+If it does not look related to your configuration, please file an issue with logs to https://kotl.in/issue
+
+> Task :expo-constants:lintVitalAnalyzeRelease
+> Task :expo-modules-core:lintVitalAnalyzeRelease
+
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\expo\android\src\main\java\expo\modul
+es\ExpoModulesPackage.kt:34:16: warning: this declaration overrides a deprecated member but
+ is not marked as deprecated itself. Add the '@Deprecated' annotation or suppress the diagn
+ostic.
+exception:   override fun createNativeModules(reactContext: ReactApplicationContext): List<
+NativeModule> {
+exception:                ^^^^^^^^^^^^^^^^^^^
+> Task :expo:compileReleaseKotlin
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\expo\android\src\main\java\expo\modul
+es\ExpoReactHostFactory.kt:8:8: warning: 'class ReactNativeHost : Any' is deprecated. Depre
+cated in Java.
+exception: import com.facebook.react.ReactNativeHost
+exception:        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\expo\android\src\main\java\expo\modul
+es\ExpoReactHostFactory.kt:80:22: warning: 'class ReactNativeHost : Any' is deprecated. Dep
+recated in Java.
+exception:     reactNativeHost: ReactNativeHost
+exception:                      ^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\expo\android\src\main\java\expo\modul
+es\ReactActivityDelegateWrapper.kt:24:8: warning: 'class ReactNativeHost : Any' is deprecat
+ed. Deprecated in Java.
+exception: import com.facebook.react.ReactNativeHost
+exception:        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\expo\android\src\main\java\expo\modul
+es\ReactActivityDelegateWrapper.kt:58:33: warning: 'class ReactNativeHost : Any' is depreca
+ted. Deprecated in Java.
+exception:   private val _reactNativeHost: ReactNativeHost by lazy {
+exception:                                 ^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\expo\android\src\main\java\expo\modul
+es\ReactActivityDelegateWrapper.kt:105:16: warning: this declaration overrides a deprecated
+ member but is not marked as deprecated itself. Add the '@Deprecated' annotation or suppres
+s the diagnostic.
+exception:   override fun getReactNativeHost(): ReactNativeHost {
+exception:                ^^^^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\expo\android\src\main\java\expo\modul
+es\ReactActivityDelegateWrapper.kt:105:38: warning: 'class ReactNativeHost : Any' is deprec
+ated. Deprecated in Java.
+exception:   override fun getReactNativeHost(): ReactNativeHost {
+exception:                                      ^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\expo\android\src\main\java\expo\modul
+es\ReactActivityDelegateWrapper.kt:113:16: warning: this declaration overrides a deprecated
+ member but is not marked as deprecated itself. Add the '@Deprecated' annotation or suppres
+s the diagnostic.
+exception:   override fun getReactInstanceManager(): ReactInstanceManager {
+exception:                ^^^^^^^^^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\expo\android\src\main\java\expo\modul
+es\ReactActivityDelegateWrapper.kt:114:21: warning: 'val reactInstanceManager: ReactInstanc
+eManager' is deprecated. Deprecated in Java.
+exception:     return delegate.reactInstanceManager
+exception:                     ^^^^^^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\expo\android\src\main\java\expo\modul
+es\ReactActivityDelegateWrapper.kt:168:36: warning: 'constructor(activity: Activity, reactN
+ativeHost: ReactNativeHost?, appKey: String?, launchOptions: Bundle?, fabricEnabled: Boolea
+n): ReactDelegate' is deprecated. Deprecated since 0.81.0, use one of the other constructor
+s instead.
+exception:           reactDelegate = object : ReactDelegate(
+exception:                                    ^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\expo\android\src\main\java\expo\modul
+es\ReactActivityDelegateWrapper.kt:279:77: warning: 'val reactInstanceManager: ReactInstanc
+eManager' is deprecated. Deprecated in Java.
+exception:       if (!ReactNativeFeatureFlags.enableBridgelessArchitecture && delegate.reac
+tInstanceManager.currentReactContext == null) {
+exception:                                                                             ^^^^
+^^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\expo\android\src\main\java\expo\modul
+es\ReactActivityDelegateWrapper.kt:282:22: warning: 'val reactInstanceManager: ReactInstanc
+eManager' is deprecated. Deprecated in Java.
+exception:             delegate.reactInstanceManager.removeReactInstanceEventListener(this)
+exception:                      ^^^^^^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\expo\android\src\main\java\expo\modul
+es\ReactActivityDelegateWrapper.kt:286:54: warning: 'val reactInstanceManager: ReactInstanc
+eManager' is deprecated. Deprecated in Java.
+exception:         return@launchLifecycleScopeWithLock delegate.reactInstanceManager.addRea
+ctInstanceEventListener(
+exception:                                                      ^^^^^^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\expo\android\src\main\java\expo\modul
+es\ReactNativeHostWrapper.kt:6:8: warning: 'class ReactNativeHost : Any' is deprecated. Dep
+recated in Java.
+exception: import com.facebook.react.ReactNativeHost
+exception:        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\expo\android\src\main\java\expo\modul
+es\ReactNativeHostWrapper.kt:15:9: warning: 'class ReactNativeHost : Any' is deprecated. De
+precated in Java.
+exception:   host: ReactNativeHost
+exception:         ^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\expo\android\src\main\java\expo\modul
+es\ReactNativeHostWrapper.kt:47:60: warning: 'class ReactNativeHost : Any' is deprecated. D
+eprecated in Java.
+exception:     fun createReactHost(context: Context, reactNativeHost: ReactNativeHost): Rea
+ctHost {
+exception:                                                            ^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\expo\android\src\main\java\expo\modul
+es\ReactNativeHostWrapperBase.kt:7:8: warning: 'class ReactNativeHost : Any' is deprecated.
+ Deprecated in Java.
+exception: import com.facebook.react.ReactNativeHost
+exception:        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\expo\android\src\main\java\expo\modul
+es\ReactNativeHostWrapperBase.kt:16:23: warning: 'class ReactNativeHost : Any' is deprecate
+d. Deprecated in Java.
+exception:   protected val host: ReactNativeHost
+exception:                       ^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\expo\android\src\main\java\expo\modul
+es\ReactNativeHostWrapperBase.kt:89:16: warning: 'class ReactNativeHost : Any' is deprecate
+d. Deprecated in Java.
+exception:       method = ReactNativeHost::class.java.getDeclaredMethod(name)
+exception:                ^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\expo\android\src\main\java\expo\modul
+es\ReactNativeHostWrapperBase.kt:101:38: warning: 'class ReactNativeHost : Any' is deprecat
+ed. Deprecated in Java.
+exception:     val mReactInstanceManagerField = ReactNativeHost::class.java.getDeclaredFiel
+d("mReactInstanceManager")
+exception:                                      ^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\expo\android\src\main\java\expo\modul
+es\fetch\ExpoFetchModule.kt:30:39: warning: 'constructor(reactContext: ReactContext): Forwa
+rdingCookieHandler' is deprecated. Use the default constructor.
+exception:   private val cookieHandler by lazy { ForwardingCookieHandler(reactContext) }
+exception:                                       ^^^^^^^^^^^^^^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\expo\android\src\main\java\expo\modul
+es\fetch\NativeResponse.kt:42:16: warning: this declaration overrides a deprecated member b
+ut is not marked as deprecated itself. Add the '@Deprecated' annotation or suppress the dia
+gnostic.
+exception:   override fun deallocate() {
+exception:                ^^^^^^^^^^
+exception: d:\Projects\ShiGuangZhiJi\app\node_modules\expo\android\src\main\java\expo\modul
+es\fetch\NativeResponse.kt:44:11: warning: 'fun deallocate(): Unit' is deprecated. Use shar
+edObjectDidRelease() instead.
+exception:     super.deallocate()
+exception:           ^^^^^^^^^^
+
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:configureCMakeRelWithDebInfo[arm64-v8a]'.
+> [CXX1429] error when building with cmake using D:\Projects\ShiGuangZhiJi\app\node_modules
+\react-native\ReactAndroid\cmake-utils\default-app-setup\CMakeLists.txt: -- The C compiler 
+identification is Clang 18.0.2
+  -- The CXX compiler identification is Clang 18.0.2
+  -- Detecting C compiler ABI info
+  -- Detecting C compiler ABI info - failed
+  -- Check for working C compiler: C:/Users/wjq29/AppData/Local/Android/Sdk/ndk/27.1.122970
+06/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe
+  -- Check for working C compiler: C:/Users/wjq29/AppData/Local/Android/Sdk/ndk/27.1.122970
+06/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe - broken
+  -- Configuring incomplete, errors occurred!
+  See also "D:/Projects/ShiGuangZhiJi/app/android/app/.cxx/RelWithDebInfo/3g47u5nk/arm64-v8
+a/CMakeFiles/CMakeOutput.log".
+[Incubating] Problems report is available at: file:///D:/Projects/ShiGuangZhiJi/app/android/build/reports/problems/problems-report.html
+  See also "D:/Projects/ShiGuangZhiJi/app/android/app/.cxx/RelWithDebInfo/3g47u5nk/arm64-v8
+a/CMakeFiles/CMakeError.log".
+  
+  C++ build system [configure] failed while executing:
+      @echo off
+      "C:\\Users\\wjq29\\AppData\\Local\\Android\\Sdk\\cmake\\3.22.1\\bin\\cmake.exe" ^
+        "-HD:\\Projects\\ShiGuangZhiJi\\app\\node_modules\\react-native\\ReactAndroid\\cmak
+e-utils\\default-app-setup" ^
+        "-DCMAKE_SYSTEM_NAME=Android" ^
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON" ^
+        "-DCMAKE_SYSTEM_VERSION=24" ^
+        "-DANDROID_PLATFORM=android-24" ^
+        "-DANDROID_ABI=arm64-v8a" ^
+        "-DCMAKE_ANDROID_ARCH_ABI=arm64-v8a" ^
+        "-DANDROID_NDK=C:\\Users\\wjq29\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006" 
+^
+        "-DCMAKE_ANDROID_NDK=C:\\Users\\wjq29\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.1229
+7006" ^
+        "-DCMAKE_TOOLCHAIN_FILE=C:\\Users\\wjq29\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.1
+2297006\\build\\cmake\\android.toolchain.cmake" ^
+        "-DCMAKE_MAKE_PROGRAM=C:\\Users\\wjq29\\AppData\\Local\\Android\\Sdk\\cmake\\3.22.1
+\\bin\\ninja.exe" ^
+        "-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=D:\\Projects\\ShiGuangZhiJi\\app\\android\\app\\b
+uild\\intermediates\\cxx\\RelWithDebInfo\\3g47u5nk\\obj\\arm64-v8a" ^
+        "-DCMAKE_RUNTIME_OUTPUT_DIRECTORY=D:\\Projects\\ShiGuangZhiJi\\app\\android\\app\\b
+uild\\intermediates\\cxx\\RelWithDebInfo\\3g47u5nk\\obj\\arm64-v8a" ^
+        "-DCMAKE_BUILD_TYPE=RelWithDebInfo" ^
+        "-DCMAKE_FIND_ROOT_PATH=D:\\Projects\\ShiGuangZhiJi\\app\\android\\app\\.cxx\\RelWi
+thDebInfo\\3g47u5nk\\prefab\\arm64-v8a\\prefab" ^
+        "-BD:\\Projects\\ShiGuangZhiJi\\app\\android\\app\\.cxx\\RelWithDebInfo\\3g47u5nk\\
+arm64-v8a" ^
+        -GNinja ^
+        "-DPROJECT_BUILD_DIR=D:\\Projects\\ShiGuangZhiJi\\app\\android\\app\\build" ^
+        "-DPROJECT_ROOT_DIR=D:\\Projects\\ShiGuangZhiJi\\app\\android" ^
+        "-DREACT_ANDROID_DIR=D:\\Projects\\ShiGuangZhiJi\\app\\node_modules\\react-native\\
+ReactAndroid" ^
+        "-DANDROID_STL=c++_shared" ^
+        "-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON"
+    from D:\Projects\ShiGuangZhiJi\app\android\app
+  CMake Error at C:/Users/wjq29/AppData/Local/Android/Sdk/cmake/3.22.1/share/cmake-3.22/Mod
+ules/CMakeTestCCompiler.cmake:69 (message):
+    The C compiler
+  
+      "C:/Users/wjq29/AppData/Local/Android/Sdk/ndk/27.1.12297006/toolchains/llvm/prebuilt/
+windows-x86_64/bin/clang.exe"
+  
+    is not able to compile a simple test program.
+  
+    It fails with the following output:
+  
+      Change Dir: D:/Projects/ShiGuangZhiJi/app/android/app/.cxx/RelWithDebInfo/3g47u5nk/ar
+m64-v8a/CMakeFiles/CMakeTmp
+      
+      Run Build Command(s):C:\Users\wjq29\AppData\Local\Android\Sdk\cmake\3.22.1\bin\ninja.
+exe cmTC_306e6 && ninja: fatal: GetOverlappedResult: 操作成功完成。
+
+      
+      
+      
+  
+    
+  
+    CMake will not be able to correctly generate this project.
+  Call Stack (most recent call first):
+    CMakeLists.txt:28 (project) : com.android.ide.common.process.ProcessException: -- The C
+ compiler identification is Clang 18.0.2
+  -- The CXX compiler identification is Clang 18.0.2
+  -- Detecting C compiler ABI info
+  -- Detecting C compiler ABI info - failed
+  -- Check for working C compiler: C:/Users/wjq29/AppData/Local/Android/Sdk/ndk/27.1.122970
+06/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe
+  -- Check for working C compiler: C:/Users/wjq29/AppData/Local/Android/Sdk/ndk/27.1.122970
+06/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe - broken
+  -- Configuring incomplete, errors occurred!
+  See also "D:/Projects/ShiGuangZhiJi/app/android/app/.cxx/RelWithDebInfo/3g47u5nk/arm64-v8
+a/CMakeFiles/CMakeOutput.log".
+  See also "D:/Projects/ShiGuangZhiJi/app/android/app/.cxx/RelWithDebInfo/3g47u5nk/arm64-v8
+a/CMakeFiles/CMakeError.log".
+  
+  C++ build system [configure] failed while executing:
+      @echo off
+      "C:\\Users\\wjq29\\AppData\\Local\\Android\\Sdk\\cmake\\3.22.1\\bin\\cmake.exe" ^
+        "-HD:\\Projects\\ShiGuangZhiJi\\app\\node_modules\\react-native\\ReactAndroid\\cmak
+e-utils\\default-app-setup" ^
+        "-DCMAKE_SYSTEM_NAME=Android" ^
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON" ^
+        "-DCMAKE_SYSTEM_VERSION=24" ^
+        "-DANDROID_PLATFORM=android-24" ^
+        "-DANDROID_ABI=arm64-v8a" ^
+        "-DCMAKE_ANDROID_ARCH_ABI=arm64-v8a" ^
+        "-DANDROID_NDK=C:\\Users\\wjq29\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006" 
+^
+        "-DCMAKE_ANDROID_NDK=C:\\Users\\wjq29\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.1229
+7006" ^
+        "-DCMAKE_TOOLCHAIN_FILE=C:\\Users\\wjq29\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.1
+2297006\\build\\cmake\\android.toolchain.cmake" ^
+        "-DCMAKE_MAKE_PROGRAM=C:\\Users\\wjq29\\AppData\\Local\\Android\\Sdk\\cmake\\3.22.1
+\\bin\\ninja.exe" ^
+        "-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=D:\\Projects\\ShiGuangZhiJi\\app\\android\\app\\b
+uild\\intermediates\\cxx\\RelWithDebInfo\\3g47u5nk\\obj\\arm64-v8a" ^
+        "-DCMAKE_RUNTIME_OUTPUT_DIRECTORY=D:\\Projects\\ShiGuangZhiJi\\app\\android\\app\\b
+uild\\intermediates\\cxx\\RelWithDebInfo\\3g47u5nk\\obj\\arm64-v8a" ^
+        "-DCMAKE_BUILD_TYPE=RelWithDebInfo" ^
+        "-DCMAKE_FIND_ROOT_PATH=D:\\Projects\\ShiGuangZhiJi\\app\\android\\app\\.cxx\\RelWi
+thDebInfo\\3g47u5nk\\prefab\\arm64-v8a\\prefab" ^
+        "-BD:\\Projects\\ShiGuangZhiJi\\app\\android\\app\\.cxx\\RelWithDebInfo\\3g47u5nk\\
+arm64-v8a" ^
+        -GNinja ^
+        "-DPROJECT_BUILD_DIR=D:\\Projects\\ShiGuangZhiJi\\app\\android\\app\\build" ^
+        "-DPROJECT_ROOT_DIR=D:\\Projects\\ShiGuangZhiJi\\app\\android" ^
+        "-DREACT_ANDROID_DIR=D:\\Projects\\ShiGuangZhiJi\\app\\node_modules\\react-native\\
+ReactAndroid" ^
+        "-DANDROID_STL=c++_shared" ^
+        "-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON"
+    from D:\Projects\ShiGuangZhiJi\app\android\app
+  CMake Error at C:/Users/wjq29/AppData/Local/Android/Sdk/cmake/3.22.1/share/cmake-3.22/Mod
+ules/CMakeTestCCompiler.cmake:69 (message):
+    The C compiler
+  
+      "C:/Users/wjq29/AppData/Local/Android/Sdk/ndk/27.1.12297006/toolchains/llvm/prebuilt/
+windows-x86_64/bin/clang.exe"
+  
+    is not able to compile a simple test program.
+  
+    It fails with the following output:
+  
+      Change Dir: D:/Projects/ShiGuangZhiJi/app/android/app/.cxx/RelWithDebInfo/3g47u5nk/ar
+m64-v8a/CMakeFiles/CMakeTmp
+      
+      Run Build Command(s):C:\Users\wjq29\AppData\Local\Android\Sdk\cmake\3.22.1\bin\ninja.
+exe cmTC_306e6 && ninja: fatal: GetOverlappedResult: 操作成功完成。
+
+      
+      
+      
+  
+    
+  
+    CMake will not be able to correctly generate this project.
+  Call Stack (most recent call first):
+    CMakeLists.txt:28 (project)
+  	at com.android.build.gradle.internal.cxx.process.ExecuteProcessKt.execute(ExecuteProcess
+.kt:288)
+  	at com.android.build.gradle.internal.cxx.process.ExecuteProcessKt$executeProcess$1.invok
+e(ExecuteProcess.kt:108)
+  	at com.android.build.gradle.internal.cxx.process.ExecuteProcessKt$executeProcess$1.invok
+e(ExecuteProcess.kt:106)
+  	at com.android.build.gradle.internal.cxx.timing.TimingEnvironmentKt.time(TimingEnvironme
+nt.kt:32)
+  	at com.android.build.gradle.internal.cxx.process.ExecuteProcessKt.executeProcess(Execute
+Process.kt:106)
+  	at com.android.build.gradle.internal.cxx.process.ExecuteProcessKt.executeProcess$default
+(ExecuteProcess.kt:85)
+  	at com.android.build.gradle.tasks.CmakeQueryMetadataGenerator.executeProcess(CmakeFileAp
+iMetadataGenerator.kt:59)
+  	at com.android.build.gradle.tasks.ExternalNativeJsonGenerator$configureOneAbi$1$1$3.invo
+ke(ExternalNativeJsonGenerator.kt:247)
+  	at com.android.build.gradle.tasks.ExternalNativeJsonGenerator$configureOneAbi$1$1$3.invo
+ke(ExternalNativeJsonGenerator.kt:247)
+  	at com.android.build.gradle.internal.cxx.timing.TimingEnvironmentKt.time(TimingEnvironme
+nt.kt:32)
+  	at com.android.build.gradle.tasks.ExternalNativeJsonGenerator.configureOneAbi(ExternalNa
+tiveJsonGenerator.kt:247)
+  	at com.android.build.gradle.tasks.ExternalNativeJsonGenerator.configure(ExternalNativeJs
+onGenerator.kt:113)
+  	at com.android.build.gradle.tasks.ExternalNativeBuildJsonTask.doTaskAction(ExternalNativ
+eBuildJsonTask.kt:89)
+  	at com.android.build.gradle.internal.tasks.UnsafeOutputsTask$taskAction$$inlined$recordT
+askAction$1.invoke(BaseTask.kt:59)
+  	at com.android.build.gradle.internal.tasks.Blocks.recordSpan(Blocks.java:51)
+  	at com.android.build.gradle.internal.tasks.UnsafeOutputsTask.taskAction(UnsafeOutputsTas
+k.kt:81)
+  	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+  	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorIm
+pl.java:77)
+  	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAc
+cessorImpl.java:43)
+  	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+  	at org.gradle.internal.reflect.JavaMethod.invoke(JavaMethod.java:125)
+  	at org.gradle.api.internal.project.taskfactory.StandardTaskAction.doExecute(StandardTask
+Action.java:58)
+  	at org.gradle.api.internal.project.taskfactory.StandardTaskAction.execute(StandardTaskAc
+tion.java:51)
+  	at org.gradle.api.internal.project.taskfactory.StandardTaskAction.execute(StandardTaskAc
+tion.java:29)
+  	at org.gradle.api.internal.tasks.execution.TaskExecution$3.run(TaskExecution.java:244)
+  	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOper
+ationRunner.java:30)
+  	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOper
+ationRunner.java:27)
+  	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOper
+ationRunner.java:67)
+  	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOper
+ationRunner.java:60)
+  	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperat
+ionRunner.java:167)
+  	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperat
+ionRunner.java:60)
+  	at org.gradle.internal.operations.DefaultBuildOperationRunner.run(DefaultBuildOperationR
+unner.java:48)
+  	at org.gradle.api.internal.tasks.execution.TaskExecution.executeAction(TaskExecution.jav
+a:229)
+  	at org.gradle.api.internal.tasks.execution.TaskExecution.executeActions(TaskExecution.ja
+va:212)
+  	at org.gradle.api.internal.tasks.execution.TaskExecution.executeWithPreviousOutputFiles(
+TaskExecution.java:195)
+  	at org.gradle.api.internal.tasks.execution.TaskExecution.execute(TaskExecution.java:162)
+  	at org.gradle.internal.execution.steps.ExecuteStep.executeInternal(ExecuteStep.java:105)
+  	at org.gradle.internal.execution.steps.ExecuteStep.access$000(ExecuteStep.java:44)
+  	at org.gradle.internal.execution.steps.ExecuteStep$1.call(ExecuteStep.java:59)
+  	at org.gradle.internal.execution.steps.ExecuteStep$1.call(ExecuteStep.java:56)
+  	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWork
+er.execute(DefaultBuildOperationRunner.java:210)
+  	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWork
+er.execute(DefaultBuildOperationRunner.java:205)
+  	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOper
+ationRunner.java:67)
+  	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOper
+ationRunner.java:60)
+  	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperat
+ionRunner.java:167)
+  	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperat
+ionRunner.java:60)
+  	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperation
+Runner.java:54)
+  	at org.gradle.internal.execution.steps.ExecuteStep.execute(ExecuteStep.java:56)
+  	at org.gradle.internal.execution.steps.ExecuteStep.execute(ExecuteStep.java:44)
+  	at org.gradle.internal.execution.steps.CancelExecutionStep.execute(CancelExecutionStep.j
+ava:42)
+  	at org.gradle.internal.execution.steps.TimeoutStep.executeWithoutTimeout(TimeoutStep.jav
+a:75)
+  	at org.gradle.internal.execution.steps.TimeoutStep.execute(TimeoutStep.java:55)
+  	at org.gradle.internal.execution.steps.PreCreateOutputParentsStep.execute(PreCreateOutpu
+tParentsStep.java:50)
+  	at org.gradle.internal.execution.steps.PreCreateOutputParentsStep.execute(PreCreateOutpu
+tParentsStep.java:28)
+  	at org.gradle.internal.execution.steps.RemovePreviousOutputsStep.execute(RemovePreviousO
+utputsStep.java:67)
+  	at org.gradle.internal.execution.steps.RemovePreviousOutputsStep.execute(RemovePreviousO
+utputsStep.java:37)
+  	at org.gradle.internal.execution.steps.BroadcastChangingOutputsStep.execute(BroadcastCha
+ngingOutputsStep.java:61)
+  	at org.gradle.internal.execution.steps.BroadcastChangingOutputsStep.execute(BroadcastCha
+ngingOutputsStep.java:26)
+  	at org.gradle.internal.execution.steps.CaptureOutputsAfterExecutionStep.execute(CaptureO
+utputsAfterExecutionStep.java:69)
+  	at org.gradle.internal.execution.steps.CaptureOutputsAfterExecutionStep.execute(CaptureO
+utputsAfterExecutionStep.java:46)
+  	at org.gradle.internal.execution.steps.ResolveInputChangesStep.execute(ResolveInputChang
+esStep.java:40)
+  	at org.gradle.internal.execution.steps.ResolveInputChangesStep.execute(ResolveInputChang
+esStep.java:29)
+  	at org.gradle.internal.execution.steps.BuildCacheStep.executeWithoutCache(BuildCacheStep
+.java:189)
+  	at org.gradle.internal.execution.steps.BuildCacheStep.lambda$execute$1(BuildCacheStep.ja
+va:75)
+  	at org.gradle.internal.Either$Right.fold(Either.java:175)
+  	at org.gradle.internal.execution.caching.CachingState.fold(CachingState.java:62)
+  	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:73)
+  	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:48)
+  	at org.gradle.internal.execution.steps.StoreExecutionStateStep.execute(StoreExecutionSta
+teStep.java:46)
+  	at org.gradle.internal.execution.steps.StoreExecutionStateStep.execute(StoreExecutionSta
+teStep.java:35)
+  	at org.gradle.internal.execution.steps.SkipUpToDateStep.executeBecause(SkipUpToDateStep.
+java:75)
+  	at org.gradle.internal.execution.steps.SkipUpToDateStep.lambda$execute$2(SkipUpToDateSte
+p.java:53)
+  	at java.base/java.util.Optional.orElseGet(Optional.java:364)
+  	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:53
+)
+  	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:35
+)
+  	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute
+(MarkSnapshottingInputsFinishedStep.java:37)
+  	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute
+(MarkSnapshottingInputsFinishedStep.java:27)
+  	at org.gradle.internal.execution.steps.ResolveIncrementalCachingStateStep.executeDelegat
+e(ResolveIncrementalCachingStateStep.java:49)
+  	at org.gradle.internal.execution.steps.ResolveIncrementalCachingStateStep.executeDelegat
+e(ResolveIncrementalCachingStateStep.java:27)
+  	at org.gradle.internal.execution.steps.AbstractResolveCachingStateStep.execute(AbstractR
+esolveCachingStateStep.java:71)
+  	at org.gradle.internal.execution.steps.AbstractResolveCachingStateStep.execute(AbstractR
+esolveCachingStateStep.java:39)
+  	at org.gradle.internal.execution.steps.ResolveChangesStep.execute(ResolveChangesStep.jav
+a:65)
+  	at org.gradle.internal.execution.steps.ResolveChangesStep.execute(ResolveChangesStep.jav
+a:36)
+  	at org.gradle.internal.execution.steps.ValidateStep.execute(ValidateStep.java:107)
+  	at org.gradle.internal.execution.steps.ValidateStep.execute(ValidateStep.java:56)
+  	at org.gradle.internal.execution.steps.AbstractCaptureStateBeforeExecutionStep.execute(A
+bstractCaptureStateBeforeExecutionStep.java:64)
+  	at org.gradle.internal.execution.steps.AbstractCaptureStateBeforeExecutionStep.execute(A
+bstractCaptureStateBeforeExecutionStep.java:43)
+  	at org.gradle.internal.execution.steps.AbstractSkipEmptyWorkStep.executeWithNonEmptySour
+ces(AbstractSkipEmptyWorkStep.java:125)
+  	at org.gradle.internal.execution.steps.AbstractSkipEmptyWorkStep.execute(AbstractSkipEmp
+tyWorkStep.java:56)
+  	at org.gradle.internal.execution.steps.AbstractSkipEmptyWorkStep.execute(AbstractSkipEmp
+tyWorkStep.java:36)
+  	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsStartedStep.execute(
+MarkSnapshottingInputsStartedStep.java:38)
+  	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.execute(LoadPrevio
+usExecutionStateStep.java:36)
+  	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.execute(LoadPrevio
+usExecutionStateStep.java:23)
+  	at org.gradle.internal.execution.steps.HandleStaleOutputsStep.execute(HandleStaleOutputs
+Step.java:75)
+  	at org.gradle.internal.execution.steps.HandleStaleOutputsStep.execute(HandleStaleOutputs
+Step.java:41)
+  	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.lambda$execute$0(Assig
+nMutableWorkspaceStep.java:35)
+  	at org.gradle.api.internal.tasks.execution.TaskExecution$4.withWorkspace(TaskExecution.j
+ava:289)
+  	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.execute(AssignMutableW
+orkspaceStep.java:31)
+  	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.execute(AssignMutableW
+orkspaceStep.java:22)
+  	at org.gradle.internal.execution.steps.ChoosePipelineStep.execute(ChoosePipelineStep.jav
+a:40)
+  	at org.gradle.internal.execution.steps.ChoosePipelineStep.execute(ChoosePipelineStep.jav
+a:23)
+  	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.lambda$execut
+e$2(ExecuteWorkBuildOperationFiringStep.java:67)
+  	at java.base/java.util.Optional.orElseGet(Optional.java:364)
+  	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.execute(Execu
+teWorkBuildOperationFiringStep.java:67)
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.14.3/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+418 actionable tasks: 153 executed, 265 up-to-date
+  	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.execute(Execu
+teWorkBuildOperationFiringStep.java:39)
+  	at org.gradle.internal.execution.steps.IdentityCacheStep.execute(IdentityCacheStep.java:
+46)
+  	at org.gradle.internal.execution.steps.IdentityCacheStep.execute(IdentityCacheStep.java:
+34)
+  	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:48)
+  	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:35)
+  	at org.gradle.internal.execution.impl.DefaultExecutionEngine$1.execute(DefaultExecutionE
+ngine.java:64)
+  	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeIfValid(Exe
+cuteActionsTaskExecuter.java:127)
+  	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.execute(ExecuteAct
+ionsTaskExecuter.java:116)
+  	at org.gradle.api.internal.tasks.execution.ProblemsTaskPathTrackingTaskExecuter.execute(
+ProblemsTaskPathTrackingTaskExecuter.java:41)
+  	at org.gradle.api.internal.tasks.execution.FinalizePropertiesTaskExecuter.execute(Finali
+zePropertiesTaskExecuter.java:46)
+  	at org.gradle.api.internal.tasks.execution.ResolveTaskExecutionModeExecuter.execute(Reso
+lveTaskExecutionModeExecuter.java:51)
+  	at org.gradle.api.internal.tasks.execution.SkipTaskWithNoActionsExecuter.execute(SkipTas
+kWithNoActionsExecuter.java:57)
+  	at org.gradle.api.internal.tasks.execution.SkipOnlyIfTaskExecuter.execute(SkipOnlyIfTask
+Executer.java:74)
+  	at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExcep
+tionTaskExecuter.java:36)
+  	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.executeTask(EventFi
+ringTaskExecuter.java:77)
+  	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.call(EventFiringTas
+kExecuter.java:55)
+  	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.call(EventFiringTas
+kExecuter.java:52)
+  	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWork
+er.execute(DefaultBuildOperationRunner.java:210)
+  	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWork
+er.execute(DefaultBuildOperationRunner.java:205)
+  	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOper
+ationRunner.java:67)
+  	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOper
+ationRunner.java:60)
+  	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperat
+ionRunner.java:167)
+  	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperat
+ionRunner.java:60)
+  	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperation
+Runner.java:54)
+  	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter.execute(EventFiringTa
+skExecuter.java:52)
+  	at org.gradle.execution.plan.LocalTaskNodeExecutor.execute(LocalTaskNodeExecutor.java:42
+)
+  	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$InvokeNodeExecutorsAction.ex
+ecute(DefaultTaskExecutionGraph.java:331)
+  	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$InvokeNodeExecutorsAction.ex
+ecute(DefaultTaskExecutionGraph.java:318)
+  	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecution
+Action.lambda$execute$0(DefaultTaskExecutionGraph.java:314)
+  	at org.gradle.internal.operations.CurrentBuildOperationRef.with(CurrentBuildOperationRef
+.java:85)
+  	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecution
+Action.execute(DefaultTaskExecutionGraph.java:314)
+  	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecution
+Action.execute(DefaultTaskExecutionGraph.java:303)
+  	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.execute(DefaultPlanExecu
+tor.java:459)
+  	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.run(DefaultPlanExecutor.
+java:376)
+  	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(Execut
+orPolicy.java:64)
+  	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.
+java:48)
+  	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1
+136)
+  	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:
+635)
+  	at java.base/java.lang.Thread.run(Thread.java:842)
+  Caused by: com.android.ide.common.process.ProcessException: Error while executing process
+ C:\Users\wjq29\AppData\Local\Android\Sdk\cmake\3.22.1\bin\cmake.exe with arguments {-HD:\P
+rojects\ShiGuangZhiJi\app\node_modules\react-native\ReactAndroid\cmake-utils\default-app-se
+tup -DCMAKE_SYSTEM_NAME=Android -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_SYSTEM_VERSION=2
+4 -DANDROID_PLATFORM=android-24 -DANDROID_ABI=arm64-v8a -DCMAKE_ANDROID_ARCH_ABI=arm64-v8a 
+-DANDROID_NDK=C:\Users\wjq29\AppData\Local\Android\Sdk\ndk\27.1.12297006 -DCMAKE_ANDROID_ND
+K=C:\Users\wjq29\AppData\Local\Android\Sdk\ndk\27.1.12297006 -DCMAKE_TOOLCHAIN_FILE=C:\User
+s\wjq29\AppData\Local\Android\Sdk\ndk\27.1.12297006\build\cmake\android.toolchain.cmake -DC
+MAKE_MAKE_PROGRAM=C:\Users\wjq29\AppData\Local\Android\Sdk\cmake\3.22.1\bin\ninja.exe -DCMA
+KE_LIBRARY_OUTPUT_DIRECTORY=D:\Projects\ShiGuangZhiJi\app\android\app\build\intermediates\c
+xx\RelWithDebInfo\3g47u5nk\obj\arm64-v8a -DCMAKE_RUNTIME_OUTPUT_DIRECTORY=D:\Projects\ShiGu
+angZhiJi\app\android\app\build\intermediates\cxx\RelWithDebInfo\3g47u5nk\obj\arm64-v8a -DCM
+AKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_FIND_ROOT_PATH=D:\Projects\ShiGuangZhiJi\app\android\
+app\.cxx\RelWithDebInfo\3g47u5nk\prefab\arm64-v8a\prefab -BD:\Projects\ShiGuangZhiJi\app\an
+droid\app\.cxx\RelWithDebInfo\3g47u5nk\arm64-v8a -GNinja -DPROJECT_BUILD_DIR=D:\Projects\Sh
+iGuangZhiJi\app\android\app\build -DPROJECT_ROOT_DIR=D:\Projects\ShiGuangZhiJi\app\android 
+-DREACT_ANDROID_DIR=D:\Projects\ShiGuangZhiJi\app\node_modules\react-native\ReactAndroid -D
+ANDROID_STL=c++_shared -DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON}
+  	at com.android.build.gradle.internal.process.GradleProcessResult.buildProcessException(G
+radleProcessResult.java:73)
+  	at com.android.build.gradle.internal.process.GradleProcessResult.assertNormalExitValue(G
+radleProcessResult.java:48)
+  	at com.android.build.gradle.internal.cxx.process.ExecuteProcessKt.execute(ExecuteProcess
+.kt:277)
+  	... 142 more
+  Caused by: org.gradle.process.internal.ExecException: Process 'command 'C:\Users\wjq29\Ap
+pData\Local\Android\Sdk\cmake\3.22.1\bin\cmake.exe'' finished with non-zero exit value 1
+  	at org.gradle.process.internal.DefaultExecHandle$ExecResultImpl.assertNormalExitValue(De
+faultExecHandle.java:442)
+  	at com.android.build.gradle.internal.process.GradleProcessResult.assertNormalExitValue(G
+radleProcessResult.java:46)
+  	... 143 more
+
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 2m 6s

@@ -1,0 +1,183 @@
+﻿To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.3/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :gradle-plugin:settings-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo-gradle-plugin:expo-autolinking-plugin-shared:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :gradle-plugin:shared:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:pluginDescriptors UP-TO-DATE
+> Task :gradle-plugin:settings-plugin:pluginDescriptors UP-TO-DATE
+> Task :gradle-plugin:settings-plugin:processResources UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:processResources UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin-shared:compileKotlin UP-TO-DATE
+> Task :gradle-plugin:shared:compileKotlin UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin-shared:compileJava NO-SOURCE
+> Task :gradle-plugin:shared:compileJava NO-SOURCE
+> Task :gradle-plugin:shared:processResources NO-SOURCE
+> Task :expo-gradle-plugin:expo-autolinking-plugin-shared:processResources NO-SOURCE
+> Task :gradle-plugin:shared:classes UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin-shared:classes UP-TO-DATE
+> Task :gradle-plugin:shared:jar UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin-shared:jar UP-TO-DATE
+> Task :gradle-plugin:settings-plugin:compileKotlin UP-TO-DATE
+> Task :gradle-plugin:settings-plugin:compileJava NO-SOURCE
+> Task :gradle-plugin:settings-plugin:classes UP-TO-DATE
+> Task :gradle-plugin:settings-plugin:jar UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:compileKotlin UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:compileJava NO-SOURCE
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:classes UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:jar UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :gradle-plugin:react-native-gradle-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo-module-gradle-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo-module-gradle-plugin:pluginDescriptors UP-TO-DATE
+> Task :expo-module-gradle-plugin:processResources UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin:compileKotlin UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin:compileJava NO-SOURCE
+> Task :expo-gradle-plugin:expo-autolinking-plugin:pluginDescriptors UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin:processResources UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin:classes UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:compileKotlin UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:compileJava NO-SOURCE
+> Task :expo-gradle-plugin:expo-autolinking-plugin:jar UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:pluginDescriptors UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:processResources UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:classes UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:jar UP-TO-DATE
+> Task :expo-module-gradle-plugin:compileKotlin UP-TO-DATE
+> Task :expo-module-gradle-plugin:compileJava NO-SOURCE
+> Task :expo-module-gradle-plugin:classes UP-TO-DATE
+> Task :expo-module-gradle-plugin:jar UP-TO-DATE
+
+> Configure project :
+[32m[ExpoRootProject][0m Using the following versions:
+  - buildTools:  [32m36.0.0[0m
+  - minSdk:      [32m24[0m
+  - compileSdk:  [32m36[0m
+  - targetSdk:   [32m36[0m
+  - ndk:         [32m27.1.12297006[0m
+  - kotlin:      [32m2.1.20[0m
+  - ksp:         [32m2.1.20-2.0.1[0m
+
+> Configure project :expo
+
+Using expo modules
+  - [32mexpo-constants[0m (18.0.13)
+  - [32mexpo-modules-core[0m (3.0.30)
+  - [33m[?][0m [32mexpo-asset[0m (12.0.13)
+  - [33m[?][0m [32mexpo-av[0m (16.0.8)
+  - [33m[?][0m [32mexpo-clipboard[0m (8.0.8)
+  - [33m[?][0m [32mexpo-file-system[0m (19.0.22)
+  - [33m[?][0m [32mexpo-font[0m (55.0.7)
+  - [33m[?][0m [32mexpo-keep-awake[0m (15.0.8)
+  - [33m[?][0m [32mexpo-sharing[0m (14.0.8)
+
+
+> Configure project :react-native-sherpa-onnx
+[react-native-sherpa-onnx] sherpa-onnx version (extracted/used): 1.12.34-2
+[react-native-sherpa-onnx] ffmpeg version (extracted/used): 8.0.1-1
+[react-native-sherpa-onnx] libarchive version (extracted/used): 3.8.5-2
+[react-native-sherpa-onnx] onnxruntime version (extracted/used): 1.24.4-qnn2.43.1.260218-1
+
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo:clean UP-TO-DATE
+> Task :expo-constants:clean UP-TO-DATE
+> Task :expo:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo-constants:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :react-native-sherpa-onnx:generateCodegenSchemaFromJavaScript UP-TO-DATE
+> Task :react-native-sherpa-onnx:generateCodegenArtifactsFromSchema
+
+> Task :expo-modules-core:externalNativeBuildCleanDebug FAILED
+Clean fabric-armeabi-v7a, expo-modules-core-armeabi-v7a
+C/C++: ninja: fatal: GetOverlappedResult: ?????????ɡ?
+
+> Task :react-native-screens:externalNativeBuildCleanDebug FAILED
+Clean rnscreens-armeabi-v7a
+C/C++: ninja: fatal: GetOverlappedResult: ?????????ɡ?
+
+> Task :app:generateSherpaOnnxCodegen
+
+> Task :react-native-sherpa-onnx:downloadNativeLibsIfNeeded
+[prebuilt] Resolution order: (1) THIRD_PARTY  (2) LOCAL_SDK  (3) MAVEN_AAR  (4) GITHUB_RELEASE — see docs/PREBUILT_RESOLUTION.md
+[sherpa-onnx] jniLibs + C headers ................. LOCAL_SDK  version=1.12.34-2
+[FFmpeg] .................................... skipped (sherpaOnnxDisableFfmpeg=true)
+[libarchive] .............................. skipped (sherpaOnnxDisableLibarchive=true)
+
+> Task :kesha-antonov_react-native-background-downloader:clean
+> Task :react-native-safe-area-context:clean
+> Task :react-native-async-storage_async-storage:clean
+> Task :dr.pogodin_react-native-fs:clean
+
+> Task :react-native-sherpa-onnx:downloadNativeLibsIfNeeded
+[onnxruntime] libonnxruntime.so + libonnxruntime4j_jni.so (matched pair) .... MAVEN_AAR  onnxruntime-1.24.4-qnn2.43.1.260218-1.aar
+
+
+[Incubating] Problems report is available at: file:///D:/Projects/ShiGuangZhiJi/app/android/build/reports/problems/problems-report.html
+.\gradlew.bat : 
+所在位置 行:1 字符: 168
++ ... pp\android; .\gradlew.bat clean assembleRelease --no-daemon 2>&1 | Ou ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+FAILURE: Build completed with 2 failures.
+
+1: Task failed with an exception.
+-----------
+* What went wrong:
+Execution failed for task ':expo-modules-core:externalNativeBuildCleanDebug'.
+> com.android.ide.common.process.ProcessException: ninja: Entering directory `D:\Projects\S
+hiGuangZhiJi\app\node_modules\expo-modules-core\android\.cxx\Debug\4d163m14\armeabi-v7a'
+  
+  C++ build system [clean] failed while executing:
+      @echo off
+      "C:\\Users\\wjq29\\AppData\\Local\\Android\\Sdk\\cmake\\3.22.1\\bin\\ninja.exe" ^
+        -C ^
+        "D:\\Projects\\ShiGuangZhiJi\\app\\node_modules\\expo-modules-core\\android\\.cxx\\
+Debug\\4d163m14\\armeabi-v7a" ^
+        clean
+    from D:\Projects\ShiGuangZhiJi\app\node_modules\expo-modules-core\android
+  ninja: fatal: GetOverlappedResult: ?????????ɡ?
+
+  
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+==============================================================================
+
+2: Task failed with an exception.
+-----------
+* What went wrong:
+Execution failed for task ':react-native-screens:externalNativeBuildCleanDebug'.
+> com.android.ide.common.process.ProcessException: ninja: Entering directory `D:\Projects\S
+hiGuangZhiJi\app\node_modules\react-native-screens\android\.cxx\Debug\3o6x1nr9\armeabi-v7a'
+  
+  C++ build system [clean] failed while executing:
+      @echo off
+      "C:\\Users\\wjq29\\AppData\\Local\\Android\\Sdk\\cmake\\3.22.1\\bin\\ninja.exe" ^
+        -C ^
+        "D:\\Projects\\ShiGuangZhiJi\\app\\node_modules\\react-native-screens\\android\\.cx
+x\\Debug\\3o6x1nr9\\armeabi-v7a" ^
+        clean
+    from D:\Projects\ShiGuangZhiJi\app\node_modules\react-native-screens\android
+  ninja: fatal: GetOverlappedResult: ?????????ɡ?
+
+  
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+==============================================================================
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.14.3/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD FAILED in 4m 1s
+36 actionable tasks: 9 executed, 27 up-to-date
