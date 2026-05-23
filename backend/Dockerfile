@@ -16,7 +16,7 @@ RUN pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple \
     && pip config set global.timeout 120
 
 COPY requirements.txt .
-RUN pip install --no-cache-dir setuptools wheel \
+RUN pip install --no-cache-dir --upgrade pip "setuptools<72" wheel \
     && pip install --no-cache-dir -r requirements.txt
 
 COPY . .
